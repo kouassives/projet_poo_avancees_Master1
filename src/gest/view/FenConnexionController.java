@@ -35,7 +35,8 @@ public class FenConnexionController {
     
     @FXML
     private void handleValider() {
-    	
+    	mainApp.getPrimaryStage().hide();
+    	mainApp.showFenMenuPrincipal();
     }
     
     @FXML

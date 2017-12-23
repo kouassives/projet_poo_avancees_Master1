@@ -1,8 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
-</BorderPane>
-
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gest.view.FenMenuPrincipalController">
+   <children>
+      <SplitPane dividerPositions="0.29797979797979796" layoutX="300.0" layoutY="170.0" prefHeight="500.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="background">
+               <children>
+                  <Label layoutX="64.0" layoutY="33.0" text="SARL INDIGO">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="35.0" fitWidth="49.0" layoutX="14.0" layoutY="455.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0">
+                     <image>
+                        <Image url="@../../../resources/images/icone_croix_rouge.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <ImageView fitHeight="84.0" fitWidth="114.0" layoutX="223.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../resources/images/icone_statistic.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="93.0" fitWidth="96.0" layoutX="373.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../resources/images/icone_classeur.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="93.0" fitWidth="114.0" layoutX="218.0" layoutY="328.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../resources/images/icone_parametre.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="123.0" fitWidth="114.0" layoutX="208.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../resources/images/icone_portable.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="105.0" fitWidth="140.0" layoutX="51.0" layoutY="189.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../resources/images/icone_bonhomme.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
