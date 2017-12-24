@@ -38,7 +38,22 @@
             </GridPane>
          </children>
       </Pane>
-      <Button layoutX="200.0" layoutY="211.0" mnemonicParsing="false" onAction="#handleValider" text="Valider" />
-      <Button layoutX="290.0" layoutY="211.0" mnemonicParsing="false" onAction="#handleQuitter" prefHeight="33.0" prefWidth="94.0" text="Quitter" />
+      <Button layoutX="158.0" layoutY="211.0" mnemonicParsing="false" onAction="#handleValider" prefHeight="34.0" prefWidth="124.0" styleClass="button-valider" text="Valider">
+         <graphic>
+      	      <ImageView fitHeight="20.0" fitWidth="25.0" preserveRatio="true">
+      	        <image>
+      	          <Image url="@../../../resources/images/icone_valide.png" />
+      	        </image>
+      	      </ImageView>
+         </graphic>
+      </Button>
+      <Button layoutX="282.0" layoutY="211.0" mnemonicParsing="false" onAction="#handleQuitter" prefHeight="33.0" prefWidth="117.0" text="Quitter">
+         <graphic>
+            <ImageView fitHeight="19.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../resources/images/icone_stop.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
    </children>
 </AnchorPane>
