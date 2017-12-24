@@ -45,7 +45,8 @@ public class MainApp extends Application {
             // Show the scene containing the root layout.
             Scene scene = new Scene(FenConnexion);
             getPrimaryStage().setScene(scene);
-            
+            getPrimaryStage().centerOnScreen();
+            getPrimaryStage().setResizable(false);
             // Give the controller access to the main app.
             FenConnexionController controller = loader.getController();
             controller.setMainApp(this);
@@ -71,7 +72,9 @@ public class MainApp extends Application {
             Scene sceneMenuPrincipal = new Scene(page);
             dialogStage.setScene(sceneMenuPrincipal);
             dialogStage.getIcons().add(new Image("file:resources/images/icone_eclipse.png"));
-
+            dialogStage.centerOnScreen();
+            dialogStage.setResizable(false);
+            
             // Set the person into the controller.
             FenMenuPrincipalController controller = loader.getController();
             controller.setDialogStage(dialogStage);

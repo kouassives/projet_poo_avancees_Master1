@@ -2,31 +2,54 @@ package gest.model;
 
 	public abstract class Personne {
 
-		/*
-		 * (non-javadoc)
-		 */
-		protected String code;
-
-		/**
-		 * Getter of the property <tt>code</tt>
-		 * 
-		 * @return Returns the code.
-		 * 
-		 */
+		String code;
+		String nom;
+		String prenom;
+		
 
 		public String getCode() {
 			return code;
 		}
 
-		/**
-		 * Setter of the property <tt>code</tt>
-		 * 
-		 * @param code
-		 *            The code to set.
-		 * 
-		 */
+
 		public void setCode(String code) {
 			this.code = code;
 		}
 
-	}
+
+		public String getNom() {
+			return nom;
+		}
+
+
+		public void setNom(String nom) {
+			this.nom = nom;
+		}
+
+
+		public String getPrenom() {
+			return prenom;
+		}
+
+
+		public void setPrenom(String prenom) {
+			this.prenom = prenom;
+		}
+
+		//1er constructeur
+		public Personne(String vcode, String vnom, String vprenom) {
+			this.code = vcode;
+			this.nom = vnom;
+			this.prenom = vprenom;
+		}
+		
+		//2eme constructeur pour les recherche
+		public Personne(String vcode) {
+			this.code = vcode;
+		}
+		
+		//3eme constructeur pour une simple lecture de collection
+		public Personne() {
+		}
+		
+}

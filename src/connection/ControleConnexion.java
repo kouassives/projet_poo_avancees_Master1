@@ -79,7 +79,6 @@ public static boolean controle(String Nom, String MotDePasse){
 	    alert.setTitle("Error");
 	    alert.setHeaderText("Mauvais identifiants saisis");
 	    alert.setContentText("Verifier votre saisie");
-		etatConnexion = false;
 		verificationSaisie = false;
 		alert.showAndWait();
 		
