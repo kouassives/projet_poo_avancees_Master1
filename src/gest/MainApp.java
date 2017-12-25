@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import gest.view.FenConnexionController;
 import gest.view.FenMenuPrincipalController;
+import gest.view.FenTableClientController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -78,6 +79,41 @@ public class MainApp extends Application {
             // Set the person into the controller.
             FenMenuPrincipalController controller = loader.getController();
             controller.setDialogStage(dialogStage);
+            controller.setMainApp(this);
+            
+            
+            // Show the dialog
+            dialogStage.show();
+        	}
+			catch (IOException e) {
+            e.printStackTrace();
+            }
+	    }
+
+	
+	public void showFenTableClient() {
+		try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/FenTableClient.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+            
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("INDIGO Clients");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(getPrimaryStage());
+            Scene sceneTableClient = new Scene(page);
+            dialogStage.setScene(sceneTableClient);
+            dialogStage.getIcons().add(new Image("file:resources/images/icone_bonhomme.png"));
+            dialogStage.centerOnScreen();
+            dialogStage.setResizable(false);
+            
+            // Set the person into the controller.
+            FenTableClientController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setMainApp(this);
+            
             
             // Show the dialog
             dialogStage.show();
@@ -94,6 +130,10 @@ public class MainApp extends Application {
 	public void setPrimaryStage(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 	}	
+
+	public void bonjour () {
+		System.out.println("Bonjour");
+	}
 }
 	
 

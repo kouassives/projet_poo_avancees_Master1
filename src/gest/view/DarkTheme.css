@@ -5,28 +5,28 @@
 .label {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: white;
-    -fx-opacity: 0.6;
+    -fx-text-fill: black;
+    -fx-opacity: 1;
 }
 
 .label-bright {
     -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: white;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: black;
     -fx-opacity: 1;
 }
 
 .label-header {
-    -fx-font-size: 32pt;
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
+    -fx-font-size: 18pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: black;
     -fx-opacity: 1;
 }
 
 .table-view {
     -fx-base: #1d1d1d;
     -fx-control-inner-background: #1d1d1d;
-    -fx-background-color: #1d1d1d;
+    -fx-background-color: #2b3235;
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
     -fx-padding: 5;
@@ -61,12 +61,12 @@
 }
 
 .split-pane:horizontal > .split-pane-divider {
-    -fx-border-color: transparent #1d1d1d transparent #1d1d1d;
-    -fx-background-color: transparent, derive(#1d1d1d,20%);
+    /*-fx-border-color: transparent #1d1d1d transparent #1d1d1d;
+    -fx-background-color: transparent, derive(#1d1d1d,20%);*/
 }
 
 .split-pane {
-    -fx-padding: 1 0 0 0;
+    -fx-padding: 0 0 0 0;
 }
 
 .menu-bar {
@@ -141,7 +141,7 @@
 .button:default:hover {
     -fx-background-color: derive(-fx-focus-color,30%);
 }
-
+/* MES AJOUTS */
 #windows7-default { 
     -fx-background-color: 
         #3c7fb1, 
@@ -154,3 +154,87 @@
     -fx-font-size: 14px; 
 }
 
+.SplitPane{
+	-fx-background-image: url('../../../resources/images/split_background.png');
+	-fx-background-size: 100%;
+    -fx-background-repeat: no-repeat;
+}
+
+.buttonWithImage { 
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-background-size: 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-text-fill: white;
+}
+
+#buttonStatistic{
+	-fx-background-image: url('../../../resources/images/icone_statistic.png');
+}
+
+#buttonParametre{
+	-fx-background-image: url('../../../resources/images/icone_parametre.png');
+}
+
+#buttonClasseur{
+	-fx-background-image: url('../../../resources/images/icone_classeur.png');
+}
+
+#buttonMarcheur{
+	-fx-background-image: url('../../../resources/images/icone_bonhomme.png');
+}
+
+#buttonPortable{
+	-fx-background-image: url('../../../resources/images/icone_portable.png');
+}
+
+#buttonCroixRouge{
+	-fx-background-image: url('../../../resources/images/icone_croix_rouge.png');
+}
+
+.buttonPanneau{
+	-fx-background-size: 30%;
+	-fx-background-position: 0%;	
+}
+
+#buttonAjouter{
+	-fx-background-image: url('../../../resources/images/icone_ajouter.png');
+}
+
+#buttonRechercher{
+	-fx-background-image: url('../../../resources/images/icone_rechercher.png');
+}
+
+#buttonRechercher{
+	-fx-background-image: url('../../../resources/images/icone_rechercher.png');
+}
+
+#buttonModifier{
+	-fx-background-image: url('../../../resources/images/icone_modifier.png');
+}
+
+#buttonSupprimer{
+	-fx-background-size: 25%;
+	-fx-background-position: 0%;	
+	-fx-background-image: url('../../../resources/images/icone_croix_rouge.png');
+}
+
+#buttonApercuAvantImpression{
+	-fx-background-size: 15%;
+	-fx-background-position: 0%;	
+	-fx-background-image: url('../../../resources/images/icone_apercu_impression.png');
+}
+
+#buttonImpression{
+	-fx-background-image: url('../../../resources/images/icone_impression.png');
+}
+
+#buttonExporter{
+	-fx-background-image: url('../../../resources/images/icone_exporter.png');
+}
+
+#buttonHome{
+	-fx-background-size: 20%;
+	-fx-background-position: 0%;	
+	-fx-background-image: url('../../../resources/images/icone_home.png');
+}

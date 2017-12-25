@@ -1,11 +1,20 @@
 package gest.view;
 
 import gest.MainApp;
+import javafx.fxml.FXML;
 import javafx.stage.Stage;
 
 public class FenMenuPrincipalController {
 	  private MainApp mainApp;
 
+	  /**
+	     * Initializes the controller class. This method is automatically called
+	     * after the fxml file has been loaded.
+	     */
+	    @FXML
+	    private void initialize() {
+	    }
+	    
 	    /**
 	     * Is called by the main application to give a reference back to itself.
 	     * 
@@ -27,7 +36,13 @@ public class FenMenuPrincipalController {
     }
 
 
+    public void handleGestionClient() {
+    	this.dialogStage.hide();
+    	mainApp.showFenTableClient();
+    }
+    
     public void handleclosing() {
-    	mainApp.getPrimaryStage().hide();
+    	this.dialogStage.hide();
+    	mainApp.initPrimaryLayout();
     }
 }
