@@ -131,9 +131,6 @@ public class MainApp extends Application {
 		this.primaryStage = primaryStage;
 	}	
 
-	public void bonjour () {
-		System.out.println("Bonjour");
-	}
 }
 	
 
