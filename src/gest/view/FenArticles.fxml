@@ -83,7 +83,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="buttonHome" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="451.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="173.0" text="Menu Principale">
+            <Button id="buttonHome" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="451.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="173.0" text="Menu Principal">
                <styleClass>
                   <String fx:value="buttonWithImage" />
                   <String fx:value="buttonPanneau" />
@@ -128,8 +128,8 @@
                            <children>
                               <Label text="Code" />
                               <Label prefHeight="21.0" prefWidth="148.0" text="Code Categorie" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
-                              <TextField maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" GridPane.columnIndex="1" />
-                              <TextField maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" GridPane.columnIndex="3" />
+                              <TextField id="textfieldresize" alignment="BOTTOM_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" GridPane.columnIndex="1" />
+                              <TextField id="textfieldresize" alignment="BOTTOM_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" GridPane.columnIndex="3" />
                            </children>
                         </GridPane>
                         <GridPane GridPane.rowIndex="1">
@@ -142,7 +142,7 @@
                           </rowConstraints>
                            <children>
                               <Label text="Désignation" />
-                              <TextField maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" GridPane.columnIndex="1" />
+                              <TextField id="textfieldresize" alignment="BOTTOM_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" GridPane.columnIndex="1" />
                            </children>
                         </GridPane>
                         <GridPane GridPane.rowIndex="2">
@@ -158,8 +158,8 @@
                            <children>
                               <Label text="Quantité" />
                               <Label prefHeight="21.0" prefWidth="148.0" text="Prix Unitaire" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
-                              <TextField maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" GridPane.columnIndex="1" />
-                              <TextField maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" GridPane.columnIndex="3" />
+                              <TextField id="textfieldresize" alignment="BOTTOM_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" GridPane.columnIndex="1" />
+                              <TextField id="textfieldresize" alignment="BOTTOM_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" GridPane.columnIndex="3" />
                            </children>
                         </GridPane>
                      </children>

@@ -45,7 +45,7 @@
                   <String fx:value="buttonPanneau" />
                </styleClass>
             </Button>
-            <Button id="buttonHome" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="451.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="173.0" text="Menu Principale">
+            <Button id="buttonHome" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="451.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="173.0" text="Menu Principal">
                <styleClass>
                   <String fx:value="buttonWithImage" />
                   <String fx:value="buttonPanneau" />
