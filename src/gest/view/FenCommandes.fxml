@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gest.view.FenTableClientController">
+   <children>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="507.0" prefWidth="228.0" styleClass="SplitPane">
+         <children>
+            <Button id="buttonAjouter" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="14.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="119.0" text="Ajouter">
+               <styleClass>
+                  <String fx:value="buttonWithImage" />
+                  <String fx:value="buttonPanneau" />
+               </styleClass>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button id="buttonModifier" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="176.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="183.0" style="-fx-background-size: 20%;" text="Supprimer un ligne">
+               <styleClass>
+                  <String fx:value="buttonWithImage" />
+                  <String fx:value="buttonPanneau" />
+               </styleClass>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button id="buttonSupprimer" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="122.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="183.0" style="-fx-background-size: 15%;" text="Supprimer un ligne">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <styleClass>
+                  <String fx:value="buttonWithImage" />
+                  <String fx:value="buttonPanneau" />
+               </styleClass>
+            </Button>
+            <Button id="buttonHome" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="451.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="173.0" text="Menu Principale">
+               <styleClass>
+                  <String fx:value="buttonWithImage" />
+                  <String fx:value="buttonPanneau" />
+               </styleClass>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </AnchorPane>
+    <AnchorPane layoutX="227.0" minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="574.0">
+         <children>
+            <Label layoutX="90.0" layoutY="465.0" styleClass="label-bright" text="Mode de réglement" />
+            <ComboBox layoutX="199.0" layoutY="464.0" minHeight="-Infinity" prefHeight="21.0" prefWidth="103.0" />
+            <VBox layoutX="14.0" layoutY="14.0" prefHeight="97.0" prefWidth="564.0" style="-fx-border-color: black, black; -fx-border-radius: 5;" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+               <children>
+                  <Pane prefHeight="34.0" prefWidth="564.0" style="-fx-background-radius: 5;" styleClass="background">
+                     <children>
+                        <ImageView fitHeight="34.0" fitWidth="40.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../resources/images/icone_trier2.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="41.0" layoutY="7.0" style="-fx-text-fill: white;" text="Information générales sur la commande en cours" />
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="63.0" prefWidth="564.0">
+                     <children>
+                        <Label layoutX="14.0" layoutY="6.0" styleClass="label-bright" text="Nom du client" />
+                        <Label layoutX="255.0" layoutY="6.0" styleClass="label-bright" text="Numéro du document" />
+                        <Label layoutX="457.0" layoutY="6.0" styleClass="label-bright" text="Date du jour" />
+                        <ComboBox layoutX="255.0" layoutY="23.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="63.0" />
+                        <Label layoutX="326.0" layoutY="25.0" />
+                        <Label layoutX="457.0" layoutY="23.0" />
+                        <Button layoutY="20.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="183.0" style="-fx-text-fill: black; -fx-font-family: &quot;Segoe UI Semibold&quot;; -fx-font-size: 12;" styleClass="buttonWithImage" text="[Cliquer ici pour selectionner un client]" wrapText="true">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Button>
+                     </children>
+                  </Pane>
+               </children>
+            </VBox>
+            <VBox layoutX="5.0" layoutY="131.0" prefHeight="291.0" prefWidth="564.0" style="-fx-border-radius: 5; -fx-border-color: black, black;">
+               <children>
+                  <Pane prefHeight="34.0" prefWidth="564.0" style="-fx-background-radius: 5;" styleClass="background">
+                     <children>
+                        <ImageView fitHeight="30.0" fitWidth="26.0" layoutX="2.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../resources/images/icone_facture.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="39.0" layoutY="7.0" style="-fx-text-fill: white;" text="Valeurs / Champs à ajouter à la facture" />
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="256.0" prefWidth="562.0">
+                     <children>
+                        <Label layoutX="326.0" layoutY="25.0" />
+                        <Button id="windows7-default" layoutX="13.0" layoutY="12.0" mnemonicParsing="false" style="-fx-font-size: 11; -fx-font-family: &quot;Segoe UI Semibold&quot;;" text="Parcourir les articles" />
+                        <Label layoutX="14.0" layoutY="46.0" styleClass="label-bright" text="Code" />
+                        <Label layoutX="13.0" layoutY="80.0" styleClass="label-bright" text="Quantité" />
+                        <Label layoutX="193.0" layoutY="46.0" styleClass="label-bright" text="Désignation" />
+                        <Label layoutX="193.0" layoutY="80.0" styleClass="label-bright" text="Montant" />
+                        <Label layoutX="421.0" layoutY="46.0" styleClass="label-bright" text="Code catégorie" />
+                        <TextField layoutX="78.0" layoutY="44.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="21.0" prefWidth="100.0" />
+                        <ComboBox layoutX="78.0" layoutY="78.0" prefHeight="25.0" prefWidth="100.0" />
+                        <TextField layoutX="260.0" layoutY="42.0" minHeight="-Infinity" prefHeight="25.0" prefWidth="147.0" />
+                        <TextField layoutX="505.0" layoutY="44.0" minHeight="-Infinity" prefHeight="21.0" prefWidth="43.0" />
+                        <TableView layoutX="6.0" layoutY="110.0" prefHeight="141.0" prefWidth="551.0">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="C1" />
+                            <TableColumn prefWidth="75.0" text="C2" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </Pane>
+               </children>
+            </VBox>
+            <Button id="windows7-default" layoutX="431.0" layoutY="430.0" mnemonicParsing="false" text="Total TTC :" />
+            <ImageView fitHeight="30.0" fitWidth="34.0" layoutX="51.0" layoutY="459.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../resources/images/icone_portemonnaie.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="375.0" layoutY="458.0" mnemonicParsing="false" text="Valider la commande" />
+         </children></AnchorPane>
+   </children>
+</AnchorPane>

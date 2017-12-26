@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gest.view.FenTableClientController">
+   <children>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="507.0" prefWidth="228.0" styleClass="SplitPane">
+         <children>
+            <Button id="buttonImpression" alignment="CENTER_RIGHT" layoutX="10.0" layoutY="43.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="219.0" style="-fx-background-size: 15%;" text="Imprimer la commande">
+               <styleClass>
+                  <String fx:value="buttonWithImage" />
+                  <String fx:value="buttonPanneau" />
+               </styleClass>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button id="buttonModifier" alignment="CENTER_RIGHT" layoutX="7.0" layoutY="219.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="211.0" style="-fx-background-size: 20%;" text="Exporter la commande">
+               <styleClass>
+                  <String fx:value="buttonWithImage" />
+                  <String fx:value="buttonPanneau" />
+               </styleClass>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button id="buttonApercuAvantImpression" alignment="CENTER_RIGHT" layoutX="14.0" layoutY="130.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="211.0" style="-fx-background-size: 25;" text="Apercu de la commande">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <styleClass>
+                  <String fx:value="buttonWithImage" />
+                  <String fx:value="buttonPanneau" />
+               </styleClass>
+            </Button>
+            <Button id="buttonHome" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="451.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="173.0" text="Retour au menu">
+               <styleClass>
+                  <String fx:value="buttonWithImage" />
+                  <String fx:value="buttonPanneau" />
+               </styleClass>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button id="buttonSupprimer" alignment="CENTER_RIGHT" layoutX="14.0" layoutY="306.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="211.0" style="-fx-background-size: 15%; -fx-font-size: 14;" text="Supprimer la commande">
+               <styleClass>
+                  <String fx:value="buttonWithImage" />
+                  <String fx:value="buttonPanneau" />
+               </styleClass>
+            </Button>
+         </children>
+      </AnchorPane>
+    <AnchorPane layoutX="227.0" minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="574.0">
+         <children>
+            <Label layoutX="9.0" layoutY="29.0" styleClass="label-header" text="GESTION DU FICHIER DES COMMANDES" />
+            <Label layoutX="14.0" layoutY="466.0" styleClass="label-bright" text="Total des commandes :" />
+            <Label layoutX="138.0" layoutY="465.0" />
+            <ImageView fitHeight="34.0" fitWidth="34.0" layoutX="253.0" layoutY="459.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../resources/images/icone_valider.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="294.0" layoutY="466.0" styleClass="label-bright" text="Rechercher une commande" />
+            <TextField layoutX="439.0" layoutY="461.0" minHeight="-Infinity" prefHeight="26.0" prefWidth="126.0" style="-fx-font-size: 12;" />
+            <TableView layoutX="9.0" layoutY="74.0" prefHeight="369.0" prefWidth="556.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
+         </children></AnchorPane>
+   </children>
+</AnchorPane>
