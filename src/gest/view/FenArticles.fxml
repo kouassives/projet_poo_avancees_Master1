@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gest.view.FenTableClientController">
+   <children>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="507.0" prefWidth="228.0" styleClass="SplitPane">
+         <children>
+            <Button id="buttonAjouter" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="14.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="119.0" text="Ajouter">
+               <styleClass>
+                  <String fx:value="buttonWithImage" />
+                  <String fx:value="buttonPanneau" />
+               </styleClass>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button id="buttonRechercher" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="70.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="142.0" text="Rechercher">
+               <styleClass>
+                  <String fx:value="buttonWithImage" />
+                  <String fx:value="buttonPanneau" />
+               </styleClass>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button id="buttonModifier" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="121.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="125.0" text="Modifier">
+               <styleClass>
+                  <String fx:value="buttonWithImage" />
+                  <String fx:value="buttonPanneau" />
+               </styleClass>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button id="buttonSupprimer" alignment="CENTER_RIGHT" layoutX="30.0" layoutY="180.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="132.0" text="Supprimer">
+               <styleClass>
+                  <String fx:value="buttonWithImage" />
+                  <String fx:value="buttonPanneau" />
+               </styleClass>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button id="buttonApercuAvantImpression" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="284.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="219.0" text="Aperçu avant impression">
+               <styleClass>
+                  <String fx:value="buttonWithImage" />
+                  <String fx:value="buttonPanneau" />
+               </styleClass>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button id="buttonImpression" layoutX="40.0" layoutY="335.0" mnemonicParsing="false" text="Imprimer">
+               <styleClass>
+                  <String fx:value="buttonWithImage" />
+                  <String fx:value="buttonPanneau" />
+               </styleClass>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button id="buttonExporter" layoutX="40.0" layoutY="382.0" mnemonicParsing="false" text="Exporter">
+               <styleClass>
+                  <String fx:value="buttonWithImage" />
+                  <String fx:value="buttonPanneau" />
+               </styleClass>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button id="buttonHome" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="451.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="173.0" text="Menu Principale">
+               <styleClass>
+                  <String fx:value="buttonWithImage" />
+                  <String fx:value="buttonPanneau" />
+               </styleClass>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </AnchorPane>
+    <AnchorPane layoutX="227.0" minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="574.0">
+         <children>
+            <ImageView fitHeight="81.0" fitWidth="79.0" layoutX="46.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../resources/images/icone_bonhomme_exclamation.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="125.0" layoutY="36.0" styleClass="label-header" text="Gestion des articles" />
+            <Label layoutX="125.0" layoutY="71.0" styleClass="label-bright" text="ajout modification suppression consultation et impression" />
+            <Pane layoutX="9.0" layoutY="99.0" prefHeight="186.0" prefWidth="556.0">
+               <children>
+                  <GridPane layoutX="16.0" layoutY="14.0" prefHeight="137.0" prefWidth="521.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <GridPane>
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="115.0" minWidth="10.0" prefWidth="107.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="169.0" minWidth="10.0" prefWidth="111.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="193.0" minWidth="10.0" prefWidth="193.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Code" />
+                              <Label prefHeight="21.0" prefWidth="148.0" text="Code Categorie" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
+                              <TextField GridPane.columnIndex="1" />
+                              <TextField GridPane.columnIndex="3" />
+                           </children>
+                        </GridPane>
+                        <GridPane GridPane.rowIndex="1">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="253.0" minWidth="10.0" prefWidth="111.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="411.0" minWidth="10.0" prefWidth="410.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Désignation" />
+                              <TextField GridPane.columnIndex="1" />
+                           </children>
+                        </GridPane>
+                        <GridPane GridPane.rowIndex="2">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="114.0" minWidth="10.0" prefWidth="108.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="205.0" minWidth="10.0" prefWidth="97.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="209.0" minWidth="10.0" prefWidth="209.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Quantité" />
+                              <Label prefHeight="21.0" prefWidth="148.0" text="Prix Unitaire" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
+                              <TextField GridPane.columnIndex="1" />
+                              <TextField GridPane.columnIndex="3" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </GridPane>
+                  <Button layoutX="196.0" layoutY="157.0" mnemonicParsing="false" style="-fx-font-size: 10;" text="Ajouter" />
+                  <Button layoutX="283.0" layoutY="157.0" mnemonicParsing="false" style="-fx-font-size: 10;" text="Effacer" />
+                  <Button layoutX="367.0" layoutY="157.0" mnemonicParsing="false" style="-fx-font-size: 10;" text="Modifier" />
+                  <Button layoutX="459.0" layoutY="157.0" mnemonicParsing="false" style="-fx-font-size: 10;" text="Button" />
+               </children></Pane>
+            <TableView layoutX="42.0" layoutY="287.0" prefHeight="164.0" prefWidth="554.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
+            <ImageView fitHeight="27.0" fitWidth="33.0" layoutX="46.0" layoutY="458.0" pickOnBounds="true" preserveRatio="true" />
+            <Label layoutX="90.0" layoutY="463.0" styleClass="label-bright" text="Trier la liste par" />
+            <ComboBox layoutX="194.0" layoutY="461.0" prefHeight="21.0" prefWidth="79.0" />
+            <ImageView fitHeight="35.0" fitWidth="36.0" layoutX="327.0" layoutY="456.0" pickOnBounds="true" preserveRatio="true" />
+            <Label layoutX="371.0" layoutY="463.0" styleClass="label-bright" text="Rechercher" />
+            <TextField layoutX="452.0" layoutY="455.0" prefHeight="21.0" prefWidth="108.0" />
+         </children></AnchorPane>
+   </children>
+</AnchorPane>
