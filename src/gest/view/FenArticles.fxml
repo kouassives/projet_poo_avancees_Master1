@@ -98,7 +98,7 @@
          <children>
             <ImageView fitHeight="81.0" fitWidth="79.0" layoutX="46.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../resources/images/icone_bonhomme_exclamation.png" />
+                  <Image url="@../../../resources/images/icone_database.png" />
                </image>
             </ImageView>
             <Label layoutX="125.0" layoutY="36.0" styleClass="label-header" text="Gestion des articles" />
