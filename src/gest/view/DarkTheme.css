@@ -10,7 +10,7 @@
 }
 
 .label-bright {
-    -fx-font-size: 11pt;
+    -fx-font-size: 9pt;
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: black;
     -fx-opacity: 1;
@@ -111,20 +111,21 @@
 }
 
 .button:hover {
-    -fx-background-color: #3a3a3a;
+    /*-fx-background-color: #3a3a3a;*/
+    -fx-background-color: transparent;
 }
 
 .button:pressed, .button:default:hover:pressed {
   -fx-background-color: white;
-  -fx-text-fill: #1d1d1d;
+  /*-fx-text-fill: #1d1d1d;*/
 }
 
 .button:focused {
-    -fx-border-color: white, white;
+    /*-fx-border-color: white, white;
     -fx-border-width: 1, 1;
     -fx-border-style: solid, segments(1, 1);
     -fx-border-radius: 0, 0;
-    -fx-border-insets: 1 1 1 1, 0;
+    -fx-border-insets: 1 1 1 1, 0;*/
 }
 
 .button:disabled, .button:default:disabled {
@@ -142,6 +143,7 @@
     -fx-background-color: derive(-fx-focus-color,30%);
 }
 /* MES AJOUTS */
+
 #windows7-default { 
     -fx-background-color: 
         #3c7fb1, 
@@ -154,6 +156,10 @@
     -fx-font-size: 14px; 
 }
 
+#textfieldresize{
+	-fx-font-size: 10pt;
+	-fx-font-family: "Segoe UI Light"; 
+}
 .SplitPane{
 	-fx-background-image: url('../../../resources/images/split_background.png');
 	-fx-background-size: 100%;
@@ -226,7 +232,7 @@
 }
 
 #buttonImpression{
-	-fx-background-image: url('../../../resources/images/icone_impression.png');
+	-fx-background-image: url('../../../resources/images/icone_imprimer.png');
 }
 
 #buttonExporter{

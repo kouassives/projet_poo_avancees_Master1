@@ -59,7 +59,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="buttonApercuAvantImpression" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="284.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="219.0" text="Aperçu avant impression">
+            <Button id="buttonApercuAvantImpression" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="284.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="221.0" text="Aperçu avant impression">
                <styleClass>
                   <String fx:value="buttonWithImage" />
                   <String fx:value="buttonPanneau" />
@@ -68,7 +68,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="buttonImpression" layoutX="40.0" layoutY="335.0" mnemonicParsing="false" text="Imprimer">
+            <Button id="buttonImpression" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="335.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="125.0" text="Imprimer">
                <styleClass>
                   <String fx:value="buttonWithImage" />
                   <String fx:value="buttonPanneau" />
@@ -77,7 +77,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="buttonExporter" layoutX="40.0" layoutY="382.0" mnemonicParsing="false" text="Exporter">
+            <Button id="buttonExporter" alignment="CENTER_RIGHT" layoutX="29.0" layoutY="382.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="119.0" text="Exporter">
                <styleClass>
                   <String fx:value="buttonWithImage" />
                   <String fx:value="buttonPanneau" />
@@ -108,9 +108,9 @@
             <Label layoutX="125.0" layoutY="71.0" styleClass="label-bright" text="ajout modification suppression consultation et impression" />
             <Pane layoutX="9.0" layoutY="99.0" prefHeight="238.0" prefWidth="556.0">
                <children>
-                  <Label layoutX="6.0" layoutY="182.0" text="Remarques" />
-                  <TextArea layoutX="105.0" layoutY="192.0" prefHeight="42.0" prefWidth="423.0" />
-                  <GridPane layoutX="6.0" layoutY="16.0" prefHeight="160.0" prefWidth="544.0">
+                  <Label layoutX="6.0" layoutY="175.0" text="Remarques" />
+                  <TextArea layoutX="103.0" layoutY="175.0" minHeight="23.0" prefHeight="49.0" prefWidth="425.0" />
+                  <GridPane layoutX="6.0" layoutY="4.0" prefHeight="164.0" prefWidth="544.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="264.0" minWidth="10.0" prefWidth="97.0" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="447.0" minWidth="10.0" prefWidth="447.0" />
@@ -140,7 +140,7 @@
                               <Label text="Email" GridPane.halignment="LEFT" GridPane.rowIndex="5" />
                            </children>
                         </GridPane>
-                        <GridPane vgap="15.0" GridPane.columnIndex="1">
+                        <GridPane vgap="2.0" GridPane.columnIndex="1">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                           </columnConstraints>
@@ -149,28 +149,28 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <GridPane vgap="15.0">
+                              <GridPane vgap="1.0">
                                 <columnConstraints>
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                 </columnConstraints>
                                 <rowConstraints>
-                                  <RowConstraints maxHeight="71.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
-                                  <RowConstraints maxHeight="43.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="71.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="43.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <GridPane vgap="20.0">
+                                    <GridPane vgap="10.0">
                                       <columnConstraints>
                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="176.0" minWidth="10.0" prefWidth="169.0" />
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="144.0" minWidth="10.0" prefWidth="105.0" />
                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="226.0" minWidth="10.0" prefWidth="173.0" />
                                       </columnConstraints>
                                       <rowConstraints>
-                                        <RowConstraints maxHeight="17.0" minHeight="10.0" prefHeight="17.0" vgrow="SOMETIMES" />
-                                        <RowConstraints maxHeight="10.0" minHeight="3.0" prefHeight="3.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="22.0" minHeight="10.0" prefHeight="22.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="10.0" minHeight="3.0" prefHeight="5.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <TextField minHeight="20.0" />
-                                          <TextField minHeight="20.0" GridPane.rowIndex="1" />
+                                          <TextField id="textfieldresize" alignment="BOTTOM_LEFT" minHeight="25.0" />
+                                          <TextField id="textfieldresize" alignment="BOTTOM_LEFT" minHeight="25.0" GridPane.rowIndex="1" />
                                           <Label text="Date création" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
                                           <Label text="Prénom" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                                           <GridPane hgap="5.0" GridPane.columnIndex="2">
@@ -182,17 +182,17 @@
                                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                              <children>
-                                                <TextField minHeight="20.0" />
+                                                <TextField id="textfieldresize" alignment="BOTTOM_LEFT" minHeight="25.0" />
                                                 <CheckBox mnemonicParsing="false" text="Carte fidelité" GridPane.columnIndex="1" />
                                              </children>
                                           </GridPane>
-                                          <TextField minHeight="20.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                          <TextField id="textfieldresize" alignment="BOTTOM_LEFT" minHeight="25.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                        </children>
                                     </GridPane>
-                                    <TextField minHeight="20.0" GridPane.rowIndex="1" />
+                                    <TextField id="textfieldresize" minHeight="25.0" GridPane.rowIndex="1" />
                                  </children>
                               </GridPane>
-                              <GridPane vgap="5.0" GridPane.rowIndex="1">
+                              <GridPane vgap="2.0" GridPane.rowIndex="1">
                                 <columnConstraints>
                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0" prefWidth="167.0" />
                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="144.0" minWidth="10.0" prefWidth="107.0" />
@@ -204,13 +204,13 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <TextField minHeight="20.0" />
-                                    <TextField minHeight="20.0" GridPane.rowIndex="1" />
-                                    <TextField minHeight="20.0" GridPane.rowIndex="2" />
+                                    <TextField id="textfieldresize" alignment="BOTTOM_LEFT" minHeight="25.0" />
+                                    <TextField id="textfieldresize" alignment="BOTTOM_LEFT" minHeight="25.0" GridPane.rowIndex="1" />
+                                    <TextField id="textfieldresize" alignment="BOTTOM_LEFT" minHeight="25.0" GridPane.rowIndex="2" />
                                     <Label text="Ville" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
                                     <Label text="Mobilis" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                                    <TextField minHeight="20.0" GridPane.columnIndex="2" />
-                                    <TextField minHeight="20.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <TextField id="textfieldresize" alignment="BOTTOM_LEFT" minHeight="23.0" GridPane.columnIndex="2" />
+                                    <TextField id="textfieldresize" alignment="BOTTOM_LEFT" minHeight="23.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                  </children>
                               </GridPane>
                            </children>
@@ -222,15 +222,18 @@
                   </GridPane>
                </children>
             </Pane>
-            <TableView layoutX="42.0" layoutY="337.0" prefHeight="114.0" prefWidth="518.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+            <TableView layoutX="42.0" layoutY="325.0" prefHeight="126.0" prefWidth="554.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
               <columns>
                 <TableColumn prefWidth="75.0" text="C1" />
                 <TableColumn prefWidth="75.0" text="C2" />
               </columns>
             </TableView>
-            <ImageView fitHeight="27.0" fitWidth="33.0" layoutX="191.0" layoutY="463.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="25.0" fitWidth="29.0" layoutX="202.0" layoutY="466.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../resources/images/icone_trier.png" />
+               </image></ImageView>
             <Label layoutX="235.0" layoutY="468.0" styleClass="label-bright" text="Trier la liste par" />
-            <ComboBox layoutX="339.0" layoutY="466.0" prefHeight="21.0" prefWidth="79.0" />
+            <ComboBox layoutX="340.0" layoutY="468.0" minHeight="-Infinity" prefHeight="21.0" prefWidth="103.0" />
          </children></AnchorPane>
    </children>
 </AnchorPane>

@@ -56,7 +56,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="buttonApercuAvantImpression" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="284.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="219.0" text="Aperçu avant impression">
+            <Button id="buttonApercuAvantImpression" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="284.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="221.0" text="Aperçu avant impression">
                <styleClass>
                   <String fx:value="buttonWithImage" />
                   <String fx:value="buttonPanneau" />
@@ -65,7 +65,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="buttonImpression" layoutX="40.0" layoutY="335.0" mnemonicParsing="false" text="Imprimer">
+            <Button id="buttonImpression" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="335.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="125.0" text="Imprimer">
                <styleClass>
                   <String fx:value="buttonWithImage" />
                   <String fx:value="buttonPanneau" />
@@ -74,7 +74,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="buttonExporter" layoutX="40.0" layoutY="382.0" mnemonicParsing="false" text="Exporter">
+            <Button id="buttonExporter" alignment="CENTER_RIGHT" layoutX="29.0" layoutY="382.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="119.0" text="Exporter">
                <styleClass>
                   <String fx:value="buttonWithImage" />
                   <String fx:value="buttonPanneau" />
@@ -103,9 +103,9 @@
             </ImageView>
             <Label layoutX="125.0" layoutY="36.0" styleClass="label-header" text="Gestion des articles" />
             <Label layoutX="125.0" layoutY="71.0" styleClass="label-bright" text="ajout modification suppression consultation et impression" />
-            <Pane layoutX="9.0" layoutY="99.0" prefHeight="186.0" prefWidth="556.0">
+            <Pane layoutX="9.0" layoutY="99.0" prefHeight="130.0" prefWidth="556.0">
                <children>
-                  <GridPane layoutX="16.0" layoutY="14.0" prefHeight="137.0" prefWidth="521.0">
+                  <GridPane layoutX="16.0" layoutY="14.0" prefHeight="79.0" prefWidth="521.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
@@ -128,8 +128,8 @@
                            <children>
                               <Label text="Code" />
                               <Label prefHeight="21.0" prefWidth="148.0" text="Code Categorie" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
-                              <TextField GridPane.columnIndex="1" />
-                              <TextField GridPane.columnIndex="3" />
+                              <TextField maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" GridPane.columnIndex="1" />
+                              <TextField maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" GridPane.columnIndex="3" />
                            </children>
                         </GridPane>
                         <GridPane GridPane.rowIndex="1">
@@ -142,7 +142,7 @@
                           </rowConstraints>
                            <children>
                               <Label text="Désignation" />
-                              <TextField GridPane.columnIndex="1" />
+                              <TextField maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" GridPane.columnIndex="1" />
                            </children>
                         </GridPane>
                         <GridPane GridPane.rowIndex="2">
@@ -158,29 +158,35 @@
                            <children>
                               <Label text="Quantité" />
                               <Label prefHeight="21.0" prefWidth="148.0" text="Prix Unitaire" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
-                              <TextField GridPane.columnIndex="1" />
-                              <TextField GridPane.columnIndex="3" />
+                              <TextField maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" GridPane.columnIndex="1" />
+                              <TextField maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" GridPane.columnIndex="3" />
                            </children>
                         </GridPane>
                      </children>
                   </GridPane>
-                  <Button layoutX="196.0" layoutY="157.0" mnemonicParsing="false" style="-fx-font-size: 10;" text="Ajouter" />
-                  <Button layoutX="283.0" layoutY="157.0" mnemonicParsing="false" style="-fx-font-size: 10;" text="Effacer" />
-                  <Button layoutX="367.0" layoutY="157.0" mnemonicParsing="false" style="-fx-font-size: 10;" text="Modifier" />
-                  <Button layoutX="459.0" layoutY="157.0" mnemonicParsing="false" style="-fx-font-size: 10;" text="Button" />
+                  <Button layoutX="196.0" layoutY="100.0" mnemonicParsing="false" style="-fx-font-size: 10;" text="Ajouter" />
+                  <Button layoutX="283.0" layoutY="100.0" mnemonicParsing="false" style="-fx-font-size: 10;" text="Effacer" />
+                  <Button layoutX="367.0" layoutY="100.0" mnemonicParsing="false" style="-fx-font-size: 10;" text="Modifier" />
+                  <Button layoutX="459.0" layoutY="100.0" mnemonicParsing="false" style="-fx-font-size: 10;" text="Button" />
                </children></Pane>
-            <TableView layoutX="42.0" layoutY="287.0" prefHeight="164.0" prefWidth="554.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+            <TableView layoutX="42.0" layoutY="229.0" prefHeight="222.0" prefWidth="554.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
               <columns>
                 <TableColumn prefWidth="75.0" text="C1" />
                 <TableColumn prefWidth="75.0" text="C2" />
               </columns>
             </TableView>
-            <ImageView fitHeight="27.0" fitWidth="33.0" layoutX="46.0" layoutY="458.0" pickOnBounds="true" preserveRatio="true" />
-            <Label layoutX="90.0" layoutY="463.0" styleClass="label-bright" text="Trier la liste par" />
-            <ComboBox layoutX="194.0" layoutY="461.0" prefHeight="21.0" prefWidth="79.0" />
-            <ImageView fitHeight="35.0" fitWidth="36.0" layoutX="327.0" layoutY="456.0" pickOnBounds="true" preserveRatio="true" />
-            <Label layoutX="371.0" layoutY="463.0" styleClass="label-bright" text="Rechercher" />
-            <TextField layoutX="452.0" layoutY="455.0" prefHeight="21.0" prefWidth="108.0" />
+            <ImageView fitHeight="21.0" fitWidth="27.0" layoutX="46.0" layoutY="464.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../resources/images/icone_trier.png" />
+               </image></ImageView>
+            <Label layoutX="78.0" layoutY="463.0" styleClass="label-bright" text="Trier la liste par" />
+            <ComboBox layoutX="185.0" layoutY="464.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" prefWidth="125.0" />
+            <ImageView fitHeight="27.0" fitWidth="27.0" layoutX="336.0" layoutY="461.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../resources/images/icone_valider.png" />
+               </image></ImageView>
+            <Label layoutX="364.0" layoutY="463.0" styleClass="label-bright" text="Rechercher" />
+            <TextField layoutX="441.0" layoutY="464.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="125.0" />
          </children></AnchorPane>
    </children>
 </AnchorPane>
