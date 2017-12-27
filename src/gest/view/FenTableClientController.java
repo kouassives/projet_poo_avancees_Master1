@@ -1,9 +1,11 @@
 package gest.view;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import gest.MainApp;
 import gest.model.Client;
+import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -36,7 +38,7 @@ public class FenTableClientController {
     @FXML
     private TableColumn<Client, String> carte_Fidele;
     @FXML
-    private TableColumn<Client, String> date_Creation;
+    private TableColumn<Client, Date> date_Creation;
 
 
 	
@@ -51,8 +53,23 @@ public class FenTableClientController {
     	code.setCellValueFactory(cellData -> cellData.getValue().codeProperty());
     	nom.setCellValueFactory(cellData -> cellData.getValue().nomProperty());
     	prenom.setCellValueFactory(cellData -> cellData.getValue().prenomProperty());
-    	//carte_Fidele.setCellValueFactory(cellData -> cellData.getValue().carte_FideleProperty().toString());
-    	//date_Creation.setCellValueFactory(cellData -> cellData.getValue().date_creationProperty());
+    	carte_Fidele.setCellValueFactory(cellData -> {
+    		
+    		BooleanProperty carte = cellData.getValue().carte_FideleProperty();
+    		System.out.println(carte);
+            String carteAsString="azesdr";
+            /*if(carte.getValue().equals(1))
+            {
+                carteAsString = "Oui";
+            }
+            else
+            {
+            	carteAsString = "Non";
+            }*/
+
+            return new ReadOnlyStringWrapper(carteAsString);
+        });
+    	date_Creation.setCellValueFactory(cellData -> cellData.getValue().date_creationProperty());
     }
     /**
      * Is called by the main application to give a reference back to itself.
@@ -65,6 +82,14 @@ public class FenTableClientController {
         clientTable.setItems(mainApp.getClientData());
     }
     
+    /*
+    @FXML
+    private void handleNewPerson() {
+        Client tempPerson = new Client("Yves","DUMAS");
+        
+           mainApp.getClientData().add(tempPerson);
+    }
+    */
 private Stage dialogStage;
 
 /**
