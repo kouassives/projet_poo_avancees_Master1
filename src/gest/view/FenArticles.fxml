@@ -16,11 +16,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gest.view.FenTableClientController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gest.view.FenArticlesController">
    <children>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="507.0" prefWidth="228.0" styleClass="SplitPane">
          <children>
-            <Button id="buttonAjouter" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="14.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="119.0" text="Ajouter">
+            <Button id="buttonAjouter" alignment="CENTER_RIGHT" layoutX="4.0" layoutY="14.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="119.0" text="Ajouter">
                <styleClass>
                   <String fx:value="buttonWithImage" />
                   <String fx:value="buttonPanneau" />
@@ -29,7 +29,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="buttonRechercher" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="70.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="142.0" text="Rechercher">
+            <Button id="buttonRechercher" alignment="CENTER_RIGHT" layoutX="4.0" layoutY="70.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="142.0" text="Rechercher">
                <styleClass>
                   <String fx:value="buttonWithImage" />
                   <String fx:value="buttonPanneau" />
@@ -38,7 +38,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="buttonModifier" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="121.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="125.0" text="Modifier">
+            <Button id="buttonModifier" alignment="CENTER_RIGHT" layoutX="4.0" layoutY="121.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="125.0" text="Modifier">
                <styleClass>
                   <String fx:value="buttonWithImage" />
                   <String fx:value="buttonPanneau" />
@@ -47,7 +47,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="buttonSupprimer" alignment="CENTER_RIGHT" layoutX="30.0" layoutY="180.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="132.0" text="Supprimer">
+            <Button id="buttonSupprimer" alignment="CENTER_RIGHT" layoutX="8.0" layoutY="180.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="132.0" text="Supprimer">
                <styleClass>
                   <String fx:value="buttonWithImage" />
                   <String fx:value="buttonPanneau" />
@@ -56,7 +56,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="buttonApercuAvantImpression" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="284.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="221.0" text="Aperçu avant impression">
+            <Button id="buttonApercuAvantImpression" alignment="CENTER_RIGHT" layoutX="4.0" layoutY="284.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="221.0" text="Aperçu avant impression">
                <styleClass>
                   <String fx:value="buttonWithImage" />
                   <String fx:value="buttonPanneau" />
@@ -65,7 +65,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="buttonImpression" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="335.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="125.0" text="Imprimer">
+            <Button id="buttonImpression" alignment="CENTER_RIGHT" layoutX="4.0" layoutY="335.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="125.0" text="Imprimer">
                <styleClass>
                   <String fx:value="buttonWithImage" />
                   <String fx:value="buttonPanneau" />
@@ -74,7 +74,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="buttonExporter" alignment="CENTER_RIGHT" layoutX="29.0" layoutY="382.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="119.0" text="Exporter">
+            <Button id="buttonExporter" alignment="CENTER_RIGHT" layoutX="7.0" layoutY="382.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="119.0" text="Exporter">
                <styleClass>
                   <String fx:value="buttonWithImage" />
                   <String fx:value="buttonPanneau" />
@@ -83,7 +83,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="buttonHome" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="451.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="173.0" text="Menu Principal">
+            <Button id="buttonHome" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="451.0" mnemonicParsing="false" onAction="#handleMenuPrincipal" prefHeight="42.0" prefWidth="173.0" text="Menu Principal">
                <styleClass>
                   <String fx:value="buttonWithImage" />
                   <String fx:value="buttonPanneau" />

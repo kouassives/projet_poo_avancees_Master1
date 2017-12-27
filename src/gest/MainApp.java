@@ -1,11 +1,17 @@
 package gest;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
+import gest.model.Client;
+import gest.view.FenArticlesController;
+import gest.view.FenCommandesController;
 import gest.view.FenConnexionController;
 import gest.view.FenMenuPrincipalController;
 import gest.view.FenTableClientController;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -16,10 +22,31 @@ import javafx.stage.Stage;
 
 public class MainApp extends Application {
 
+    private ArrayList<Client> clientData = new ArrayList<Client>();
+    // Important pour passer au type de list Observable
+    ObservableList<Client> clientDataObservale = FXCollections.observableArrayList(clientData);
+    /**
+     * Returns the data as an observable list of Persons. 
+     * @return
+     */
+    public ObservableList<Client> getClientData() {
+        return clientDataObservale;
+    }
+
 	private Stage primaryStage;
 	
 	public MainApp() {
-    }
+        // Add some sample data
+		// Traimenents des donnnées
+		// Reccuperation des clients dans la base de données
+		// Add some sample data
+		Client instanceClient = new Client();
+		clientData = instanceClient.getlesEnreg();
+		clientDataObservale=FXCollections.observableArrayList(clientData);
+		/*  // Pour les en-têtes de colonnes
+		private final String[] lesTitres =  {"Code", "Nom", "Prenom", "Carte Fidélité", "Date Création"};
+		*/
+	}
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -105,12 +132,77 @@ public class MainApp extends Application {
             dialogStage.initOwner(getPrimaryStage());
             Scene sceneTableClient = new Scene(page);
             dialogStage.setScene(sceneTableClient);
-            dialogStage.getIcons().add(new Image("file:resources/images/icone_bonhomme.png"));
+            dialogStage.getIcons().add(new Image("file:resources/images/icone_eclipse.png"));
             dialogStage.centerOnScreen();
             dialogStage.setResizable(false);
             
             // Set the person into the controller.
             FenTableClientController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setMainApp(this);
+            
+            
+            // Show the dialog
+            dialogStage.show();
+        	}
+			catch (IOException e) {
+            e.printStackTrace();
+            }
+	    }
+	
+	public void showFenArticle() {
+		try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/FenArticles.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+            
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("INDIGO Articles");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(getPrimaryStage());
+            Scene sceneArticle = new Scene(page);
+            dialogStage.setScene(sceneArticle);
+            dialogStage.getIcons().add(new Image("file:resources/images/icone_eclipse.png"));
+            dialogStage.centerOnScreen();
+            dialogStage.setResizable(false);
+            
+            // Set the person into the controller.
+            FenArticlesController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setMainApp(this);
+            
+            
+            // Show the dialog
+            dialogStage.show();
+        	}
+			catch (IOException e) {
+            e.printStackTrace();
+            }
+	    }
+
+
+	public void showFenCommandes() {
+		try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/FenCommandes.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+            
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("INDIGO Commandes");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(getPrimaryStage());
+            Scene sceneCommandes = new Scene(page);
+            dialogStage.setScene(sceneCommandes);
+            dialogStage.getIcons().add(new Image("file:resources/images/icone_eclipse.png"));
+            dialogStage.centerOnScreen();
+            dialogStage.setResizable(false);
+            
+            // Set the person into the controller.
+            FenCommandesController controller = loader.getController();
             controller.setDialogStage(dialogStage);
             controller.setMainApp(this);
             

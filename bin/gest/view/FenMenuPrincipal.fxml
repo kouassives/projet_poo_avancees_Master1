@@ -24,8 +24,8 @@
                <children>
                   <Button id="buttonStatistic" layoutX="233.0" layoutY="204.0" mnemonicParsing="false" prefHeight="92.0" prefWidth="92.0" styleClass="buttonWithImage" />
                   <Button id="buttonMarcheur" layoutX="90.0" layoutY="204.0" mnemonicParsing="false" onAction="#handleGestionClient" prefHeight="92.0" prefWidth="90.0" styleClass="buttonWithImage" />
-                  <Button id="buttonClasseur" layoutX="386.0" layoutY="180.0" mnemonicParsing="false" prefHeight="116.0" prefWidth="113.0" styleClass="buttonWithImage" />
-                  <Button id="buttonPortable" layoutX="223.0" layoutY="64.0" mnemonicParsing="false" prefHeight="103.0" prefWidth="113.0" styleClass="buttonWithImage" />
+                  <Button id="buttonClasseur" layoutX="386.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleGestionCommandes" prefHeight="116.0" prefWidth="113.0" styleClass="buttonWithImage" />
+                  <Button id="buttonPortable" layoutX="223.0" layoutY="64.0" mnemonicParsing="false" onAction="#handleGestionArticles" prefHeight="103.0" prefWidth="113.0" styleClass="buttonWithImage" />
                   <Button id="buttonParametre" layoutX="235.0" layoutY="336.0" mnemonicParsing="false" prefHeight="92.0" prefWidth="90.0" styleClass="buttonWithImage" />
                </children>
             </AnchorPane>

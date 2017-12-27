@@ -4,9 +4,17 @@ package gest.model;
 import java.util.ArrayList;
 //Pour la gestion de la propriété date
 import java.util.Date;
+
+import gest.util.DateUtil;
+
 //Pour la connexion base de donnees
 import java.sql.Connection;
 import connection.ControleConnexion;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
@@ -14,14 +22,15 @@ import javafx.scene.control.Alert.AlertType;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 
 
 public class Client extends Personne{
 	// PROPRIETES
 	// =======
 	// Proprietes de base de la classe
-	private boolean carte_fidele; 
-	private Date date;
+	private BooleanProperty carte_fidele; 
+	private ObjectProperty<Date> date;
 	// Propriete pour etablir la connexion avec la BD
 	//----------------------------------
 	private static Connection laConnexion = ControleConnexion.getConnexion();
@@ -31,19 +40,27 @@ public class Client extends Personne{
 	// Getters de base
 	// ---------
 	public String getCode(){
-		return code; 
+		return code.get(); 
 	} 
 	public String getNom(){
-		return nom; 
+		return nom.get(); 
 	} 
 	public String getPrenom() {
-		return prenom; 
+		return prenom.get(); 
 	} 
+	
+	public BooleanProperty carte_FideleProperty() {
+		return carte_fidele;
+	}
 	public boolean isCarte_Fidele() {
-		return carte_fidele; 
+		return carte_fidele.get(); 
 	} 
+	
+	public ObjectProperty<Date> date_creationProperty() {
+		return date;
+	}
 	public Date getDate_creation() { 
-		return date; 
+		return date.get(); 
 	} 
 	// Getter pour transmettre 1'ArrayList 
 	// ---------
@@ -53,34 +70,35 @@ public class Client extends Personne{
 	// Setters
 	//-----------
 	public void setCode(String code) {
-		this.code = code; 
+		this.code.set(code);
 	} 
 	public void setNom(String nom) {
-		this.nom=nom; 
+		this.nom.set(nom); 
 	} 
 	public void setPrenom(String prenom){
-		this.prenom = prenom; 
+		this.prenom = new SimpleStringProperty(prenom);
 	} 
-	public void 	setCarte_fidele(Boolean carte_fidele) {
-		this.carte_fidele=carte_fidele; 
+	public void setCarte_fidele(Boolean carte_fidele) {
+		this.carte_fidele.set(carte_fidele); 
 	} 
 	public void setDate_creation(Date date_creation) {
-		this.date = date_creation; 
+		this.date.set(date_creation); 
 	}
 	
 	// CONSTRUCTEURS
 	// -------------
 	// ler Constructeur
-	public Client (String vCode, String vNom, String vPrenom, boolean vCarteFifele, Date vDateCreation) {
+	public Client (String vCode, String vNom, String vPrenom, boolean vCarteFifele, Date date_creation) {
 		super (vCode, vNom, vPrenom);
-		this.code = vCode; this.nom = vNom;
-		this.prenom = vPrenom; carte_fidele = vCarteFifele; 
-		date = vDateCreation; 
+		this.code = new SimpleStringProperty(vCode);
+		this.nom = new SimpleStringProperty(vNom);
+		this.prenom = new SimpleStringProperty(vPrenom);
+		this.date = new SimpleObjectProperty<Date>(date_creation);
 	} 
 	// 2eme Constructeur
 	public Client(String vCode) {
 		super(vCode);
-		this.code = vCode; 
+		this.code = new SimpleStringProperty(vCode);
 	}
 	// 3eme constructeur
 	public Client() {
@@ -88,8 +106,8 @@ public class Client extends Personne{
 	}
 	// 4eme constructeur
 	public Client(String vNom, String vPrenom){
-		nom = vNom;
-		prenom = vPrenom; 
+		nom = new SimpleStringProperty(vNom);
+		this.prenom = new SimpleStringProperty(vPrenom);
 	}
 	
 	
@@ -97,7 +115,7 @@ public class Client extends Personne{
 	public void lireRecupCRUD() {
 		try {
 			Statement state = laConnexion.createStatement();
-			ResultSet rs = state.executeQuery("SELECT * "+"FROM clients FROM clients ORDER BY nom");
+			ResultSet rs = state.executeQuery("SELECT * "+"FROM clients ORDER BY nom");
 			while(rs.next()) {
 				String code= rs.getString("code");
 				String nom = rs.getString("nom");

@@ -1,51 +1,62 @@
 package gest.model;
 
-	public abstract class Personne {
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
-		String code;
-		String nom;
-		String prenom;
+public abstract class Personne {
+
+		StringProperty code;
+		StringProperty nom;
+		StringProperty prenom;
 		
-
-		public String getCode() {
+		public StringProperty codeProperty() {
 			return code;
+		}
+		public String getCode() {
+			return code.get();
 		}
 
 
 		public void setCode(String code) {
-			this.code = code;
+			this.code.set(code);
 		}
+		
 
-
-		public String getNom() {
+		public StringProperty nomProperty() {
 			return nom;
+		}
+		public String getNom() {
+			return nom.get();
 		}
 
 
 		public void setNom(String nom) {
-			this.nom = nom;
+			this.nom.set(nom);
 		}
 
-
-		public String getPrenom() {
+		
+		public StringProperty prenomProperty() {
 			return prenom;
+		}
+		public String getPrenom() {
+			return prenom.get();
 		}
 
 
 		public void setPrenom(String prenom) {
-			this.prenom = prenom;
+			this.prenom.set(prenom);
 		}
 
 		//1er constructeur
 		public Personne(String vcode, String vnom, String vprenom) {
-			this.code = vcode;
-			this.nom = vnom;
-			this.prenom = vprenom;
+			this.code = new SimpleStringProperty(vcode);
+			this.nom = new SimpleStringProperty(vnom);
+			this.prenom = new SimpleStringProperty(vprenom);
 		}
 		
 		//2eme constructeur pour les recherche
 		public Personne(String vcode) {
-			this.code = vcode;
+			this.nom = new SimpleStringProperty(vcode);
 		}
 		
 		//3eme constructeur pour une simple lecture de collection

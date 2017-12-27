@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gest.view.FenTableClientController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gest.view.FenCommandesController">
    <children>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="507.0" prefWidth="228.0" styleClass="SplitPane">
          <children>
@@ -45,7 +45,7 @@
                   <String fx:value="buttonPanneau" />
                </styleClass>
             </Button>
-            <Button id="buttonHome" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="451.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="173.0" text="Menu Principal">
+            <Button id="buttonHome" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="451.0" mnemonicParsing="false" onAction="#handleMenuPrincipal" prefHeight="42.0" prefWidth="173.0" text="Menu Principal">
                <styleClass>
                   <String fx:value="buttonWithImage" />
                   <String fx:value="buttonPanneau" />
@@ -109,10 +109,10 @@
                         <Label layoutX="193.0" layoutY="46.0" styleClass="label-bright" text="Désignation" />
                         <Label layoutX="193.0" layoutY="80.0" styleClass="label-bright" text="Montant" />
                         <Label layoutX="421.0" layoutY="46.0" styleClass="label-bright" text="Code catégorie" />
-                        <TextField layoutX="78.0" layoutY="44.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="21.0" prefWidth="100.0" />
+                        <TextField id="textfieldresize" alignment="BOTTOM_LEFT" layoutX="78.0" layoutY="44.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" prefWidth="100.0" />
                         <ComboBox layoutX="78.0" layoutY="78.0" prefHeight="25.0" prefWidth="100.0" />
-                        <TextField layoutX="260.0" layoutY="42.0" minHeight="-Infinity" prefHeight="25.0" prefWidth="147.0" />
-                        <TextField layoutX="505.0" layoutY="44.0" minHeight="-Infinity" prefHeight="21.0" prefWidth="43.0" />
+                        <TextField id="textfieldresize" alignment="BOTTOM_LEFT" layoutX="260.0" layoutY="44.0" minHeight="-Infinity" prefHeight="25.0" prefWidth="147.0" />
+                        <TextField id="textfieldresize" alignment="BOTTOM_LEFT" layoutX="505.0" layoutY="44.0" minHeight="-Infinity" prefHeight="25.0" prefWidth="43.0" />
                         <TableView layoutX="6.0" layoutY="110.0" prefHeight="141.0" prefWidth="551.0">
                           <columns>
                             <TableColumn prefWidth="75.0" text="C1" />

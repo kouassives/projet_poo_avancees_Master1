@@ -41,6 +41,16 @@ public class FenMenuPrincipalController {
     	mainApp.showFenTableClient();
     }
     
+    public void handleGestionArticles() {
+    	this.dialogStage.hide();
+    	mainApp.showFenArticle();
+    }
+    
+    public void handleGestionCommandes() {
+    	this.dialogStage.hide();
+    	mainApp.showFenCommandes();
+    }
+    
     public void handleclosing() {
     	this.dialogStage.hide();
     	mainApp.initPrimaryLayout();

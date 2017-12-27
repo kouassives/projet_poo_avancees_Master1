@@ -58,7 +58,7 @@ public class FenConnexionController {
     	//controle de la saisie
     	if(ControleConnexion.controle(userNom.getText(), userMDP.getText()))
     	if(ControleConnexion .getControleConnexion()){
-    			mainApp.getPrimaryStage().hide();
+    			mainApp.getPrimaryStage().close();
     	    	mainApp.showFenMenuPrincipal();
     		}
     	else
