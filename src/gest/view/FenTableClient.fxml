@@ -169,8 +169,8 @@
                                         <RowConstraints maxHeight="10.0" minHeight="3.0" prefHeight="5.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <TextField id="textfieldresize" fx:id="cade" alignment="BOTTOM_LEFT" minHeight="25.0" />
-                                          <TextField id="textfieldresize" alignment="BOTTOM_LEFT" minHeight="25.0" GridPane.rowIndex="1" />
+                                          <TextField id="textfieldresize" fx:id="codeTextField" alignment="BOTTOM_LEFT" minHeight="25.0" />
+                                          <TextField id="textfieldresize" fx:id="nomTextField" alignment="BOTTOM_LEFT" minHeight="25.0" GridPane.rowIndex="1" />
                                           <Label text="Date création" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
                                           <Label text="Prénom" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                                           <GridPane hgap="5.0" GridPane.columnIndex="2">
@@ -182,11 +182,11 @@
                                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                              <children>
-                                                <TextField id="textfieldresize" alignment="BOTTOM_LEFT" minHeight="25.0" />
-                                                <CheckBox mnemonicParsing="false" text="Carte fidelité" GridPane.columnIndex="1" />
+                                                <TextField id="textfieldresize" fx:id="date_CreationTextField" alignment="BOTTOM_LEFT" minHeight="25.0" />
+                                                <CheckBox fx:id="carte_FideleTextField" mnemonicParsing="false" text="Carte fidelité" GridPane.columnIndex="1" />
                                              </children>
                                           </GridPane>
-                                          <TextField id="textfieldresize" alignment="BOTTOM_LEFT" minHeight="25.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                          <TextField id="textfieldresize" fx:id="prenomTextField" alignment="BOTTOM_LEFT" minHeight="25.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                        </children>
                                     </GridPane>
                                     <TextField id="textfieldresize" minHeight="25.0" GridPane.rowIndex="1" />

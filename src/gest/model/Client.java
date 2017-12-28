@@ -127,17 +127,13 @@ public class Client extends Personne{
 				String prenom = rs.getString("prenom");
 				int carte_fidele;
 				carte_fidele=rs.getInt("carte_fidele");
-				System.out.println(carte_fidele);
-				
 				LocalDate date_creation = rs.getDate("date").toLocalDate();
-				//Ajout à l'ArrayList
 				
+				//Ajout à l'ArrayList
 				lesEnreg.add(new Client(code, nom, prenom, carte_fidele, date_creation));
 				
 			}
-			for (Client clt : lesEnreg) {
-				System.out.println(clt.isCarte_Fidele());
-			}
+			
 		}catch(SQLException e){
 			Alert alert = new Alert(AlertType.ERROR);
 	        alert.setTitle("Problème rencontré: ");

@@ -15,9 +15,11 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class FenTableClientController {
@@ -43,6 +45,16 @@ public class FenTableClientController {
     @FXML
     private TableColumn<Client, String> date_Creation;
 
+    @FXML
+    private TextField codeTextField;
+    @FXML
+    private TextField nomTextField;
+    @FXML
+    private TextField prenomTextField;
+    @FXML
+    private CheckBox carte_FideleTextField;
+    @FXML
+    private TextField date_CreationTextField;
 
 	
 
@@ -71,11 +83,13 @@ public class FenTableClientController {
 			return new ReadOnlyStringWrapper(carteAsString);
         });
     		date_Creation.setCellValueFactory(cellData -> {
-    		System.out.println(cellData.getValue().date_creationProperty().getValue());
     		String datechaine = DateUtil.format(cellData.getValue().date_creationProperty().getValue());
     		return new ReadOnlyStringWrapper(datechaine);
     	});
     	
+    
+    	clientTable.getSelectionModel().selectedItemProperty().addListener(
+    		            (observable, oldValue, newValue) -> showClientDetails(newValue));
     }
     /**
      * Is called by the main application to give a reference back to itself.
@@ -96,6 +110,27 @@ public class FenTableClientController {
            mainApp.getClientData().add(tempPerson);
     }
     */
+    
+    private void showClientDetails(Client client) {
+    	if(client != null) {
+    		nomTextField.setText(client.getNom());
+    		prenomTextField.setText(client.getPrenom());
+    		codeTextField.setText(client.getCode());
+    		if (client.isCarte_Fidele()==1)
+    			carte_FideleTextField.setSelected(true);
+    		else 
+    			carte_FideleTextField.setSelected(false);
+    		date_CreationTextField.setText(client.date_creationProperty().getValue().toString());
+    	}
+    	else {
+    		nomTextField.setText("");
+    		prenomTextField.setText("");
+    		codeTextField.setText("");
+    		date_CreationTextField.setText("");
+    	}
+    }
+    
+    
 private Stage dialogStage;
 
 /**
