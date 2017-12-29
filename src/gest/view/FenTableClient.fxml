@@ -50,7 +50,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="buttonSupprimer" alignment="CENTER_RIGHT" layoutX="8.0" layoutY="180.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="132.0" text="Supprimer">
+            <Button id="buttonSupprimer" alignment="CENTER_RIGHT" layoutX="8.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleDeleteClient" prefHeight="33.0" prefWidth="132.0" text="Supprimer">
                <styleClass>
                   <String fx:value="buttonWithImage" />
                   <String fx:value="buttonPanneau" />
