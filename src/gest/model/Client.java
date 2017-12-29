@@ -111,7 +111,7 @@ public class Client extends Personne{
 	}
 	// 4eme constructeur
 	public Client(String vNom, String vPrenom){
-		nom = new SimpleStringProperty(vNom);
+		this.nom = new SimpleStringProperty(vNom);
 		this.prenom = new SimpleStringProperty(vPrenom);
 	}
 	
@@ -147,7 +147,7 @@ public class Client extends Personne{
 		boolean bCreation = false;
 		String requete = null;
 		try {
-			requete = "INSERT INTO clients(code, nom, " + "prenom, carte_fidele, date) VALUES('" + vCode +"','"+ vNom  + "','" + vPrenom + "','"+ vCarte_fidele +"','"+ vDate+ "'" +")";
+			requete = "INSERT INTO clients(code, nom, prenom, carte_fidele, date,adresse) VALUES('" + vCode +"','"+ vNom  + "','" + vPrenom + "','"+ vCarte_fidele +"','"+ vDate+ "','Abidjan')";
 			Statement state = laConnexion.createStatement();
 			state.executeUpdate(requete);
 			bCreation = true; 

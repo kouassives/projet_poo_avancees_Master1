@@ -7,6 +7,7 @@ import gest.model.Client;
 import gest.view.FenArticlesController;
 import gest.view.FenCommandesController;
 import gest.view.FenConnexionController;
+import gest.view.FenFicheClientController;
 import gest.view.FenMenuPrincipalController;
 import gest.view.FenTableClientController;
 import javafx.application.Application;
@@ -40,9 +41,7 @@ public class MainApp extends Application {
 		// Traimenents des donnnées
 		// Reccuperation des clients dans la base de données
 		// Add some sample data
-		Client instanceClient = new Client();
-		clientData = instanceClient.getlesEnreg();
-		clientDataObservale=FXCollections.observableArrayList(clientData);
+		clientDataObservale=FXCollections.observableArrayList((new Client()).getlesEnreg());
 		/*  // Pour les en-têtes de colonnes
 		private final String[] lesTitres =  {"Code", "Nom", "Prenom", "Carte Fidélité", "Date Création"};
 		*/
@@ -147,6 +146,42 @@ public class MainApp extends Application {
         	}
 			catch (IOException e) {
             e.printStackTrace();
+            }
+	    }
+	
+	public boolean showFenFicheClient(Client client,String demande) {
+		try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/FenFicheClient.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+            
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle(demande +" un client");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(getPrimaryStage());
+            Scene sceneFicheClient = new Scene(page);
+            dialogStage.setScene(sceneFicheClient);
+            dialogStage.getIcons().add(new Image("file:resources/images/icone_eclipse.png"));
+            dialogStage.centerOnScreen();
+            dialogStage.setResizable(false);
+            
+            // Set the person into the controller.
+            FenFicheClientController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            //controller.setMainApp(this);
+            controller.setClient(client);
+            controller.setTitleLabel(demande + " un client");
+            
+            // Show the dialog
+            dialogStage.showAndWait();
+            
+            return controller.isOkClicked();
+        	}
+			catch (IOException e) {
+            e.printStackTrace();
+            return false;
             }
 	    }
 	

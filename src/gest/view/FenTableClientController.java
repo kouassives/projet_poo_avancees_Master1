@@ -15,21 +15,19 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class FenTableClientController {
 	private MainApp mainApp;
 
 
-	    /**
-	     * Returns the data as an observable list of Persons. 
-	     * @return
-	     */
 	    
 	
 	@FXML
@@ -102,14 +100,6 @@ public class FenTableClientController {
         clientTable.setItems(mainApp.getClientData());
     }
     
-    /*
-    @FXML
-    private void handleNewPerson() {
-        Client tempPerson = new Client("Yves","DUMAS");
-        
-           mainApp.getClientData().add(tempPerson);
-    }
-    */
     
     private void showClientDetails(Client client) {
     	if(client != null) {
@@ -120,7 +110,7 @@ public class FenTableClientController {
     			carte_FideleTextField.setSelected(true);
     		else 
     			carte_FideleTextField.setSelected(false);
-    		date_CreationTextField.setText(client.date_creationProperty().getValue().toString());
+    		date_CreationTextField.setText(DateUtil.format(client.date_creationProperty().getValue()));
     	}
     	else {
     		nomTextField.setText("");
@@ -149,5 +139,69 @@ public void handleMenuPrincipal() {
 	mainApp.showFenMenuPrincipal();
 }
 
+public void handleAddClient() {
+	String demande="Ajouter";
+	Client tempClient = new Client(null,null,null,2,null);
+	
+    boolean okClicked = mainApp.showFenFicheClient(tempClient,demande);
+    if (okClicked) {
+        mainApp.getClientData().add(tempClient);
+        tempClient.creerCRUD(tempClient.getCode(), tempClient.getNom(), tempClient.getPrenom(), tempClient.isCarte_Fidele(), tempClient.getDate_creation().toString());
+    }
+}
+
+@FXML
+private void handleEditClient() {
+	String demande = "modifier";
+    Client selectedClient = clientTable.getSelectionModel().getSelectedItem();
+    if (selectedClient != null) {
+        boolean okClicked = mainApp.showFenFicheClient(selectedClient,demande);
+        if (okClicked) {
+            showClientDetails(selectedClient);
+        }
+
+    } else {
+        // Nothing selected.
+        Alert alert = new Alert(AlertType.WARNING);
+        alert.initOwner(mainApp.getPrimaryStage());
+        alert.setTitle("No Selection");
+        alert.setHeaderText("No Person Selected");
+        alert.setContentText("Please select a person in the table.");
+
+        alert.showAndWait();
+    }
+}
+
+
+/**
+ * Appelé lorsque que l'utilisateur appuie sue le bouton rechercher
+ */
+@FXML
+private void handlesearchClient() {
+	
+}
+
+
+
+/**
+ * Called when the user clicks on the delete button.
+ */
+@FXML
+private void handleDeleteClient() {
+    int selectedIndex = clientTable.getSelectionModel().getSelectedIndex();
+    if (selectedIndex >= 0) {
+        clientTable.getItems().remove(selectedIndex);
+    }
+    else{
+        // Nothing selected.
+        Alert alert = new Alert(AlertType.WARNING);
+        alert.initOwner(mainApp.getPrimaryStage());
+        alert.setTitle("No Selection");
+        alert.setHeaderText("No Person Selected");
+        alert.setContentText("Please select a person in the table.");
+
+        alert.showAndWait();
+    }
+}
 
 }

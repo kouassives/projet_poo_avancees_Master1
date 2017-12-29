@@ -244,3 +244,7 @@
 	-fx-background-position: 0%;	
 	-fx-background-image: url('../../../resources/images/icone_home.png');
 }
+
+#buttonValide{
+	-fx-background-image: url('../../../resources/images/icone_valide.png');
+}

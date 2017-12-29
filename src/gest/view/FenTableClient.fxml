@@ -23,7 +23,7 @@
    <children>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="507.0" prefWidth="228.0" styleClass="SplitPane">
          <children>
-            <Button id="buttonAjouter" alignment="CENTER_RIGHT" layoutX="4.0" layoutY="14.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="119.0" text="Ajouter">
+            <Button id="buttonAjouter" alignment="CENTER_RIGHT" layoutX="4.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleAddClient" prefHeight="33.0" prefWidth="119.0" text="Ajouter">
                <styleClass>
                   <String fx:value="buttonWithImage" />
                   <String fx:value="buttonPanneau" />
@@ -41,7 +41,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="buttonModifier" alignment="CENTER_RIGHT" layoutX="4.0" layoutY="121.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="125.0" text="Modifier">
+            <Button id="buttonModifier" alignment="CENTER_RIGHT" layoutX="4.0" layoutY="121.0" mnemonicParsing="false" onAction="#handleEditClient" prefHeight="42.0" prefWidth="125.0" text="Modifier">
                <styleClass>
                   <String fx:value="buttonWithImage" />
                   <String fx:value="buttonPanneau" />
@@ -169,8 +169,8 @@
                                         <RowConstraints maxHeight="10.0" minHeight="3.0" prefHeight="5.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <TextField id="textfieldresize" fx:id="codeTextField" alignment="BOTTOM_LEFT" minHeight="25.0" />
-                                          <TextField id="textfieldresize" fx:id="nomTextField" alignment="BOTTOM_LEFT" minHeight="25.0" GridPane.rowIndex="1" />
+                                          <TextField id="textfieldresize" fx:id="codeTextField" alignment="BOTTOM_LEFT" editable="false" minHeight="25.0" />
+                                          <TextField id="textfieldresize" fx:id="nomTextField" alignment="BOTTOM_LEFT" editable="false" minHeight="25.0" GridPane.rowIndex="1" />
                                           <Label text="Date création" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
                                           <Label text="Prénom" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                                           <GridPane hgap="5.0" GridPane.columnIndex="2">
@@ -182,14 +182,14 @@
                                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                              <children>
-                                                <TextField id="textfieldresize" fx:id="date_CreationTextField" alignment="BOTTOM_LEFT" minHeight="25.0" />
+                                                <TextField id="textfieldresize" fx:id="date_CreationTextField" alignment="BOTTOM_LEFT" editable="false" minHeight="25.0" />
                                                 <CheckBox fx:id="carte_FideleTextField" mnemonicParsing="false" text="Carte fidelité" GridPane.columnIndex="1" />
                                              </children>
                                           </GridPane>
-                                          <TextField id="textfieldresize" fx:id="prenomTextField" alignment="BOTTOM_LEFT" minHeight="25.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                          <TextField id="textfieldresize" fx:id="prenomTextField" alignment="BOTTOM_LEFT" editable="false" minHeight="25.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                        </children>
                                     </GridPane>
-                                    <TextField id="textfieldresize" minHeight="25.0" GridPane.rowIndex="1" />
+                                    <TextField id="textfieldresize" editable="false" minHeight="25.0" GridPane.rowIndex="1" />
                                  </children>
                               </GridPane>
                               <GridPane vgap="2.0" GridPane.rowIndex="1">
@@ -204,13 +204,13 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <TextField id="textfieldresize" alignment="BOTTOM_LEFT" minHeight="25.0" />
-                                    <TextField id="textfieldresize" alignment="BOTTOM_LEFT" minHeight="25.0" GridPane.rowIndex="1" />
-                                    <TextField id="textfieldresize" alignment="BOTTOM_LEFT" minHeight="25.0" GridPane.rowIndex="2" />
+                                    <TextField id="textfieldresize" alignment="BOTTOM_LEFT" editable="false" minHeight="25.0" />
+                                    <TextField id="textfieldresize" alignment="BOTTOM_LEFT" editable="false" minHeight="25.0" GridPane.rowIndex="1" />
+                                    <TextField id="textfieldresize" alignment="BOTTOM_LEFT" editable="false" minHeight="25.0" GridPane.rowIndex="2" />
                                     <Label text="Ville" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
                                     <Label text="Mobilis" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                                    <TextField id="textfieldresize" alignment="BOTTOM_LEFT" minHeight="23.0" GridPane.columnIndex="2" />
-                                    <TextField id="textfieldresize" alignment="BOTTOM_LEFT" minHeight="23.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <TextField id="textfieldresize" alignment="BOTTOM_LEFT" editable="false" minHeight="23.0" GridPane.columnIndex="2" />
+                                    <TextField id="textfieldresize" alignment="BOTTOM_LEFT" editable="false" minHeight="23.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                  </children>
                               </GridPane>
                            </children>
