@@ -145,11 +145,15 @@ public void handleAddClient() {
 	
     boolean okClicked = mainApp.showFenFicheClient(tempClient,demande);
     if (okClicked) {
-        mainApp.getClientData().add(tempClient);
-        tempClient.creerCRUD(tempClient.getCode(), tempClient.getNom(), tempClient.getPrenom(), tempClient.isCarte_Fidele(), tempClient.getDate_creation().toString());
+    	boolean okdatabase = tempClient.creerCRUD(tempClient.getCode(), tempClient.getNom(), tempClient.getPrenom(), tempClient.isCarte_Fidele(), tempClient.getDate_creation().toString());
+        if (okdatabase)
+    	mainApp.getClientData().add(tempClient);
     }
 }
 
+/*
+ * Appelé lorsque que l'utilisateur appuie sue le bouton Modifier
+ */
 @FXML
 private void handleEditClient() {
 	String demande = "modifier";
@@ -157,16 +161,18 @@ private void handleEditClient() {
     if (selectedClient != null) {
         boolean okClicked = mainApp.showFenFicheClient(selectedClient,demande);
         if (okClicked) {
-            showClientDetails(selectedClient);
+            boolean okdatabase = selectedClient.modifierCRUD(selectedClient.getCode(), selectedClient.getNom(), selectedClient.getPrenom(), selectedClient.isCarte_Fidele(), selectedClient.getDate_creation().toString());
+            if (okdatabase)
+            	showClientDetails(selectedClient);	
         }
 
     } else {
         // Nothing selected.
         Alert alert = new Alert(AlertType.WARNING);
         alert.initOwner(mainApp.getPrimaryStage());
-        alert.setTitle("No Selection");
-        alert.setHeaderText("No Person Selected");
-        alert.setContentText("Please select a person in the table.");
+        alert.setTitle("Selection vide");
+        alert.setHeaderText("Aucune personne selectionnée");
+        alert.setContentText("Veillez selectionner une personne dans la table.");
 
         alert.showAndWait();
     }
@@ -196,9 +202,9 @@ private void handleDeleteClient() {
         // Nothing selected.
         Alert alert = new Alert(AlertType.WARNING);
         alert.initOwner(mainApp.getPrimaryStage());
-        alert.setTitle("No Selection");
-        alert.setHeaderText("No Person Selected");
-        alert.setContentText("Please select a person in the table.");
+        alert.setTitle("Selection vide");
+        alert.setHeaderText("Aucune personne selectionnée");
+        alert.setContentText("Veillez selectionner une personne dans la table.");
 
         alert.showAndWait();
     }

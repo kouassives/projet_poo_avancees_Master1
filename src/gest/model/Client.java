@@ -166,7 +166,7 @@ public class Client extends Personne{
 		boolean bModification = true;
 		String requete = null;
 		try {
-			requete = "UPDATE clients SET " + "nom = '" + vNom +"'," + "prenom = '" + vPrenom + "'," + "carte fidele = '" + vCarte_fidele+"'," + "date = '" + vDate + "'" + " WHERE code = '" + vCode + "'";
+			requete = "UPDATE clients SET " + "nom = '" + vNom +"'," + "prenom = '" + vPrenom + "'," + "carte_fidele = '" + vCarte_fidele+"'," + "date = '" + vDate + "'" + " WHERE code = '" + vCode + "'";
 			Statement state = laConnexion.createStatement();
 			state.executeUpdate(requete);
 			state.close();

@@ -6,9 +6,11 @@ import gest.MainApp;
 import gest.model.Client;
 import gest.util.DateUtil;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class FenFicheClientController {
@@ -81,21 +83,60 @@ public class FenFicheClientController {
   
   
   @FXML
-  public void handleValider() {
-	  this.client.setCode(codeTextField.getText());
-	  this.client.setNom(nomTextField.getText());
-	  this.client.setPrenom(prenomTextField.getText());
-	  if (carteFideleCheckBox.isSelected())
-		  this.client.setCarte_fidele(1);
-	  else
-		  this.client.setCarte_fidele(0);
-	  this.client.setDate_creation(DateUtil.parse(dateCreationTextField.getText()));
-	  
-      
-      okClicked = true;
-      dialogStage.close();
+  private void handleValider() {
+	  if (isInputValid()) {
+		  this.client.setCode(codeTextField.getText());
+		  this.client.setNom(nomTextField.getText());
+		  this.client.setPrenom(prenomTextField.getText());
+		  if (carteFideleCheckBox.isSelected())
+			  this.client.setCarte_fidele(1);
+		  else
+			  this.client.setCarte_fidele(0);
+		  this.client.setDate_creation(DateUtil.parse(dateCreationTextField.getText()));
+		  
+	      
+	      okClicked = true;
+	      dialogStage.close();
+	  }
   }
 
+  private boolean isInputValid() {
+      String errorMessage = "";
+
+      if (codeTextField.getText() == null || codeTextField.getText().length() == 0) {
+          errorMessage += "Code non valide!\n";
+      }
+      if (nomTextField.getText() == null || nomTextField.getText().length() == 0) {
+          errorMessage += "Nom non valide!\n";
+      }
+      if (prenomTextField.getText() == null || prenomTextField.getText().length() == 0) {
+          errorMessage += "Prenom non valide!\n";
+      }
+      if (dateCreationTextField.getText() == null || dateCreationTextField.getText().length() == 0) {
+          errorMessage += "Date non valide!\n";
+      } else {
+          if (!DateUtil.validDate(dateCreationTextField.getText())) {
+              errorMessage += "Date non valide. Utilisez le format dd.mm.yyyy!\n";
+          }
+      }
+      
+      
+      if (errorMessage.length() == 0) {
+          return true;
+      } else {
+          // Show the error message.
+          Alert alert = new Alert(AlertType.ERROR);
+          alert.initOwner(dialogStage);
+          alert.setTitle("Champs invalides");
+          alert.setHeaderText("Veillez corriger ces champs: ");
+          alert.setContentText(errorMessage);
+
+          alert.showAndWait();
+
+          return false;
+      }
+  }
+  
   public boolean isOkClicked() {
 		return okClicked;
   }
@@ -106,7 +147,7 @@ public class FenFicheClientController {
   }
   
   @FXML
-  public void handleRevenir() {
+  private void handleRevenir() {
 		this.dialogStage.close();
 	}
   
