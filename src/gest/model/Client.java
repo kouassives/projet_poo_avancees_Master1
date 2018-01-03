@@ -80,7 +80,7 @@ public class Client extends Personne{
 		this.nom.set(nom); 
 	} 
 	public void setPrenom(String prenom){
-		this.prenom = new SimpleStringProperty(prenom);
+		this.prenom.set(prenom);
 	} 
 	public void setCarte_fidele(Integer carte_fidele) {
 		this.carte_fidele.set(carte_fidele); 

@@ -20,6 +20,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
@@ -149,6 +150,7 @@ public void handleAddClient() {
     	boolean okdatabase = tempClient.creerCRUD(tempClient.getCode(), tempClient.getNom(), tempClient.getPrenom(), tempClient.isCarte_Fidele(), tempClient.getDate_creation().toString());
         if (okdatabase)
     	mainApp.getClientData().add(tempClient);
+        showClientDetails(tempClient);
     }
 }
 
@@ -185,7 +187,28 @@ private void handleEditClient() {
  */
 @FXML
 private void handlesearchClient() {
+	String demande="Rechercher";
+	Client tempClient = new Client(null,null,null,2,null);
 	
+    boolean okClicked = mainApp.showFenFicheClient(tempClient,demande);
+    if (okClicked) {
+    	/*
+    	 * pour que dans la fenetre FenTableClient
+    	 * le client recherché puis etre selectionné automatiquement
+    	 * Nous allons reperer sa positon dans la liste observable des clients
+    	 * celle qu'on a déclaré dans le main
+    	 */
+    	
+    	int position=0;
+    	for (Client clt : mainApp.getClientData())
+    	{
+    		if (clt.getCode().equals(tempClient.getCode()))
+    			break;
+    		position++;
+    	}
+    	showClientDetails(tempClient);
+    	clientTable.getSelectionModel().clearAndSelect(position);
+    }
 }
 
 

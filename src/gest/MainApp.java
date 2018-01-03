@@ -173,6 +173,10 @@ public class MainApp extends Application {
             //controller.setMainApp(this);
             controller.setClient(client);
             controller.setTitleLabel(demande + " un client");
+            controller.setbuttonAction(demande);
+            // gestion du cas de la recher 
+            if(demande.equals("Rechercher"))
+            	controller.getOkButton().setVisible(true);
             
             // Show the dialog
             dialogStage.showAndWait();

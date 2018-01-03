@@ -32,7 +32,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="buttonRechercher" alignment="CENTER_RIGHT" layoutX="4.0" layoutY="70.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="142.0" text="Rechercher">
+            <Button id="buttonRechercher" alignment="CENTER_RIGHT" layoutX="4.0" layoutY="70.0" mnemonicParsing="false" onAction="#handlesearchClient" prefHeight="42.0" prefWidth="142.0" text="Rechercher">
                <styleClass>
                   <String fx:value="buttonWithImage" />
                   <String fx:value="buttonPanneau" />

@@ -6,6 +6,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -155,7 +157,7 @@
                   <Label fx:id="dateDuJour" layoutX="413.0" layoutY="199.0" />
                </children>
             </Pane>
-            <Button id="buttonValide" alignment="CENTER_RIGHT" layoutX="228.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleValider" prefHeight="42.0" prefWidth="119.0" style="-fx-text-fill: black;" text="Valider">
+            <Button id="buttonValide" fx:id="buttonAction" alignment="CENTER_RIGHT" layoutX="228.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleValider" prefHeight="42.0" prefWidth="128.0" style="-fx-text-fill: black;" text="Valider">
                <styleClass>
                   <String fx:value="buttonWithImage" />
                   <String fx:value="buttonPanneau" />
@@ -164,6 +166,16 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <Button id="windows7-default" fx:id="okButtun" layoutX="387.0" layoutY="347.0" mnemonicParsing="false" onAction="#handleOk" styleClass="buttonPanneau" text="OK" visible="false" />
+            <TableView fx:id="clientTable" layoutX="14.0" layoutY="381.0" prefHeight="119.0" prefWidth="544.0">
+              <columns>
+                <TableColumn fx:id="code" prefWidth="75.0" text="Code" />
+                <TableColumn fx:id="nom" prefWidth="100.0" text="Nom" />
+                  <TableColumn fx:id="prenom" prefWidth="110.0" text="Prenom" />
+                  <TableColumn fx:id="carte_Fidele" prefWidth="111.0" text="Carte Fidelité" />
+                  <TableColumn fx:id="date_Creation" minWidth="0.0" prefWidth="143.0" text="Date Créaion" />
+              </columns>
+            </TableView>
          </children></AnchorPane>
    </children>
 </AnchorPane>
