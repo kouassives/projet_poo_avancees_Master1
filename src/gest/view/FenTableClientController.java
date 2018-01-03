@@ -22,6 +22,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 
 public class FenTableClientController {
@@ -196,7 +197,16 @@ private void handlesearchClient() {
 private void handleDeleteClient() {
     int selectedIndex = clientTable.getSelectionModel().getSelectedIndex();
     if (selectedIndex >= 0) {
-        clientTable.getItems().remove(selectedIndex);
+    	Client selectedClient = clientTable.getItems().get(selectedIndex);
+    	
+    	//Affichage d'une fenetre de confirmation pour la suppression du client
+    	Alert alert = new Alert(AlertType.CONFIRMATION, "Supprimer le client dont le code est:  "+ selectedClient.getCode() + "?",ButtonType.YES,ButtonType.NO);
+        alert.showAndWait();
+        if(alert.getResult()==ButtonType.YES) {
+	    	boolean okdatabase = selectedClient.supprimerCRUD(selectedClient.getCode());
+	        if (okdatabase)
+	    	clientTable.getItems().remove(selectedIndex);
+	    }
     }
     else{
         // Nothing selected.

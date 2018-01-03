@@ -187,7 +187,7 @@ public class Client extends Personne{
 		String requete = null;
 		// Verifier avant quill n'existe aucune commande
 		try {
-			String requeteClient = "SELECT count(*) AS nbLignes FROM commandes " + " WHERE code client LIKE '" + vCode +"'";
+			String requeteClient = "SELECT count(*) AS nbLignes FROM commandes " + " WHERE code_client LIKE '" + vCode +"'";
 			Statement state = laConnexion.createStatement();
 			ResultSet jeuEnreg = state.executeQuery(requeteClient);
 			int nbLignes=0;
@@ -220,7 +220,7 @@ public class Client extends Personne{
 			}
 		    if (bSuppression == true) {
 		    	try {
-		    			requete = "DELETE FROM clients" + " WHERE Code = '"+vCode+"'";
+		    			requete = "DELETE FROM clients" + " WHERE code = '"+vCode+"'";
 		    			Statement state = laConnexion.createStatement();
 		    			int nbEnregSup = state.executeUpdate(requete);
 		    			if (nbEnregSup == 0){
