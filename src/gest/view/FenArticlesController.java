@@ -85,6 +85,15 @@ public class FenArticlesController {
     	}
     }
     
+@FXML
+private void handledelete() {
+	codeTextField.setText("");
+	designationTextField.setText("");
+	quantiteTextField.setText("");
+	codeCategorieTextField.setText("");
+	prixUnitaireTextField.setText("");
+}
+    
 private Stage dialogStage;
 
 /**

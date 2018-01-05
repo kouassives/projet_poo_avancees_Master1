@@ -165,7 +165,7 @@
                      </children>
                   </GridPane>
                   <Button layoutX="196.0" layoutY="100.0" mnemonicParsing="false" style="-fx-font-size: 10;" text="Ajouter" />
-                  <Button layoutX="283.0" layoutY="100.0" mnemonicParsing="false" style="-fx-font-size: 10;" text="Effacer" />
+                  <Button layoutX="283.0" layoutY="100.0" mnemonicParsing="false" onAction="#handledelete" style="-fx-font-size: 10;" text="Effacer" />
                   <Button layoutX="367.0" layoutY="100.0" mnemonicParsing="false" style="-fx-font-size: 10;" text="Modifier" />
                   <Button layoutX="459.0" layoutY="100.0" mnemonicParsing="false" style="-fx-font-size: 10;" text="Annuler" />
                </children></Pane>
