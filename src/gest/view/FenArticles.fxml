@@ -20,7 +20,7 @@
    <children>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="507.0" prefWidth="228.0" styleClass="SplitPane">
          <children>
-            <Button id="buttonAjouter" alignment="CENTER_RIGHT" layoutX="4.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleDelete" prefHeight="33.0" prefWidth="119.0" text="Ajouter">
+            <Button id="buttonAjouter" alignment="CENTER_RIGHT" layoutX="4.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleCleanFields" prefHeight="33.0" prefWidth="119.0" text="Ajouter">
                <styleClass>
                   <String fx:value="buttonWithImage" />
                   <String fx:value="buttonPanneau" />
@@ -165,8 +165,8 @@
                      </children>
                   </GridPane>
                   <Button layoutX="196.0" layoutY="100.0" mnemonicParsing="false" onAction="#handleAddArticle" style="-fx-font-size: 10;" text="Ajouter" />
-                  <Button layoutX="283.0" layoutY="100.0" mnemonicParsing="false" onAction="#handleDelete" style="-fx-font-size: 10;" text="Effacer" />
-                  <Button layoutX="367.0" layoutY="100.0" mnemonicParsing="false" style="-fx-font-size: 10;" text="Modifier" />
+                  <Button layoutX="283.0" layoutY="100.0" mnemonicParsing="false" onAction="#handleCleanFields" style="-fx-font-size: 10;" text="Effacer" />
+                  <Button layoutX="367.0" layoutY="100.0" mnemonicParsing="false" onAction="#handleEditArticle" style="-fx-font-size: 10;" text="Modifier" />
                   <Button layoutX="459.0" layoutY="100.0" mnemonicParsing="false" style="-fx-font-size: 10;" text="Annuler" />
                </children></Pane>
             <TableView fx:id="articleTable" layoutX="42.0" layoutY="229.0" prefHeight="222.0" prefWidth="554.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">

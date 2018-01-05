@@ -175,7 +175,7 @@ public class Article {
 		String requete = null; 
 		try {
 			requete = "UPDATE articles SET " +
-			"code categorie = ?, "+
+			"code_categorie = ?, "+
 			"designation = ?, " +
 			"quantite = ?, " +
 			"prix_unitaire = ? " +

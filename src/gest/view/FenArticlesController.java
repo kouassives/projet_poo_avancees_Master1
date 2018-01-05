@@ -7,10 +7,13 @@ import gest.model.Article;
 import gest.model.Client;
 import gest.util.DateUtil;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class FenArticlesController {
@@ -111,17 +114,65 @@ private void handleAddArticle() {
     		codeTextField.requestFocus();
 		}
 	}
+	else {
+		// Show the error message.
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.initOwner(dialogStage);
+        alert.setTitle("Champs Vide");
+        alert.setHeaderText("Les champs suivants sont obligatoire");
+        alert.setContentText("Code");
+
+        alert.showAndWait();
+	}
 }
 
     
 @FXML
-private void handleDelete() {
+private void handleCleanFields() {
 	codeTextField.setText("");
 	designationTextField.setText("");
 	quantiteTextField.setText("");
 	codeCategorieTextField.setText("");
 	prixUnitaireTextField.setText("");
 }
+
+
+@FXML
+private void handleEditArticle() {
+	String vCode = codeTextField.getText();
+	if (!(vCode.equals("")|| vCode.length()==0)) {
+		String vCodeCategorie = codeCategorieTextField.getText();
+		String vDesignation = designationTextField.getText();
+		int vQuantite = Integer.valueOf(quantiteTextField.getText());
+		double vPrixUnitaire= Double.valueOf(prixUnitaireTextField.getText());
+		LocalDate vDate = LocalDate.now();
+		
+		Article unArticle = new Article(vCode,vCodeCategorie,vDesignation,vQuantite,vPrixUnitaire,vDate);
+		boolean bCreation = unArticle.modifierCRUD(vCode, vCodeCategorie, vDesignation, vQuantite, vPrixUnitaire);
+		if(bCreation) {
+			Article selectedArticle = articleTable.getSelectionModel().getSelectedItem();
+		    selectedArticle.setCode(unArticle.getCode());
+		    selectedArticle.setCodeCategorie(unArticle.getCodeCategorie());
+		    selectedArticle.setDesignation(unArticle.getDesignation());
+		    selectedArticle.setQuantite(unArticle.getQuantite());
+		    selectedArticle.setPrix_unitaire(unArticle.getPrix_unitaire());
+		    selectedArticle.setDate(unArticle.getDate());
+		}
+		
+	}
+	else {
+		// Show the error message.
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.initOwner(dialogStage);
+        alert.setTitle("Champs Vide");
+        alert.setHeaderText("Les champs suivants sont obligatoire");
+        alert.setContentText("Code");
+        
+        alert.showAndWait();
+	}
+}
+
+
     
 private Stage dialogStage;
 
