@@ -19,7 +19,7 @@ public class Commande {
 	private Client code_client;
 	private double total_ttc;
 	private int codeModeReglement;
-	private Mode_Reglements mode_reglement;
+	private ModeReglements mode_reglement;
 	private Date date;
 	
 	//Pour obtenir la connexion statique
@@ -59,7 +59,7 @@ public class Commande {
 	public int getCodeModeReglement() {
 		return codeModeReglement;
 	}
-	public Mode_Reglements getMode_reglement() {
+	public ModeReglements getMode_reglement() {
 		return mode_reglement;
 	}
 	public Date getDate() {
@@ -82,7 +82,7 @@ public class Commande {
 			while (rs.next()) { 
 				// Informations generales commande
 				String code = rs.getString("code");
-				double total_ttc = rs.getDouble("total ttc");
+				double total_ttc = rs.getDouble("total_ttc");
 				Date date = rs.getDate("date"); 
 				// Informations client
 				String nom = rs.getString("nom");
@@ -92,7 +92,7 @@ public class Commande {
 				lesEnreg.add(new Commande(code,
 						new Client(nom, prenom),
 						total_ttc,
-						new Mode_Reglements(type), 
+						(new ModeReglements(type)).getCode(), 
 						date));
 			}
 		} catch (SQLException e) {
@@ -187,7 +187,7 @@ public class Commande {
 	
 	public ArrayList<Commande> chercherCRUD(String recherche){
 		String requete = ""; 
-		requete += "SELECT com.code, com.total_ttc," + " com.date, cli.nom, cli.prenom, mode.type ";
+		requete += "SELECT com.code, com.total_ttc," + " com.date, cli.nom, cli.prenom, mode.code ";
 		requete += "FROM commandes AS com, clients AS cli," + 
 		" mode reglements AS mode ";
 		requete += "WHERE com,code_mode_reglement = mode.code ";
@@ -209,11 +209,11 @@ public class Commande {
 				String nom = rs.getString("nom");
 				String prenom = rs.getString("prenom"); 
 				// Informations mode reglement
-				String type = rs.getString("type"); 
+				int code_mode_reglement = rs.getInt("code"); 
 				lesEnreg.add(new Commande(code,
 						new Client (nom, prenom),
 						total_ttc,
-						new Mode_Reglements(type),
+						code_mode_reglement,
 						date)); 
 			}
 		}catch (SQLException e)
@@ -231,7 +231,7 @@ public class Commande {
 		String requete = "SELECT c.*, m.* FROM commandes AS c, " +
 		"mode reglements AS m " +
 		"WHERE c.code_mode_reglement =" +
-		" m.code AND c.ccde LIKE '" + vCode +"'";
+		" m.code AND c.code LIKE '" + vCode +"'";
 		try {
 			Statement state = laConnexion.createStatement();
 			ResultSet rs = state.executeQuery(requete);
@@ -241,12 +241,13 @@ public class Commande {
 				double total_ttc = rs.getDouble("total_ttc");
 				int code_mode_reglement = rs.getInt("code_mode_reglement");
 				Date date = rs.getDate("date");
-				String type = rs.getString("type"); 
+				//String type = rs.getString("type"); 
 			
 			lesEnreg.add(new Commande(code,
-				code_client,
+				new Client(code_client),
 				total_ttc,
-				new Mode_Reglements(code_mode_reglement, type),
+				code_mode_reglement,
+				//new ModeReglements(code_mode_reglement),
 				date)); 
 			}
 		}

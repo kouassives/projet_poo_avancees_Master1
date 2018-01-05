@@ -128,8 +128,8 @@
                            <children>
                               <Label text="Code" />
                               <Label prefHeight="21.0" prefWidth="148.0" text="Code Categorie" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
-                              <TextField id="textfieldresize" alignment="BOTTOM_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" GridPane.columnIndex="1" />
-                              <TextField id="textfieldresize" alignment="BOTTOM_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" GridPane.columnIndex="3" />
+                              <TextField id="textfieldresize" fx:id="codeTextField" alignment="BOTTOM_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" GridPane.columnIndex="1" />
+                              <TextField id="textfieldresize" fx:id="codeCategorieTextField" alignment="BOTTOM_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" GridPane.columnIndex="3" />
                            </children>
                         </GridPane>
                         <GridPane GridPane.rowIndex="1">
@@ -142,7 +142,7 @@
                           </rowConstraints>
                            <children>
                               <Label text="Désignation" />
-                              <TextField id="textfieldresize" alignment="BOTTOM_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" GridPane.columnIndex="1" />
+                              <TextField id="textfieldresize" fx:id="designationTextField" alignment="BOTTOM_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" GridPane.columnIndex="1" />
                            </children>
                         </GridPane>
                         <GridPane GridPane.rowIndex="2">
@@ -158,8 +158,8 @@
                            <children>
                               <Label text="Quantité" />
                               <Label prefHeight="21.0" prefWidth="148.0" text="Prix Unitaire" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
-                              <TextField id="textfieldresize" alignment="BOTTOM_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" GridPane.columnIndex="1" />
-                              <TextField id="textfieldresize" alignment="BOTTOM_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" GridPane.columnIndex="3" />
+                              <TextField id="textfieldresize" fx:id="quantiteTextField" alignment="BOTTOM_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" GridPane.columnIndex="1" />
+                              <TextField id="textfieldresize" fx:id="prixUnitaireTextField" alignment="BOTTOM_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" GridPane.columnIndex="3" />
                            </children>
                         </GridPane>
                      </children>
@@ -167,12 +167,15 @@
                   <Button layoutX="196.0" layoutY="100.0" mnemonicParsing="false" style="-fx-font-size: 10;" text="Ajouter" />
                   <Button layoutX="283.0" layoutY="100.0" mnemonicParsing="false" style="-fx-font-size: 10;" text="Effacer" />
                   <Button layoutX="367.0" layoutY="100.0" mnemonicParsing="false" style="-fx-font-size: 10;" text="Modifier" />
-                  <Button layoutX="459.0" layoutY="100.0" mnemonicParsing="false" style="-fx-font-size: 10;" text="Button" />
+                  <Button layoutX="459.0" layoutY="100.0" mnemonicParsing="false" style="-fx-font-size: 10;" text="Annuler" />
                </children></Pane>
-            <TableView layoutX="42.0" layoutY="229.0" prefHeight="222.0" prefWidth="554.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+            <TableView fx:id="articleTable" layoutX="42.0" layoutY="229.0" prefHeight="222.0" prefWidth="554.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+                <TableColumn fx:id="code" prefWidth="75.0" text="Code" />
+                <TableColumn fx:id="designation" prefWidth="123.0" text="Designation" />
+                  <TableColumn fx:id="quantite" prefWidth="97.0" text="Quantité" />
+                  <TableColumn fx:id="codeCategorie" prefWidth="133.0" text="Code Catégorie" />
+                  <TableColumn fx:id="prixUnitaire" prefWidth="121.0" text="Prix Unitaire" />
               </columns>
             </TableView>
             <ImageView fitHeight="21.0" fitWidth="27.0" layoutX="46.0" layoutY="464.0" pickOnBounds="true" preserveRatio="true">

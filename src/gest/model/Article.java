@@ -4,9 +4,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date; 
 import connection.ControleConnexion;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType; 
 public class Article {
@@ -14,12 +23,12 @@ public class Article {
 	//==========
 	// Proprietes de base de la classe
 	//----------
-	private String code;
-	private String code_categorie;
-	private String designation;
-	private int quantite;
-	private double prix_unitaire;
-	private Date date;
+	private StringProperty code;
+	private StringProperty codeCategorie;
+	private StringProperty designation;
+	private IntegerProperty quantite;
+	private DoubleProperty prix_unitaire;
+	private ObjectProperty<LocalDate> date;
 	// Propriete pour etablir la connexion avec la BD
 	//----------------
 	private static Connection laConnexion = ControleConnexion.getConnexion();
@@ -30,22 +39,45 @@ public class Article {
 	// Getters de base
 	//-------------
 	public String getCode() {
-		return code; 
+		return code.get(); 
 	}
+	public StringProperty codeProperty() {
+		return code;
+	}
+	
 	public String getCodeCategorie() {
-		return code_categorie; 
+		return codeCategorie.get(); 
 	}
+	public StringProperty codeCategorieProperty() {
+		return codeCategorie;
+	}
+	
 	public String getDesignation() {
+		return designation.get();
+	}
+	public StringProperty designationProperty() {
 		return designation;
-	} 
-	public int getQuantitc(){
-		return quantite; 
 	}
+	
+	public int getQuantite(){
+		return quantite.get(); 
+	}
+	public IntegerProperty quantiteProperty() {
+		return quantite;
+	}
+	
 	public double getPrix_unitaire(){
-		return prix_unitaire; 
+		return prix_unitaire.get(); 
 	}
-	public Date getDate(){
-		return date; 
+	public DoubleProperty prixUnitaireProperty() {
+		return prix_unitaire;
+	}
+	
+	public LocalDate getDate(){
+		return date.get(); 
+	}
+	public ObjectProperty<LocalDate> dateProperty() {
+		return date;
 	}
 	// Getter pour transmettre l'ArrayList
 	//-----------------
@@ -55,38 +87,38 @@ public class Article {
 	// Setters
 	//--------
 	public void setCode(String code){
-		this.code = code; 
+		this.code.set(code); 
 	}
-	public void setReference(String code_categorie){
-		this.code_categorie = code_categorie; 
+	public void setCodeCategorie(String code_categorie){
+		this.codeCategorie.set(code_categorie); 
 	}
 	public void setDesignation(String designation){
-		this.designation = designation; 
+		this.designation.set(designation); 
 	}
 	public void setQuantite(int quantite) {
-		this.quantite = quantite; 
+		this.quantite.set(quantite); 
 	}
 	public void setPrix_unitaire(double prix_unitaire){
-		this.prix_unitaire = prix_unitaire; 
+		this.prix_unitaire.set(prix_unitaire); 
 	}
-	public void setDate(Date date) {
-		this.date=date;
+	public void setDate(LocalDate date) {
+		this.date.set(date);
 	}
 	// CONSTRUCTEURS
 	public Article(String code, String code_categorie, String designation, int quantite, double prix_unitaire,
-			Date date) {
-		this.code = code;
-		this.code_categorie = code_categorie;
-		this.designation = designation;
-		this.quantite = quantite;
-		this.prix_unitaire = prix_unitaire;
-		this.date = date;
+			LocalDate date) {
+		this.code = new SimpleStringProperty(code);
+		this.codeCategorie = new SimpleStringProperty(code_categorie);
+		this.designation = new SimpleStringProperty(designation);
+		this.quantite = new SimpleIntegerProperty(quantite);
+		this.prix_unitaire = new SimpleDoubleProperty(prix_unitaire);
+		this.date = new SimpleObjectProperty<LocalDate>(date);
 	}
 	public Article() {
 		lireRecupCRUD();
 	}
 	public Article(String code) {
-		this.code = code;
+		this.code.set(code);
 	}
 	
 	public void lireRecupCRUD(){
@@ -99,7 +131,7 @@ public class Article {
 				String designation = rs.getString("designation");
 				int quantite = rs.getInt("quantite");
 				double prix_unitaire = rs.getDouble("prix_unitaire");
-				Date date_creation = rs.getDate("date");
+				LocalDate date_creation = rs.getDate("date").toLocalDate();
 				
 				lesEnreg.add(new Article(code, code_categorie, designation, quantite, prix_unitaire, date_creation));
 			}
@@ -212,7 +244,7 @@ public class Article {
 			String designation = rs.getString("designation");
 			int quantite = rs.getInt("quantite");
 			double prix_unitaire = rs.getDouble("prix_unitaire");
-			Date date_creation = rs.getDate("date"); 
+			LocalDate date_creation = rs.getDate("date").toLocalDate(); 
 			lesEnreg.add(new Article(code, code_categorie, designation, quantite, prix_unitaire, date_creation)); 
 		}
 	}catch (SQLException e) {

@@ -3,7 +3,9 @@ package gest;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import gest.model.Article;
 import gest.model.Client;
+import gest.model.Commande;
 import gest.view.FenArticlesController;
 import gest.view.FenCommandesController;
 import gest.view.FenConnexionController;
@@ -23,15 +25,22 @@ import javafx.stage.Stage;
 
 public class MainApp extends Application {
 
-    private ArrayList<Client> clientData = new ArrayList<Client>();
+	private ArrayList<Client> clientData = new ArrayList<Client>();
+	private ArrayList<Article> articleData = new ArrayList<Article>();
     // Important pour passer au type de list Observable
     ObservableList<Client> clientDataObservale = FXCollections.observableArrayList(clientData);
+    ObservableList<Article> articleDataObservale = FXCollections.observableArrayList(articleData);
+    
     /**
      * Returns the data as an observable list of Persons. 
      * @return
      */
     public ObservableList<Client> getClientData() {
         return clientDataObservale;
+    }
+
+    public ObservableList<Article> getArticleData() {
+        return articleDataObservale;
     }
 
 	private Stage primaryStage;
@@ -42,6 +51,8 @@ public class MainApp extends Application {
 		// Reccuperation des clients dans la base de données
 		// Add some sample data
 		clientDataObservale=FXCollections.observableArrayList((new Client()).getlesEnreg());
+		articleDataObservale=FXCollections.observableArrayList((new Article()).getLesEnreg());
+		
 		/*  // Pour les en-têtes de colonnes
 		private final String[] lesTitres =  {"Code", "Nom", "Prenom", "Carte Fidélité", "Date Création"};
 		*/
