@@ -232,7 +232,7 @@ public class Article {
 		requete += "SELECT * ";
 		requete += "FROM articles ";
 		requete += "WHERE code LIKE '%" + recherche + "%' ";
-		requete += "OR code categorie LIKE '%" + recherche + "%' ";
+		requete += "OR code_categorie LIKE '%" + recherche + "%' ";
 		requete += "OR designation LIKE '%" + recherche + "%' "; 
 	
 	try{
@@ -251,7 +251,7 @@ public class Article {
 		Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle("Resultat");
         alert.setHeaderText("Probleme rencontre :");
-        alert.setContentText("e.getMessage()");
+        alert.setContentText(e.getMessage());
     	alert.showAndWait();
 	}
 	return lesEnreg; 

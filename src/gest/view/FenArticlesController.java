@@ -1,16 +1,20 @@
 package gest.view;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import gest.MainApp;
 import gest.model.Article;
 import gest.model.Client;
 import gest.util.DateUtil;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
@@ -45,6 +49,8 @@ public class FenArticlesController {
     private TextField codeCategorieTextField;
     @FXML
     private TextField prixUnitaireTextField;
+    @FXML
+    private TextField rechercherTextField;
 
 	
 	
@@ -203,7 +209,61 @@ private void handleDeleteArticle() {
     }
 }
 
+
+/**
+ * Appelé lorsqu'on clique sur le bouton recherhcer
+ */
+@FXML
+private void handleRechercherClient() {
+	if(!(rechercherTextField.getText().equals("") || rechercherTextField.getText().length()==0))
+	{
+		Article unArticle= new Article();
+		/*
+		 * On va effectuer un clear() pour effacer
+		 * les données initiale qui sont les recupperation
+		 * fait dans la base de données avec lireRecup de la classe Article
+		 * 
+		 */
+		
+		unArticle.getLesEnreg().clear();
+		ArrayList<Article> nouvelleListe = unArticle.chercherCRUD(rechercherTextField.getText());
+		ObservableList<Article> nouvelleListeDataObservale = FXCollections.observableArrayList(nouvelleListe);
+		
+		/*
+		 * On supprimer toutes les lignes de la tableview
+		 * pour pouvoir y ajouter les resultats de la recheche
+		 * Or en supprimer les ligns de la table on supprimer aussi
+		 * les données la list des articles disponible depuis MainApp
+		 * Donc on cree la methode mainApp.reloadListArticle(); afin de
+		 * pouvoir recharger tous les articles qui sont dans la base de données
+		 * 
+		 */
+		articleTable.getItems().clear();
+		mainApp.reloadListArticle();
+		articleTable.setItems(nouvelleListeDataObservale);
+
+	}
+	else {
+		articleTable.getItems().clear();
+		articleTable.setItems(mainApp.getArticleData());
+	}
+}
     
+
+@FXML
+private void handleAnnuler() {
+	System.out.println(articleTable.getItems().size());
+	System.out.println(mainApp.getArticleData().size());
+	for (int i = 0; i<articleTable.getItems().size();i++) {
+		articleTable.getItems().remove(i);
+	}
+	System.out.println(articleTable.getItems().size());
+	System.out.println(mainApp.getArticleData().size());
+	
+	articleTable.setItems(mainApp.getArticleData());
+}
+
+
 private Stage dialogStage;
 
 /**

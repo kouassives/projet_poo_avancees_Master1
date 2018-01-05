@@ -42,6 +42,11 @@ public class MainApp extends Application {
     public ObservableList<Article> getArticleData() {
         return articleDataObservale;
     }
+    
+    public void reloadListArticle() {
+    	articleDataObservale.clear();
+    	articleDataObservale=FXCollections.observableArrayList((new Article()).getLesEnreg());
+    }
 
 	private Stage primaryStage;
 	

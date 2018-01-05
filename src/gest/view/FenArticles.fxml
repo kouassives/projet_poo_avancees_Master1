@@ -167,7 +167,7 @@
                   <Button layoutX="196.0" layoutY="100.0" mnemonicParsing="false" onAction="#handleAddArticle" style="-fx-font-size: 10;" text="Ajouter" />
                   <Button layoutX="283.0" layoutY="100.0" mnemonicParsing="false" onAction="#handleCleanFields" style="-fx-font-size: 10;" text="Effacer" />
                   <Button layoutX="367.0" layoutY="100.0" mnemonicParsing="false" onAction="#handleEditArticle" style="-fx-font-size: 10;" text="Modifier" />
-                  <Button layoutX="459.0" layoutY="100.0" mnemonicParsing="false" style="-fx-font-size: 10;" text="Annuler" />
+                  <Button layoutX="459.0" layoutY="100.0" mnemonicParsing="false" onAction="#handleAnnuler" style="-fx-font-size: 10;" text="Annuler" />
                </children></Pane>
             <TableView fx:id="articleTable" layoutX="42.0" layoutY="229.0" prefHeight="222.0" prefWidth="554.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
               <columns>
@@ -189,7 +189,7 @@
                   <Image url="@../../../resources/images/icone_valider.png" />
                </image></ImageView>
             <Label layoutX="364.0" layoutY="463.0" styleClass="label-bright" text="Rechercher" />
-            <TextField layoutX="441.0" layoutY="464.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="125.0" />
+            <TextField fx:id="rechercherTextField" layoutX="441.0" layoutY="464.0" minHeight="-Infinity" onKeyReleased="#handleRechercherClient" prefHeight="20.0" prefWidth="125.0" />
          </children></AnchorPane>
    </children>
 </AnchorPane>
