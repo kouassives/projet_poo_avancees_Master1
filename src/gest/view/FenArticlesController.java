@@ -173,6 +173,36 @@ private void handleEditArticle() {
 }
 
 
+/**
+ * Called when the user clicks on the delete button.
+ */
+@FXML
+private void handleDeleteArticle() {
+    int selectedIndex = articleTable.getSelectionModel().getSelectedIndex();
+    if (selectedIndex >= 0) {
+    	Article selectedArticle = articleTable.getItems().get(selectedIndex);
+    	
+    	//Affichage d'une fenetre de confirmation pour la suppression du client
+    	Alert alert = new Alert(AlertType.CONFIRMATION, "Supprimer l'article dont le code est:  "+ selectedArticle.getCode() + "?",ButtonType.YES,ButtonType.NO);
+        alert.showAndWait();
+        if(alert.getResult()==ButtonType.YES) {
+	    	boolean okdatabase = selectedArticle.supprimerCRUD(selectedArticle.getCode());
+	        if (okdatabase)
+	    	articleTable.getItems().remove(selectedIndex);
+	    }
+    }
+    else{
+        // Nothing selected.
+        Alert alert = new Alert(AlertType.WARNING);
+        alert.initOwner(mainApp.getPrimaryStage());
+        alert.setTitle("Selection vide");
+        alert.setHeaderText("Aucun article selectionné");
+        alert.setContentText("Veillez selectionner un article dans la table.");
+
+        alert.showAndWait();
+    }
+}
+
     
 private Stage dialogStage;
 
