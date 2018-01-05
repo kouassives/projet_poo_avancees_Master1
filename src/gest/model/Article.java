@@ -145,7 +145,7 @@ public class Article {
 		}
 	}
 	
-	public boolean creerCRUD(String vCode, String vReference, String vDesignation, int vQuantite, double vPu, String vDate) {
+	public boolean creerCRUD(String vCode, String vReference, String vDesignation, int vQuantite, double vPu, LocalDate vDate) {
 		boolean bCreation = false;
 		String requete = null;
 		try {

@@ -1,5 +1,7 @@
 package gest.view;
 
+import java.time.LocalDate;
+
 import gest.MainApp;
 import gest.model.Article;
 import gest.model.Client;
@@ -84,9 +86,36 @@ public class FenArticlesController {
     		prixUnitaireTextField.setText("");
     	}
     }
+
+@FXML
+private void handleAddArticle() {
+	String vCode = codeTextField.getText();
+	if(!vCode.equals("")) {
+		String vCodeCategorie = codeCategorieTextField.getText();
+		String vDesignation = designationTextField.getText();
+		int vQuantite = Integer.valueOf(quantiteTextField.getText());
+		double vPrixUnitaire= Double.valueOf(prixUnitaireTextField.getText());
+		LocalDate vDate = LocalDate.now();
+		
+		Article unArticle = new Article(vCode,vCodeCategorie,vDesignation,vQuantite,vPrixUnitaire,vDate);
+		boolean bCreation = unArticle.creerCRUD(vCode, vCodeCategorie, vDesignation, vQuantite, vPrixUnitaire, vDate);
+		
+		if(bCreation) {
+			mainApp.getArticleData().add(unArticle);
+			
+			codeTextField.setText("");
+    		designationTextField.setText("");
+    		quantiteTextField.setText("");
+    		codeCategorieTextField.setText("");
+    		prixUnitaireTextField.setText("");
+    		codeTextField.requestFocus();
+		}
+	}
+}
+
     
 @FXML
-private void handledelete() {
+private void handleDelete() {
 	codeTextField.setText("");
 	designationTextField.setText("");
 	quantiteTextField.setText("");
