@@ -7,6 +7,7 @@ import gest.model.Article;
 import gest.model.Client;
 import gest.model.Commande;
 import gest.view.FenArticlesController;
+import gest.view.FenChoixClientController;
 import gest.view.FenCommandesController;
 import gest.view.FenConnexionController;
 import gest.view.FenFicheClientController;
@@ -27,9 +28,11 @@ public class MainApp extends Application {
 
 	private ArrayList<Client> clientData = new ArrayList<Client>();
 	private ArrayList<Article> articleData = new ArrayList<Article>();
+	private ArrayList<Commande> commandeData = new ArrayList<Commande>();
     // Important pour passer au type de list Observable
     ObservableList<Client> clientDataObservale = FXCollections.observableArrayList(clientData);
     ObservableList<Article> articleDataObservale = FXCollections.observableArrayList(articleData);
+    ObservableList<Commande> commandeDataObservale = FXCollections.observableArrayList(commandeData);
     
     /**
      * Returns the data as an observable list of Persons. 
@@ -43,11 +46,22 @@ public class MainApp extends Application {
         return articleDataObservale;
     }
     
+    public ObservableList<Commande> getCommandeData() {
+        return commandeDataObservale;
+    }
+    
+    //Utiliser pour la recherche assisté dans FenArticles.FXML
     public void reloadListArticle() {
     	articleDataObservale.clear();
     	articleDataObservale=FXCollections.observableArrayList((new Article()).getLesEnreg());
     }
-
+    
+    //Utiliser pour la recherche assisté dans FenCommandes.FXML
+    public void reloadListCommande() {
+    	commandeDataObservale.clear();
+    	commandeDataObservale=FXCollections.observableArrayList((new Commande()).getLesEnreg());
+    }
+    
 	private Stage primaryStage;
 	
 	public MainApp() {
@@ -264,6 +278,40 @@ public class MainApp extends Application {
             
             // Show the dialog
             dialogStage.show();
+        	}
+			catch (IOException e) {
+            e.printStackTrace();
+            }
+	    }
+
+	
+	public void showFenChoixClient(Client client) {
+		try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/FenChoixClient.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+            
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("INDIGO Choix Client");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(getPrimaryStage());
+            Scene sceneChoixClient = new Scene(page);
+            dialogStage.setScene(sceneChoixClient);
+            dialogStage.getIcons().add(new Image("file:resources/images/icone_eclipse.png"));
+            dialogStage.centerOnScreen();
+            dialogStage.setResizable(false);
+            
+            // Set the person into the controller.
+            FenChoixClientController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setMainApp(this);
+            controller.setClient(client);
+            
+            
+            // Show the dialog
+            dialogStage.showAndWait();
         	}
 			catch (IOException e) {
             e.printStackTrace();

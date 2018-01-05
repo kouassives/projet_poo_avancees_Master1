@@ -5,22 +5,31 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
 import connection.ControleConnexion;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
 public class Commande {
 //propriétés
 //----------
-	private String code;
-	private Client code_client;
-	private double total_ttc;
-	private int codeModeReglement;
-	private ModeReglements mode_reglement;
-	private Date date;
+	private StringProperty code;
+	private StringProperty code_client;
+	private DoubleProperty total_ttc;
+	private IntegerProperty codeModeReglement;
+	private StringProperty mode_reglement;
+	private ObjectProperty<LocalDate> date;
 	
 	//Pour obtenir la connexion statique
 	private static Connection laConnexion = ControleConnexion.getConnexion();
@@ -29,12 +38,12 @@ public class Commande {
 	//Constructeurs
 	//----------
 	//Constructeur 1
-	public Commande(String code, Client code_client, double total_ttc, int codeModeReglement, Date date) {
-		this.code = code;
-		this.code_client = code_client;
-		this.total_ttc = total_ttc;
-		this.codeModeReglement = codeModeReglement;
-		this.date = date;
+	public Commande(String code, String code_client, double total_ttc, int codeModeReglement, LocalDate date) {
+		this.code = new SimpleStringProperty(code);
+		this.code_client = new SimpleStringProperty(code_client);
+		this.total_ttc = new SimpleDoubleProperty(total_ttc);
+		this.codeModeReglement = new SimpleIntegerProperty(codeModeReglement);
+		this.date = new SimpleObjectProperty<LocalDate>(date);
 	}
 	//Constructeur 2
 	public Commande() {
@@ -48,23 +57,47 @@ public class Commande {
 	// Accesseurs
 	//-----------
 	public String getCode() {
+		return code.get();
+	}
+	public StringProperty CodeProperty() {
 		return code;
 	}
-	public Client getCode_client() {
+	
+	public String getCode_client() {
+		return code_client.get();
+	}
+	public StringProperty Code_clientProperty() {
 		return code_client;
 	}
+	
 	public double getTotal_ttc() {
+		return total_ttc.get();
+	}
+	public DoubleProperty Total_ttcProperty() {
 		return total_ttc;
 	}
+	
 	public int getCodeModeReglement() {
+		return codeModeReglement.get();
+	}
+	public IntegerProperty CodeModeReglementProperty() {
 		return codeModeReglement;
 	}
-	public ModeReglements getMode_reglement() {
+	
+	public String getMode_reglement() {
+		return mode_reglement.get();
+	}
+	public StringProperty Mode_reglementProperty() {
 		return mode_reglement;
 	}
-	public Date getDate() {
+	
+	public LocalDate getDate() {
+		return date.get();
+	}
+	public ObjectProperty<LocalDate> DateProperty() {
 		return date;
 	}
+	
 	public ArrayList<Commande> getLesEnreg() {
 		return lesEnreg;
 	}
@@ -73,26 +106,25 @@ public class Commande {
 		try {
 			Statement state = laConnexion.createStatement();
 			ResultSet rs = state.executeQuery("SELECT com.code," +
-			" com.total_ttc, com.date, cli.nom, " +
-			"cli.prenom, mode.type "+
+			" com.total_ttc, com.date, cli.nom,cli.code, " +
+			"cli.prenom, mode.code "+
 			"FROM commandos AS com, clients AS cli, "+
 			"mode_reglements AS mode " +
 			"WHERE com.code_mode_reglement = mode.code " +
 			"AND com.code client = cli.code");
 			while (rs.next()) { 
 				// Informations generales commande
-				String code = rs.getString("code");
+				String code = rs.getString("com.code");
 				double total_ttc = rs.getDouble("total_ttc");
-				Date date = rs.getDate("date"); 
+				LocalDate date = rs.getDate("date").toLocalDate(); 
 				// Informations client
-				String nom = rs.getString("nom");
-				String prenom = rs.getString("prenom"); 
+				String codeClient = rs.getString("cli.code");
 				// Information mode reglement
-				String type = rs.getString("type"); 
+				int modeReglement = rs.getInt("mode.code"); 
 				lesEnreg.add(new Commande(code,
-						new Client(nom, prenom),
+						codeClient,
 						total_ttc,
-						(new ModeReglements(type)).getCode(), 
+						modeReglement, 
 						date));
 			}
 		} catch (SQLException e) {
@@ -187,7 +219,7 @@ public class Commande {
 	
 	public ArrayList<Commande> chercherCRUD(String recherche){
 		String requete = ""; 
-		requete += "SELECT com.code, com.total_ttc," + " com.date, cli.nom, cli.prenom, mode.code ";
+		requete += "SELECT com.code, com.total_ttc," + " com.date, cli.code,cli.nom, cli.prenom, mode.code ";
 		requete += "FROM commandes AS com, clients AS cli," + 
 		" mode reglements AS mode ";
 		requete += "WHERE com,code_mode_reglement = mode.code ";
@@ -202,16 +234,15 @@ public class Commande {
 			ResultSet rs = state.executeQuery(requete);
 			while (rs.next()) {
 				// Informations generales commande
-				String code = rs.getString("code");
+				String code = rs.getString("com.code");
 				double total_ttc = rs.getDouble("total_ttc"); 
-				Date date = rs.getDate("date"); 
+				LocalDate date = rs.getDate("date").toLocalDate(); 
 				// Informations client
-				String nom = rs.getString("nom");
-				String prenom = rs.getString("prenom"); 
+				String codeClient = rs.getString("cli.code"); 
 				// Informations mode reglement
-				int code_mode_reglement = rs.getInt("code"); 
+				int code_mode_reglement = rs.getInt("mode.code"); 
 				lesEnreg.add(new Commande(code,
-						new Client (nom, prenom),
+						codeClient,
 						total_ttc,
 						code_mode_reglement,
 						date)); 
@@ -236,18 +267,17 @@ public class Commande {
 			Statement state = laConnexion.createStatement();
 			ResultSet rs = state.executeQuery(requete);
 			while (rs.next()){
-				String code = rs.getString("code");
-				String code_client = rs.getString("code_client");
+				String code = rs.getString("c.code");
+				String codeClient = rs.getString("c.code_client");
 				double total_ttc = rs.getDouble("total_ttc");
 				int code_mode_reglement = rs.getInt("code_mode_reglement");
-				Date date = rs.getDate("date");
+				LocalDate date = rs.getDate("date").toLocalDate();
 				//String type = rs.getString("type"); 
 			
 			lesEnreg.add(new Commande(code,
-				new Client(code_client),
+				codeClient,
 				total_ttc,
 				code_mode_reglement,
-				//new ModeReglements(code_mode_reglement),
 				date)); 
 			}
 		}

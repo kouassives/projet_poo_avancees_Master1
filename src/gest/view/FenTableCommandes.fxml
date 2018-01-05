@@ -11,7 +11,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gest.view.FenTableClientController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gest.view.FenTableCommandesController">
    <children>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="507.0" prefWidth="228.0" styleClass="SplitPane">
          <children>
@@ -71,10 +71,13 @@
             </ImageView>
             <Label layoutX="294.0" layoutY="466.0" styleClass="label-bright" text="Rechercher une commande" />
             <TextField layoutX="439.0" layoutY="461.0" minHeight="-Infinity" prefHeight="26.0" prefWidth="126.0" style="-fx-font-size: 12;" />
-            <TableView layoutX="9.0" layoutY="74.0" prefHeight="369.0" prefWidth="556.0">
+            <TableView fx:id="commandeTable" layoutX="9.0" layoutY="74.0" prefHeight="369.0" prefWidth="556.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+                <TableColumn fx:id="code" prefWidth="75.0" text="Code" />
+                <TableColumn prefWidth="96.0" text="Client" />
+                  <TableColumn prefWidth="173.0" text="Mode de paiement" />
+                  <TableColumn prefWidth="126.0" text="Total TTC" />
+                  <TableColumn prefWidth="81.0" text="Date" />
               </columns>
             </TableView>
          </children></AnchorPane>

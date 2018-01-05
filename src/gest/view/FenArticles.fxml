@@ -189,7 +189,7 @@
                   <Image url="@../../../resources/images/icone_valider.png" />
                </image></ImageView>
             <Label layoutX="364.0" layoutY="463.0" styleClass="label-bright" text="Rechercher" />
-            <TextField fx:id="rechercherTextField" layoutX="441.0" layoutY="464.0" minHeight="-Infinity" onKeyReleased="#handleRechercherClient" prefHeight="20.0" prefWidth="125.0" />
+            <TextField id="textfieldresize" fx:id="rechercherTextField" alignment="BOTTOM_LEFT" layoutX="439.0" layoutY="459.0" minHeight="-Infinity" onKeyReleased="#handleRechercherClient" prefHeight="25.0" prefWidth="125.0" />
          </children></AnchorPane>
    </children>
 </AnchorPane>
