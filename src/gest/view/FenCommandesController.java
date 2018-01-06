@@ -5,6 +5,7 @@ import gest.model.Article;
 import gest.model.Client;
 import gest.model.Commande;
 import gest.model.ModeReglements;
+import gest.util.DateUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -13,6 +14,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.time.LocalDate;
 import java.util.Random;
 
 public class FenCommandesController {
@@ -49,6 +51,8 @@ private ComboBox<?> quantiteComboBox;
 private ComboBox<?> modeReglementComboBox;
 @FXML
 private Label totalLabel;
+@FXML
+private Label dateDuJour;
 	
 
 private static String codeArticle="";
@@ -61,7 +65,10 @@ private ModeReglements mode = new ModeReglements();
      */
     @FXML
     private void initialize() {
+    	dateDuJour.setText(DateUtil.format(LocalDate.now()));
+    	
     	code.setCellValueFactory(cellData -> cellData.getValue().CodeProperty());
+    	
     	
     	
     }
@@ -77,7 +84,14 @@ private ModeReglements mode = new ModeReglements();
     
     @FXML
     private void handleSelectionClient() {
+    	client = new Client(null,null,null,2,null);
+    	
     	mainApp.showFenChoixClient(client);
+    	/*
+    	 * Le client selectionné dans FenChoixClient est recuilli dans la variable client
+    	 * 
+    	 */
+		
     }
     
 private Stage dialogStage;

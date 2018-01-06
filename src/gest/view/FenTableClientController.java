@@ -223,6 +223,7 @@ private void handlesearchClient() {
     		position++;
     	}
     	showClientDetails(tempClient);
+    	System.out.println(tempClient.getNom());
     	clientTable.getSelectionModel().clearAndSelect(position);
     }
 }

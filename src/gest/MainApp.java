@@ -306,7 +306,7 @@ public class MainApp extends Application {
             // Set the person into the controller.
             FenChoixClientController controller = loader.getController();
             controller.setDialogStage(dialogStage);
-            controller.setMainApp(this);
+            //controller.setMainApp(this);
             controller.setClient(client);
             
             
