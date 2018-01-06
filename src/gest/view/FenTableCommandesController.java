@@ -36,7 +36,7 @@ public class FenTableCommandesController {
 	    @FXML
 	    private void initialize() {
 	    	code.setCellValueFactory(cellData -> cellData.getValue().CodeProperty());
-	    	client.setCellValueFactory(cellData -> cellData.getValue().Code_clientProperty());
+	    	client.setCellValueFactory(cellData -> cellData.getValue().NomPrenom_clientProperty());
 	    	modeReglement.setCellValueFactory(cellData -> cellData.getValue().Mode_reglementProperty());
 	    	totalTcc.setCellValueFactory(cellData -> cellData.getValue().Total_ttcProperty());
 	    	date.setCellValueFactory(cellData -> {

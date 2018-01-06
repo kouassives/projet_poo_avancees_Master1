@@ -26,6 +26,7 @@ public class Commande {
 //----------
 	private StringProperty code;
 	private StringProperty code_client;
+	private StringProperty nomPrenom_client;
 	private DoubleProperty total_ttc;
 	private IntegerProperty codeModeReglement;
 	private StringProperty mode_reglement;
@@ -38,9 +39,10 @@ public class Commande {
 	//Constructeurs
 	//----------
 	//Constructeur 1
-	public Commande(String code, String code_client, double total_ttc, String mode_reglement, LocalDate date) {
+	public Commande(String code, String code_client,String nomPrenom_client, double total_ttc, String mode_reglement, LocalDate date) {
 		this.code = new SimpleStringProperty(code);
 		this.code_client = new SimpleStringProperty(code_client);
+		this.nomPrenom_client = new SimpleStringProperty(nomPrenom_client);
 		this.total_ttc = new SimpleDoubleProperty(total_ttc);
 		this.mode_reglement = new SimpleStringProperty(mode_reglement);
 		this.date = new SimpleObjectProperty<LocalDate>(date);
@@ -68,6 +70,13 @@ public class Commande {
 	}
 	public StringProperty Code_clientProperty() {
 		return code_client;
+	}
+	
+	public String getNomPrenom_client() {
+		return nomPrenom_client.get();
+	}
+	public StringProperty NomPrenom_clientProperty() {
+		return nomPrenom_client;
 	}
 	
 	public double getTotal_ttc() {
@@ -119,10 +128,12 @@ public class Commande {
 				LocalDate date = rs.getDate("date").toLocalDate(); 
 				// Informations client
 				String codeClient = rs.getString("cli.code");
+				String nomPrenom_client = rs.getString("cli.nom")+ " "+ rs.getString("cli.prenom");
 				// Information mode reglement
 				String mode_reglement = rs.getString("mode.type"); 
 				lesEnreg.add(new Commande(code,
 						codeClient,
+						nomPrenom_client,
 						total_ttc,
 						mode_reglement, 
 						date));
@@ -238,11 +249,13 @@ public class Commande {
 				double total_ttc = rs.getDouble("total_ttc"); 
 				LocalDate date = rs.getDate("date").toLocalDate(); 
 				// Informations client
-				String codeClient = rs.getString("cli.code"); 
+				String codeClient = rs.getString("cli.code");
+				String nomPrenom_client = rs.getString("cli.nom")+ rs.getString("cli.prenom");
 				// Informations mode reglement
 				String mode_reglement = rs.getString("mode.type"); 
 				lesEnreg.add(new Commande(code,
 						codeClient,
+						nomPrenom_client,
 						total_ttc,
 						mode_reglement,
 						date)); 
@@ -269,6 +282,7 @@ public class Commande {
 			while (rs.next()){
 				String code = rs.getString("c.code");
 				String codeClient = rs.getString("c.code_client");
+				String nomPrenom_client = rs.getString("c.nom")+ rs.getString("c.prenom");
 				double total_ttc = rs.getDouble("total_ttc");
 				String mode_reglement = rs.getString("m.type");
 				LocalDate date = rs.getDate("date").toLocalDate();
@@ -276,6 +290,7 @@ public class Commande {
 			
 			lesEnreg.add(new Commande(code,
 				codeClient,
+				nomPrenom_client,
 				total_ttc,
 				mode_reglement,
 				date)); 
