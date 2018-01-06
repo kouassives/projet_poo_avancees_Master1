@@ -13,6 +13,7 @@ import gest.view.FenConnexionController;
 import gest.view.FenFicheClientController;
 import gest.view.FenMenuPrincipalController;
 import gest.view.FenTableClientController;
+import gest.view.FenTableCommandesController;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -71,7 +72,7 @@ public class MainApp extends Application {
 		// Add some sample data
 		clientDataObservale=FXCollections.observableArrayList((new Client()).getlesEnreg());
 		articleDataObservale=FXCollections.observableArrayList((new Article()).getLesEnreg());
-		
+		commandeDataObservale=FXCollections.observableArrayList((new Commande()).getLesEnreg());
 		/*  // Pour les en-têtes de colonnes
 		private final String[] lesTitres =  {"Code", "Nom", "Prenom", "Carte Fidélité", "Date Création"};
 		*/
@@ -284,6 +285,38 @@ public class MainApp extends Application {
             }
 	    }
 
+	
+	public void showFenTableCommandes() {
+		try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/FenTableCommandes.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+            
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("INDIGO Commandes");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(getPrimaryStage());
+            Scene sceneTableCommandes = new Scene(page);
+            dialogStage.setScene(sceneTableCommandes);
+            dialogStage.getIcons().add(new Image("file:resources/images/icone_eclipse.png"));
+            dialogStage.centerOnScreen();
+            dialogStage.setResizable(false);
+            
+            // Set the person into the controller.
+            FenTableCommandesController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setMainApp(this);
+            
+            
+            // Show the dialog
+            dialogStage.showAndWait();
+        	}
+			catch (IOException e) {
+            e.printStackTrace();
+            }
+	    }
 	
 	public boolean showFenChoixClient(Client client) {
 		try {

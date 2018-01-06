@@ -85,6 +85,12 @@ private ModeReglements mode = new ModeReglements();
         commandeTable.setItems(mainApp.getCommandeData());
     }
     
+    
+    @FXML
+    private void handleFichierDesCommandes() {
+    	mainApp.showFenTableCommandes();
+    }
+    
     @FXML
     private void handleSelectionClient() {
     	client = new Client(null,null,null,2,null);
@@ -94,7 +100,7 @@ private ModeReglements mode = new ModeReglements();
     	 * Le client selectionné dans FenChoixClient est recuilli dans la variable client
     	 */
     	if (okRowDoubleClicked) {
-    		nomCLientButton.setText(client.getNom());
+    		nomCLientButton.setText(client.getNom()+" "+client.getPrenom());
     	}
     	
     }

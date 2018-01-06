@@ -38,11 +38,11 @@ public class Commande {
 	//Constructeurs
 	//----------
 	//Constructeur 1
-	public Commande(String code, String code_client, double total_ttc, int codeModeReglement, LocalDate date) {
+	public Commande(String code, String code_client, double total_ttc, String mode_reglement, LocalDate date) {
 		this.code = new SimpleStringProperty(code);
 		this.code_client = new SimpleStringProperty(code_client);
 		this.total_ttc = new SimpleDoubleProperty(total_ttc);
-		this.codeModeReglement = new SimpleIntegerProperty(codeModeReglement);
+		this.mode_reglement = new SimpleStringProperty(mode_reglement);
 		this.date = new SimpleObjectProperty<LocalDate>(date);
 	}
 	//Constructeur 2
@@ -107,11 +107,11 @@ public class Commande {
 			Statement state = laConnexion.createStatement();
 			ResultSet rs = state.executeQuery("SELECT com.code," +
 			" com.total_ttc, com.date, cli.nom,cli.code, " +
-			"cli.prenom, mode.code "+
-			"FROM commandos AS com, clients AS cli, "+
+			"cli.prenom, mode.type "+
+			"FROM commandes AS com, clients AS cli, "+
 			"mode_reglements AS mode " +
 			"WHERE com.code_mode_reglement = mode.code " +
-			"AND com.code client = cli.code");
+			"AND com.code_client = cli.code");
 			while (rs.next()) { 
 				// Informations generales commande
 				String code = rs.getString("com.code");
@@ -120,18 +120,18 @@ public class Commande {
 				// Informations client
 				String codeClient = rs.getString("cli.code");
 				// Information mode reglement
-				int modeReglement = rs.getInt("mode.code"); 
+				String mode_reglement = rs.getString("mode.type"); 
 				lesEnreg.add(new Commande(code,
 						codeClient,
 						total_ttc,
-						modeReglement, 
+						mode_reglement, 
 						date));
 			}
 		} catch (SQLException e) {
 			Alert alert = new Alert(AlertType.ERROR);
 	        alert.setTitle("ALERTE");
 	        alert.setHeaderText("Probleme rencontre");
-	        alert.setContentText("");
+	        alert.setContentText(e.getMessage());
 	    	alert.showAndWait();
 	    }
 	}
@@ -219,11 +219,11 @@ public class Commande {
 	
 	public ArrayList<Commande> chercherCRUD(String recherche){
 		String requete = ""; 
-		requete += "SELECT com.code, com.total_ttc," + " com.date, cli.code,cli.nom, cli.prenom, mode.code ";
+		requete += "SELECT com.code, com.total_ttc," + " com.date, cli.code,cli.nom, cli.prenom, mode.type ";
 		requete += "FROM commandes AS com, clients AS cli," + 
 		" mode reglements AS mode ";
-		requete += "WHERE com,code_mode_reglement = mode.code ";
-		requete += "AND com.code client = cli.code AND (";
+		requete += "WHERE com.code_mode_reglement = mode.code ";
+		requete += "AND com.code_client = cli.code AND (";
 		requete += "com.code LIKE '%" + recherche + "%' ";
 		requete += "OR cli.nom LIKE '%" + recherche + "%' ";
 		requete += "OR cli.prenom LIKE '%" + recherche+ "%' ";
@@ -240,11 +240,11 @@ public class Commande {
 				// Informations client
 				String codeClient = rs.getString("cli.code"); 
 				// Informations mode reglement
-				int code_mode_reglement = rs.getInt("mode.code"); 
+				String mode_reglement = rs.getString("mode.type"); 
 				lesEnreg.add(new Commande(code,
 						codeClient,
 						total_ttc,
-						code_mode_reglement,
+						mode_reglement,
 						date)); 
 			}
 		}catch (SQLException e)
@@ -260,7 +260,7 @@ public class Commande {
 	
 	public ArrayList<Commande> chercherRapideCRUD_Commande(String vCode){
 		String requete = "SELECT c.*, m.* FROM commandes AS c, " +
-		"mode reglements AS m " +
+		"mode_reglements AS m " +
 		"WHERE c.code_mode_reglement =" +
 		" m.code AND c.code LIKE '" + vCode +"'";
 		try {
@@ -270,14 +270,14 @@ public class Commande {
 				String code = rs.getString("c.code");
 				String codeClient = rs.getString("c.code_client");
 				double total_ttc = rs.getDouble("total_ttc");
-				int code_mode_reglement = rs.getInt("code_mode_reglement");
+				String mode_reglement = rs.getString("m.type");
 				LocalDate date = rs.getDate("date").toLocalDate();
 				//String type = rs.getString("type"); 
 			
 			lesEnreg.add(new Commande(code,
 				codeClient,
 				total_ttc,
-				code_mode_reglement,
+				mode_reglement,
 				date)); 
 			}
 		}

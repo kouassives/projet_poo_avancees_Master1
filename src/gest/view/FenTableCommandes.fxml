@@ -74,10 +74,10 @@
             <TableView fx:id="commandeTable" layoutX="9.0" layoutY="74.0" prefHeight="369.0" prefWidth="556.0">
               <columns>
                 <TableColumn fx:id="code" prefWidth="75.0" text="Code" />
-                <TableColumn prefWidth="96.0" text="Client" />
-                  <TableColumn prefWidth="173.0" text="Mode de paiement" />
-                  <TableColumn prefWidth="126.0" text="Total TTC" />
-                  <TableColumn prefWidth="81.0" text="Date" />
+                <TableColumn fx:id="client" prefWidth="96.0" text="Client" />
+                  <TableColumn fx:id="modeReglement" prefWidth="173.0" text="Mode de paiement" />
+                  <TableColumn fx:id="totalTcc" prefWidth="126.0" text="Total TTC" />
+                  <TableColumn fx:id="date" prefWidth="81.0" text="Date" />
               </columns>
             </TableView>
          </children></AnchorPane>
