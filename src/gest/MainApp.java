@@ -285,7 +285,7 @@ public class MainApp extends Application {
 	    }
 
 	
-	public void showFenChoixClient(Client client) {
+	public boolean showFenChoixClient(Client client) {
 		try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
@@ -312,10 +312,13 @@ public class MainApp extends Application {
             
             // Show the dialog
             dialogStage.showAndWait();
+            return controller.isrowDoubleClicked();
         	}
 			catch (IOException e) {
             e.printStackTrace();
+            return false;
             }
+
 	    }
 
 	public Stage getPrimaryStage() {

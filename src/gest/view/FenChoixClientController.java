@@ -40,6 +40,7 @@ public class FenChoixClientController {
     
     private Client client;
 	private MainApp mainApp;
+	private boolean rowDoubleClicked = false;
 
 	  /**
 	     * Initializes the controller class. This method is automatically called
@@ -77,8 +78,8 @@ public class FenChoixClientController {
 	    				Client rowData = row.getItem();
 	    				handleTableViewRowsDoubleCliked(rowData);
 	    				//this.client = rowData;
-	    				System.out.println(client.getNom());
-	    				
+	    				rowDoubleClicked =true;
+	    				dialogStage.close();
 	    			}
 	    			});
 	    			return row;
@@ -124,6 +125,10 @@ public class FenChoixClientController {
 	    	client.setCarte_fidele(vclient.isCarte_Fidele());
 	    	client.setDate_creation(vclient.getDate_creation());
 	    	
+	    }
+	    
+	    public boolean isrowDoubleClicked() {
+	    	return rowDoubleClicked;
 	    }
 	    
 	private Stage dialogStage;

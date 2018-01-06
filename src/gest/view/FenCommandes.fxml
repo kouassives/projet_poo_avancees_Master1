@@ -80,7 +80,7 @@
                         <Label fx:id="dateDuJour" layoutX="457.0" layoutY="23.0" />
                         <ComboBox fx:id="numeroDocumentComboBox" layoutX="255.0" layoutY="23.0" minHeight="-Infinity" prefHeight="20.0" prefWidth="63.0" />
                         <Label layoutX="326.0" layoutY="25.0" />
-                        <Button layoutY="20.0" mnemonicParsing="false" onAction="#handleSelectionClient" prefHeight="50.0" prefWidth="183.0" style="-fx-text-fill: black; -fx-font-family: &quot;Segoe UI Semibold&quot;; -fx-font-size: 12;" styleClass="buttonWithImage" text="[Cliquer ici pour selectionner un client]" wrapText="true">
+                        <Button fx:id="nomCLientButton" layoutY="20.0" mnemonicParsing="false" onAction="#handleSelectionClient" prefHeight="50.0" prefWidth="183.0" style="-fx-text-fill: black; -fx-font-family: &quot;Segoe UI Semibold&quot;; -fx-font-size: 12;" styleClass="buttonWithImage" text="[Cliquer ici pour selectionner un client]" wrapText="true">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor></Button>

@@ -7,6 +7,7 @@ import gest.model.Commande;
 import gest.model.ModeReglements;
 import gest.util.DateUtil;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -50,6 +51,8 @@ private ComboBox<?> quantiteComboBox;
 @FXML
 private ComboBox<?> modeReglementComboBox;
 @FXML
+private Button nomCLientButton;
+@FXML
 private Label totalLabel;
 @FXML
 private Label dateDuJour;
@@ -86,12 +89,14 @@ private ModeReglements mode = new ModeReglements();
     private void handleSelectionClient() {
     	client = new Client(null,null,null,2,null);
     	
-    	mainApp.showFenChoixClient(client);
+    	boolean okRowDoubleClicked = mainApp.showFenChoixClient(client);
     	/*
     	 * Le client selectionné dans FenChoixClient est recuilli dans la variable client
-    	 * 
     	 */
-		
+    	if (okRowDoubleClicked) {
+    		nomCLientButton.setText(client.getNom());
+    	}
+    	
     }
     
 private Stage dialogStage;
