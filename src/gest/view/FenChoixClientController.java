@@ -71,6 +71,11 @@ public class FenChoixClientController {
 	    		return new ReadOnlyStringWrapper(datechaine);
 	    	});
 	    
+	    		/*
+	    		 * Gestion du doubleclic sur une ligne de la table
+	    		 * On procède à l'ajout d'un ecouteur d'evemenet 
+	    		 * sur les ligne de la table
+	    		 */
 	    		clientTable.setRowFactory( tv ->{
 	    			TableRow<Client> row = new TableRow<>();
 	    			row.setOnMouseClicked(event -> {

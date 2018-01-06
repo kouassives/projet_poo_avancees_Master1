@@ -103,16 +103,16 @@
                   <Pane prefHeight="256.0" prefWidth="562.0">
                      <children>
                         <Label layoutX="326.0" layoutY="25.0" />
-                        <Button id="windows7-default" layoutX="13.0" layoutY="12.0" mnemonicParsing="false" style="-fx-font-size: 11; -fx-font-family: &quot;Segoe UI Semibold&quot;;" text="Parcourir les articles" />
+                        <Button id="windows7-default" layoutX="13.0" layoutY="12.0" mnemonicParsing="false" onAction="#handleSelectionArticle" style="-fx-font-size: 11; -fx-font-family: &quot;Segoe UI Semibold&quot;;" text="Parcourir les articles" />
                         <Label layoutX="14.0" layoutY="46.0" styleClass="label-bright" text="Code" />
                         <Label layoutX="13.0" layoutY="80.0" styleClass="label-bright" text="Quantité" />
                         <Label layoutX="186.0" layoutY="47.0" styleClass="label-bright" text="Désignation" />
                         <Label layoutX="186.0" layoutY="81.0" styleClass="label-bright" text="Montant" />
                         <Label layoutX="421.0" layoutY="46.0" styleClass="label-bright" text="Code catégorie" />
-                        <TextField id="textfieldresize" fx:id="codeTextField" alignment="BOTTOM_LEFT" layoutX="78.0" layoutY="44.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" prefWidth="100.0" />
+                        <TextField id="textfieldresize" fx:id="codeTextField" alignment="BOTTOM_LEFT" editable="false" layoutX="78.0" layoutY="44.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" prefWidth="100.0" />
                         <ComboBox fx:id="quantiteComboBox" layoutX="78.0" layoutY="78.0" prefHeight="25.0" prefWidth="100.0" />
-                        <TextField id="textfieldresize" fx:id="designationTextField" alignment="BOTTOM_LEFT" layoutX="253.0" layoutY="45.0" minHeight="-Infinity" prefHeight="25.0" prefWidth="147.0" />
-                        <TextField id="textfieldresize" fx:id="codeCategorieTextField" alignment="BOTTOM_LEFT" layoutX="505.0" layoutY="44.0" minHeight="-Infinity" prefHeight="25.0" prefWidth="43.0" />
+                        <TextField id="textfieldresize" fx:id="designationTextField" alignment="BOTTOM_LEFT" editable="false" layoutX="253.0" layoutY="45.0" minHeight="-Infinity" prefHeight="25.0" prefWidth="147.0" />
+                        <TextField id="textfieldresize" fx:id="codeCategorieTextField" alignment="BOTTOM_LEFT" editable="false" layoutX="505.0" layoutY="44.0" minHeight="-Infinity" prefHeight="25.0" prefWidth="43.0" />
                         <TableView fx:id="commandeTable" layoutX="6.0" layoutY="110.0" prefHeight="141.0" prefWidth="551.0">
                           <columns>
                             <TableColumn fx:id="code" prefWidth="75.0" text="Code" />
@@ -125,7 +125,7 @@
                         </TableView>
                         <Button layoutX="359.0" layoutY="75.0" mnemonicParsing="false" text="Ajouter" />
                         <Button layoutX="452.0" layoutY="74.0" mnemonicParsing="false" text="Modifier" />
-                        <TextField id="textfieldresize" layoutX="253.0" layoutY="79.0" minHeight="-Infinity" prefHeight="25.0" prefWidth="96.0" />
+                        <TextField id="textfieldresize" fx:id="montantTextField" editable="false" layoutX="253.0" layoutY="79.0" minHeight="-Infinity" prefHeight="25.0" prefWidth="96.0" />
                      </children>
                   </Pane>
                </children>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="300.0" prefWidth="800.0" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gest.view.FenChoixArticleController">
+   <children>
+      <Label layoutX="14.0" layoutY="14.0" text="Double-cliquez pour choisir un article." />
+      <TableView fx:id="articleTable" layoutX="14.0" layoutY="35.0" prefHeight="203.0" prefWidth="790.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
+        <columns>
+          <TableColumn fx:id="code" prefWidth="92.0" text="Code" />
+          <TableColumn fx:id="codeCategorie" prefWidth="189.0" text="Code catégorie" />
+            <TableColumn fx:id="designation" prefWidth="188.0" text="Désignation" />
+            <TableColumn fx:id="quantite" prefWidth="156.0" text="Quantité" />
+            <TableColumn fx:id="prixUnitaire" prefWidth="160.0" text="Prix unitaire" />
+        </columns>
+      </TableView>
+      <ImageView fitHeight="36.0" fitWidth="48.0" layoutX="416.0" layoutY="254.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../resources/images/icone_valider.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="470.0" layoutY="263.0" styleClass="label-bright" text="Rechercher" />
+      <TextField id="textfieldresize" fx:id="rechercherTextField" alignment="BOTTOM_LEFT" layoutX="540.0" layoutY="257.0" onKeyReleased="#handleRechercherClient" />
+   </children>
+</AnchorPane>
