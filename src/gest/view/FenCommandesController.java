@@ -150,7 +150,8 @@ private ModeReglements mode = new ModeReglements();
     		}
     		//L'instruction qui sert à ajouter la liste au ComboBox quantité
     		quantiteComboBox.setItems(quantiteList);
-    		quantiteComboBox.setValue(1);
+    		if(article.getQuantite()>0)
+    			quantiteComboBox.setValue(1);
     		montantTextField.setText(Double.toString(article.getPrix_unitaire()));
     	}
     	
