@@ -261,12 +261,15 @@ private ModeReglements mode = new ModeReglements();
     		if(!codeClient.equals("")) {
     			int codeReglement = mode.getlesEnreg().get(modeReglementComboBox.getSelectionModel().getSelectedIndex()).getCode();
     			String typeReglement = mode.getlesEnreg().get(modeReglementComboBox.getSelectionModel().getSelectedIndex()).getType();
-    			Commande commande = new Commande(codeCommande,codeClient,client.getNom()+""+client.getPrenom(),totalTtc,typeReglement,LocalDate.now());
+    			Commande commande = new Commande(codeCommande,codeClient,client.getNom()+" "+client.getPrenom(),totalTtc,typeReglement,LocalDate.now());
     			boolean okCommande = commande.creerCRUD(codeCommande, codeClient, totalTtc, codeReglement);
     			//LignesCommandes ligneCommandes = new LignesCommandes(codeCommande,codeArticle,article.getDesignation());
     			
     			if (okCommande)
     			{
+    				// Ajout de la commande dans la liste des commandes mainApp.getLignesCommandeData()
+    				mainApp.getCommandeData().add(commande);
+    				
     				for(LignesCommandes lignesCommandes : mainApp.getLignesCommandeData()) {
 	    				lignesCommandes = new LignesCommandes(codeCommande,lignesCommandes.getcodeArticle(),lignesCommandes.getdesignation(),lignesCommandes.getquantite(),lignesCommandes.getprixUnitaire(),lignesCommandes.gettotal());
 	        			lignesCommandes.creerCRUD(codeCommande, lignesCommandes.getcodeArticle(), lignesCommandes.getquantite(), lignesCommandes.getprixUnitaire(),lignesCommandes.gettotal());	
