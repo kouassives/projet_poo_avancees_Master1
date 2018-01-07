@@ -3,20 +3,15 @@ package gest.model;
 //Pour la structure acceuil des donnees
 import java.util.ArrayList;
 //Pour la gestion de la propriété date
-import java.util.Date;
-
-import gest.util.DateUtil;
 
 //Pour la connexion base de donnees
 import java.sql.Connection;
 import connection.ControleConnexion;
-import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
@@ -25,7 +20,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
-import java.time.ZoneId;
 
 
 public class Client extends Personne{
