@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import gest.model.Article;
 import gest.model.Client;
 import gest.model.Commande;
+import gest.model.LignesCommandes;
 import gest.view.FenArticlesController;
 import gest.view.FenChoixArticleController;
 import gest.view.FenChoixClientController;
@@ -22,7 +23,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -31,10 +31,12 @@ public class MainApp extends Application {
 	private ArrayList<Client> clientData = new ArrayList<Client>();
 	private ArrayList<Article> articleData = new ArrayList<Article>();
 	private ArrayList<Commande> commandeData = new ArrayList<Commande>();
+	private ArrayList<LignesCommandes> lignesCommandesData = new ArrayList<LignesCommandes>();
     // Important pour passer au type de list Observable
     ObservableList<Client> clientDataObservale = FXCollections.observableArrayList(clientData);
     ObservableList<Article> articleDataObservale = FXCollections.observableArrayList(articleData);
     ObservableList<Commande> commandeDataObservale = FXCollections.observableArrayList(commandeData);
+    ObservableList<LignesCommandes> lignesCommandeDataObservale = FXCollections.observableArrayList(lignesCommandesData);
     
     /**
      * Returns the data as an observable list of Persons. 
@@ -52,6 +54,10 @@ public class MainApp extends Application {
         return commandeDataObservale;
     }
     
+    public ObservableList<LignesCommandes> getLignesCommandeData() {
+        return lignesCommandeDataObservale;
+    }
+    
     //Utiliser pour la recherche assisté dans FenArticles.FXML
     public void reloadListArticle() {
     	articleDataObservale.clear();
@@ -64,6 +70,7 @@ public class MainApp extends Application {
     	commandeDataObservale=FXCollections.observableArrayList((new Commande()).getLesEnreg());
     }
     
+    
 	private Stage primaryStage;
 	
 	public MainApp() {
@@ -72,8 +79,13 @@ public class MainApp extends Application {
 		// Reccuperation des clients dans la base de données
 		// Add some sample data
 		clientDataObservale=FXCollections.observableArrayList((new Client()).getlesEnreg());
+		
 		articleDataObservale=FXCollections.observableArrayList((new Article()).getLesEnreg());
+		
 		commandeDataObservale=FXCollections.observableArrayList((new Commande()).getLesEnreg());
+		
+		lignesCommandeDataObservale=FXCollections.observableArrayList((new LignesCommandes()).getLesEnreg());
+		//lignesCommandeDataObservale.clear();
 		/*  // Pour les en-têtes de colonnes
 		private final String[] lesTitres =  {"Code", "Nom", "Prenom", "Carte Fidélité", "Date Création"};
 		*/

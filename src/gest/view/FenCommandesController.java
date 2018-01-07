@@ -3,7 +3,7 @@ package gest.view;
 import gest.MainApp;
 import gest.model.Article;
 import gest.model.Client;
-import gest.model.Commande;
+import gest.model.LignesCommandes;
 import gest.model.ModeReglements;
 import gest.util.DateUtil;
 import javafx.beans.value.ChangeListener;
@@ -11,14 +11,17 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Random;
@@ -30,15 +33,19 @@ private Article article;
 private MainApp mainApp;
 
 @FXML
-private TableView<Commande> commandeTable;
+private TableView<LignesCommandes> lignesCommandesTable;
 @FXML
-private TableColumn<Commande, String> code;
+private TableColumn<LignesCommandes, String> code;
 @FXML
-private TableColumn<Commande, String> designation;
+private TableColumn<LignesCommandes, String> codeCategorie;
 @FXML
-private TableColumn<Commande, String> codeCategorie;
+private TableColumn<LignesCommandes, String> designation;
 @FXML
-private TableColumn<Commande, Number> quantite;
+private TableColumn<LignesCommandes, Number> quantite;
+@FXML
+private TableColumn<LignesCommandes, Number> prixUnitaire;
+@FXML
+private TableColumn<LignesCommandes, Number> total;
 
 
 
@@ -66,6 +73,7 @@ private Label dateDuJour;
 
 private static String codeArticle="";
 private static String codeClient="";
+private double totalTtc;
 //private static String codeCommande=randomCommandeNumber();
 private ModeReglements mode = new ModeReglements();
 	/**
@@ -76,7 +84,13 @@ private ModeReglements mode = new ModeReglements();
     private void initialize() {
     	dateDuJour.setText(DateUtil.format(LocalDate.now()));
     	
-    	code.setCellValueFactory(cellData -> cellData.getValue().CodeProperty());
+    	code.setCellValueFactory(cellData -> cellData.getValue().codeCommandeProperty());
+    	codeCategorie.setCellValueFactory(cellData -> cellData.getValue().codeArticleProperty());
+    	designation.setCellValueFactory(cellData -> cellData.getValue().designationProperty());
+    	quantite.setCellValueFactory(cellData -> cellData.getValue().quantiteProperty());
+    	prixUnitaire.setCellValueFactory(cellData -> cellData.getValue().prixUnitaireProperty());
+    	total.setCellValueFactory(cellData -> cellData.getValue().totalProperty());
+    	
     	/* 
     	 * On ajouter un listener pour reagir au
     	 * changement de valeur de la quantité
@@ -90,8 +104,9 @@ private ModeReglements mode = new ModeReglements();
     				handleRefreshMontant();
 			}
     	});
-    	
-    	
+
+    	totalLabel.setText("0");
+
     }
     /**
      * Is called by the main application to give a reference back to itself.
@@ -100,7 +115,8 @@ private ModeReglements mode = new ModeReglements();
      */
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
-        commandeTable.setItems(mainApp.getCommandeData());
+        lignesCommandesTable.setItems(mainApp.getLignesCommandeData());
+    	mainApp.getLignesCommandeData().clear();
     }
     
     
@@ -161,6 +177,71 @@ private ModeReglements mode = new ModeReglements();
     private void handleRefreshMontant() {
     	double montant = article.getPrix_unitaire()*quantiteComboBox.getValue();
 		montantTextField.setText(Double.toString(montant));
+    }
+    
+    @FXML
+    private void handleAddLignesCommande() {
+    	
+    	if(!(codeTextField.getText().isEmpty() || codeTextField.getText().equals("")))
+    		{
+    			int vquantite = quantiteComboBox.getValue();
+    			if (vquantite > 0) {
+    				/*
+    				 * Creation d'une ligne de commande pour l'ajouter dans la listeObservable des
+    				 * commande en cours, ainsi on procede à l'ajout dans la table
+    				 * 
+    				 */
+    				LignesCommandes uneLigne = new LignesCommandes(null,null,null,1,0,0);
+    				uneLigne.setCodeCommande(randomCommandeNumber());
+    				uneLigne.setCodeArticle(codeTextField.getText());
+    				uneLigne.setDesignation(designationTextField.getText());
+    				uneLigne.setQuantite(quantiteComboBox.getValue());
+    				uneLigne.setPrixUnitaire((int)article.getPrix_unitaire());
+    				uneLigne.setTotal(quantiteComboBox.getValue()*(int)article.getPrix_unitaire());
+    				
+    				mainApp.getLignesCommandeData().add(uneLigne);
+    				/*
+    				 * Le calcul de total parcours la tableView donc
+    				 * faudrait que le calcul se fasse après l'ajout d'une nouvelle commadne
+    				 */
+    				totalLabel.setText(calculTotal());
+    				
+    			}
+    			else {
+    				Alert alert = new Alert(AlertType.ERROR);
+    		        alert.setTitle("ERREUR");
+    		        alert.setHeaderText("Mauvaise quantité");
+    		        alert.setContentText("La quantité doit être d'au moins 1");
+    		    	alert.showAndWait();
+    			}
+    		}
+    }
+    
+    private String calculTotal() {
+    	String total="";
+    	try {
+    		DecimalFormat format = new DecimalFormat("#,##0");
+    		totalTtc=0.0;
+    		for(int i =0;i<lignesCommandesTable.getItems().size();i++) {
+    			totalTtc += Double.valueOf(lignesCommandesTable.getItems().get(i).gettotal());
+    		}
+    		total= format.format(totalTtc)+ "€";
+    		
+    	}catch(Exception e) {
+    		Alert alert = new Alert(AlertType.ERROR);
+	        alert.setTitle("ERREUR");
+	        alert.setHeaderText("Mauvais format de nombre");
+	        alert.setContentText("");
+	    	alert.showAndWait();
+    	}
+    	return total;
+    }
+    
+    private static String randomCommandeNumber() {
+    	String num = "";
+    	Random rand = new Random();
+    	num+="FAC" + rand.nextInt(999);
+    	return num;
     }
     
 private Stage dialogStage;

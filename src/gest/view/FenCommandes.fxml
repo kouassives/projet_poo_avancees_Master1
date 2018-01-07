@@ -27,7 +27,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="buttonModifier" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="176.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="183.0" style="-fx-background-size: 20%;" text="Supprimer un ligne">
+            <Button id="buttonModifier" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="176.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="199.0" style="-fx-background-size: 20%;" text="Supprimer toutesles lignes" wrapText="true">
                <styleClass>
                   <String fx:value="buttonWithImage" />
                   <String fx:value="buttonPanneau" />
@@ -113,17 +113,17 @@
                         <ComboBox fx:id="quantiteComboBox" layoutX="78.0" layoutY="78.0" prefHeight="25.0" prefWidth="100.0" />
                         <TextField id="textfieldresize" fx:id="designationTextField" alignment="BOTTOM_LEFT" editable="false" layoutX="253.0" layoutY="45.0" minHeight="-Infinity" prefHeight="25.0" prefWidth="147.0" />
                         <TextField id="textfieldresize" fx:id="codeCategorieTextField" alignment="BOTTOM_LEFT" editable="false" layoutX="505.0" layoutY="44.0" minHeight="-Infinity" prefHeight="25.0" prefWidth="43.0" />
-                        <TableView fx:id="commandeTable" layoutX="6.0" layoutY="110.0" prefHeight="141.0" prefWidth="551.0">
+                        <TableView fx:id="lignesCommandesTable" layoutX="6.0" layoutY="110.0" prefHeight="141.0" prefWidth="551.0">
                           <columns>
                             <TableColumn fx:id="code" prefWidth="75.0" text="Code" />
                             <TableColumn fx:id="codeCategorie" prefWidth="121.0" text="Code catégorie" />
                               <TableColumn fx:id="designation" prefWidth="124.0" text="Désignation" />
                               <TableColumn fx:id="quantite" prefWidth="67.0" text="Quantité" />
-                              <TableColumn prefWidth="75.0" text="Prix unitaire" />
-                              <TableColumn prefWidth="84.0" text="Total" />
+                              <TableColumn fx:id="prixUnitaire" prefWidth="75.0" text="Prix unitaire" />
+                              <TableColumn fx:id="total" prefWidth="84.0" text="Total" />
                           </columns>
                         </TableView>
-                        <Button layoutX="359.0" layoutY="75.0" mnemonicParsing="false" text="Ajouter" />
+                        <Button layoutX="359.0" layoutY="75.0" mnemonicParsing="false" onAction="#handleAddLignesCommande" text="Ajouter" />
                         <Button layoutX="452.0" layoutY="74.0" mnemonicParsing="false" text="Modifier" />
                         <TextField id="textfieldresize" fx:id="montantTextField" editable="false" layoutX="253.0" layoutY="79.0" minHeight="-Infinity" prefHeight="25.0" prefWidth="96.0" />
                      </children>

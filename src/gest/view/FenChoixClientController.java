@@ -118,7 +118,9 @@ public class FenChoixClientController {
 	        
 	        ArrayList<Client> nouvelleListe = unClient.chercherCRUD(rechercherTextField.getText());
 	        ObservableList<Client> nouvelleListeObservale = FXCollections.observableArrayList(nouvelleListe);
-	        
+	        /*
+			 * On met les données de la recherche dans la TableView clientTable
+			 */
 	        clientTable.setItems(nouvelleListeObservale);
 	    }
 	    

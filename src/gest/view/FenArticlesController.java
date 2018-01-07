@@ -230,16 +230,9 @@ private void handleRechercherClient() {
 		ObservableList<Article> nouvelleListeDataObservale = FXCollections.observableArrayList(nouvelleListe);
 		
 		/*
-		 * On supprimer toutes les lignes de la tableview
-		 * pour pouvoir y ajouter les resultats de la recheche
-		 * Or en supprimer les ligns de la table on supprimer aussi
-		 * les données la list des articles disponible depuis MainApp
-		 * Donc on cree la methode mainApp.reloadListArticle(); afin de
-		 * pouvoir recharger tous les articles qui sont dans la base de données
-		 * 
+		 * On met les données de la recherche dans la TableView articleTable
 		 */
-		articleTable.getItems().clear();
-		mainApp.reloadListArticle();
+		
 		articleTable.setItems(nouvelleListeDataObservale);
 
 	}
