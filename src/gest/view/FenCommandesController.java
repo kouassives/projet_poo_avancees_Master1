@@ -3,6 +3,7 @@ package gest.view;
 import gest.MainApp;
 import gest.model.Article;
 import gest.model.Client;
+import gest.model.Commande;
 import gest.model.LignesCommandes;
 import gest.model.ModeReglements;
 import gest.util.DateUtil;
@@ -62,7 +63,7 @@ private ComboBox<Integer> quantiteComboBox;
 @FXML
 private TextField montantTextField;
 @FXML
-private ComboBox<?> modeReglementComboBox;
+private ComboBox<String> modeReglementComboBox;
 @FXML
 private Button nomCLientButton;
 @FXML
@@ -74,7 +75,7 @@ private Label dateDuJour;
 private static String codeArticle="";
 private static String codeClient="";
 private double totalTtc;
-//private static String codeCommande=randomCommandeNumber();
+private static String codeCommande=randomCommandeNumber();
 private ModeReglements mode = new ModeReglements();
 	/**
      * Initializes the controller class. This method is automatically called
@@ -107,6 +108,19 @@ private ModeReglements mode = new ModeReglements();
 
     	totalLabel.setText("0");
 
+    	/*
+		 * On cree une liste de String quon va ajouer dans le ComboBox modeReglementComboBox
+		 */
+		ArrayList<String> modeReglementList =new ArrayList<String>();
+		ObservableList<String> modeReglementListObservable = FXCollections.observableArrayList(modeReglementList);
+		for (int i=0;i<mode.getlesEnreg().size();i++)
+		{
+			modeReglementListObservable.add(mode.getlesEnreg().get(i).toString());
+		}
+		//L'instruction qui sert à ajouter la liste au modeReglementComboBox
+		modeReglementComboBox.setItems(modeReglementListObservable);
+		modeReglementComboBox.setValue(modeReglementComboBox.getItems().get(0));
+    	
     }
     /**
      * Is called by the main application to give a reference back to itself.
@@ -135,6 +149,7 @@ private ModeReglements mode = new ModeReglements();
     	 */
     	if (okRowDoubleClicked) {
     		nomCLientButton.setText(client.getNom()+" "+client.getPrenom());
+    		codeClient=client.getCode();
     	}
     	
     }
@@ -192,7 +207,7 @@ private ModeReglements mode = new ModeReglements();
     				 * 
     				 */
     				LignesCommandes uneLigne = new LignesCommandes(null,null,null,1,0,0);
-    				uneLigne.setCodeCommande(randomCommandeNumber());
+    				uneLigne.setCodeCommande(codeCommande);
     				uneLigne.setCodeArticle(codeTextField.getText());
     				uneLigne.setDesignation(designationTextField.getText());
     				uneLigne.setQuantite(quantiteComboBox.getValue());
@@ -215,6 +230,58 @@ private ModeReglements mode = new ModeReglements();
     		    	alert.showAndWait();
     			}
     		}
+    }
+    
+    @FXML
+    private void handleValiderCommande() {
+    	if(!lignesCommandesTable.getItems().isEmpty()) {
+    		//Cas où la tableView est non vide
+    		if(!codeClient.equals("")) {
+    			int codeReglement = mode.getlesEnreg().get(modeReglementComboBox.getSelectionModel().getSelectedIndex()).getCode();
+    			String typeReglement = mode.getlesEnreg().get(modeReglementComboBox.getSelectionModel().getSelectedIndex()).getType();
+    			Commande commande = new Commande(codeCommande,codeClient,client.getNom()+""+client.getPrenom(),totalTtc,typeReglement,LocalDate.now());
+    			boolean okCommande = commande.creerCRUD(codeCommande, codeClient, totalTtc, codeReglement);
+    			//LignesCommandes ligneCommandes = new LignesCommandes(codeCommande,codeArticle,article.getDesignation());
+    			
+    			if (okCommande)
+    			{
+    				for(LignesCommandes lignesCommandes : mainApp.getLignesCommandeData()) {
+	    				lignesCommandes = new LignesCommandes(codeCommande,lignesCommandes.getcodeArticle(),lignesCommandes.getdesignation(),lignesCommandes.getquantite(),lignesCommandes.getprixUnitaire(),lignesCommandes.gettotal());
+	        			lignesCommandes.creerCRUD(codeCommande, lignesCommandes.getcodeArticle(), lignesCommandes.getquantite(), lignesCommandes.getprixUnitaire(),lignesCommandes.gettotal());	
+	    			}
+	    			
+	    			nomCLientButton.setText("[ Cliquez ici pour selectionner un client");
+	    			codeTextField.setText("");
+	    			designationTextField.setText("");
+	    			codeCategorieTextField.setText("");
+	    			quantiteComboBox.getItems().clear();
+	    			montantTextField.setText("");
+	    			lignesCommandesTable.getItems().clear();
+	    			codeClient="";
+	    			codeCommande = randomCommandeNumber();
+	    			totalLabel.setText("0");
+	    			Alert alert = new Alert(AlertType.INFORMATION);
+	    	        alert.setTitle("INFORMATION");
+	    	        alert.setHeaderText("Commande ajoutée !");
+	    	        alert.setContentText("");
+	    	    	alert.showAndWait();
+    			}
+    		}
+    		else {
+    			Alert alert = new Alert(AlertType.INFORMATION);
+    	        alert.setTitle("INFORMATION");
+    	        alert.setHeaderText("Aucun client selectionné");
+    	        alert.setContentText("Vous devez selectionner un client pour continuer");
+    	    	alert.showAndWait();
+    		}
+    	}
+    	else {
+    		Alert alert = new Alert(AlertType.INFORMATION);
+	        alert.setTitle("INFORMATION");
+	        alert.setHeaderText("Aucun article ajouté à la commande");
+	        alert.setContentText("Une commande doit avoir moins un article pour validée");
+	    	alert.showAndWait();
+    	}
     }
     
     private String calculTotal() {
