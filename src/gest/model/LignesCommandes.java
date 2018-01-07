@@ -219,11 +219,12 @@ public class LignesCommandes {
 				return bModification; 
 		}
 		
+		
 		public boolean supprimerCRUD(String vCode){
 			boolean bSuppression = true;
 			String requete = null;
 			try {
-				requete = "DELETE commandes, lignescommandes" + " FROM commandes, lignescommandes " + "WHERE code commande = code AND code = ?";
+				requete = "DELETE FROM lignes_commandes " + "WHERE code_commande = code AND code = ?";
 				PreparedStatement prepare = laConnexion.prepareStatement(requete);
 				prepare.setString(1, vCode);	
 				int nbEnregSup = prepare.executeUpdate();

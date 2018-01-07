@@ -27,7 +27,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="buttonModifier" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="176.0" mnemonicParsing="false" prefHeight="64.0" prefWidth="199.0" style="-fx-background-size: 20%;" text="Supprimer toutesles lignes" wrapText="true">
+            <Button id="buttonModifier" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="176.0" mnemonicParsing="false" onAction="#handleDeleteAllRow" prefHeight="64.0" prefWidth="199.0" style="-fx-background-size: 20%;" text="Supprimer toutes les lignes" wrapText="true">
                <styleClass>
                   <String fx:value="buttonWithImage" />
                   <String fx:value="buttonPanneau" />
@@ -36,7 +36,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="buttonSupprimer" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="122.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="183.0" style="-fx-background-size: 15%;" text="Supprimer un ligne">
+            <Button id="buttonSupprimer" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="122.0" mnemonicParsing="false" onAction="#handleDeleteOneRow" prefHeight="50.0" prefWidth="183.0" style="-fx-background-size: 15%;" text="Supprimer un ligne">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

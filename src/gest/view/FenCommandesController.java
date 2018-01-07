@@ -14,6 +14,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -307,6 +308,57 @@ private ModeReglements mode = new ModeReglements();
 	        alert.setContentText("Une commande doit avoir moins un article pour validée");
 	    	alert.showAndWait();
     	}
+    }
+    
+    
+    @FXML
+    public void handleDeleteOneRow() {
+    	int selectedIndex = lignesCommandesTable.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >= 0) {
+        	LignesCommandes selectedLignesCommandes = lignesCommandesTable.getItems().get(selectedIndex);
+        	
+        	//Affichage d'une fenetre de confirmation pour la suppression de la ligne
+        	Alert alert = new Alert(AlertType.CONFIRMATION, "Supprimer la ligne dont le code est:  "+ selectedLignesCommandes.getcodeArticle()+ "?",ButtonType.YES,ButtonType.NO);
+            alert.showAndWait();
+            if(alert.getResult()==ButtonType.YES) {
+            	//Suppression seulement dans la tableView
+            	lignesCommandesTable.getItems().remove(selectedIndex);
+            	/*
+				 * Le calcul de total parcours la tableView donc
+				 * faudrait que le calcul se fasse après le retrait de la ligne
+				 */
+				
+            	totalLabel.setText(calculTotal());
+    	    }
+        }
+        else{
+            // Nothing selected.
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.initOwner(mainApp.getPrimaryStage());
+            alert.setTitle("Selection vide");
+            alert.setHeaderText("Aucun ligne selection");
+            alert.setContentText("Veillez selectionner une ligne de commande dans la table.");
+
+            alert.showAndWait();
+        }
+    }
+    
+    @FXML
+    public void handleDeleteAllRow() {
+    	//Affichage d'une fenetre de confirmation pour la suppression de toutes les lignes
+    	Alert alert = new Alert(AlertType.CONFIRMATION, "Supprimer toutes les lignes de commandes ?  ",ButtonType.YES,ButtonType.NO);
+        alert.showAndWait();
+        if(alert.getResult()==ButtonType.YES) {
+        	//Suppression seulement dans la tableView
+        	mainApp.getLignesCommandeData().clear();
+        	/*
+			 * Le calcul de total parcours la tableView donc
+			 * faudrait que le calcul se fasse après le retrait de toute les lignes
+			 */
+			
+        	totalLabel.setText(calculTotal());
+	    }
+    	
     }
     
     private String calculTotal() {
