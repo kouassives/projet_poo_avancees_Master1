@@ -201,30 +201,52 @@ private ModeReglements mode = new ModeReglements();
     		{
     			int vquantite = quantiteComboBox.getValue();
     			if (vquantite > 0) {
-    				/*
-    				 * Creation d'une ligne de commande pour l'ajouter dans la listeObservable des
-    				 * commande en cours, ainsi on procede à l'ajout dans la table
-    				 * 
-    				 */
-    				LignesCommandes uneLigne = new LignesCommandes(null,null,null,1,0,0);
-    				uneLigne.setCodeCommande(codeCommande);
-    				uneLigne.setCodeArticle(codeTextField.getText());
-    				uneLigne.setDesignation(designationTextField.getText());
-    				uneLigne.setQuantite(quantiteComboBox.getValue());
-    				uneLigne.setPrixUnitaire((int)article.getPrix_unitaire());
-    				uneLigne.setTotal(quantiteComboBox.getValue()*(int)article.getPrix_unitaire());
     				
-    				mainApp.getLignesCommandeData().add(uneLigne);
     				/*
-    				 * Le calcul de total parcours la tableView donc
-    				 * faudrait que le calcul se fasse après l'ajout d'une nouvelle commadne
-    				 */
-    				totalLabel.setText(calculTotal());
+        			 * Effectuons un test pour verifier si
+        			 * une ligne de commande d'un meme article à été ajouté
+        			 * à  la table ( d'où à la liste mainApp.getLignesCommandeData()
+        			 */
+	        		boolean unique =true;
+	        		for (LignesCommandes lignesCommande : mainApp.getLignesCommandeData()) {
+	        			if(lignesCommande.getcodeArticle().equals(codeTextField.getText()))
+	        				{
+	        					unique=false;
+	        					break;
+	        				}
+	        		}
+	        			if(unique) {
+		    				/*
+		    				 * Creation d'une ligne de commande pour l'ajouter dans la listeObservable des
+		    				 * commande en cours, ainsi on procede à l'ajout dans la table
+		    				 * 
+		    				 */
+		    				LignesCommandes uneLigne = new LignesCommandes(null,null,null,1,0,0);
+		    				uneLigne.setCodeCommande(codeCommande);
+		    				uneLigne.setCodeArticle(codeTextField.getText());
+		    				uneLigne.setDesignation(designationTextField.getText());
+		    				uneLigne.setQuantite(quantiteComboBox.getValue());
+		    				uneLigne.setPrixUnitaire((int)article.getPrix_unitaire());
+		    				uneLigne.setTotal(quantiteComboBox.getValue()*(int)article.getPrix_unitaire());
+		    				
+		    				mainApp.getLignesCommandeData().add(uneLigne);
+		    				/*
+		    				 * Le calcul de total parcours la tableView donc
+		    				 * faudrait que le calcul se fasse après l'ajout d'une nouvelle commadne
+		    				 */
+		    				totalLabel.setText(calculTotal());
+	        			}else {
+	        				Alert alert = new Alert(AlertType.ERROR);
+	        		        alert.setTitle("ERREUR");
+	        		        alert.setHeaderText("Vous tentez d'ajouter plusieurs fois");
+	        		        alert.setContentText("l'article: " + article.getDesignation());
+	        		    	alert.showAndWait();
+	        			}
     				
     			}
     			else {
-    				Alert alert = new Alert(AlertType.ERROR);
-    		        alert.setTitle("ERREUR");
+    				Alert alert = new Alert(AlertType.INFORMATION);
+    		        alert.setTitle("INFORMATION");
     		        alert.setHeaderText("Mauvaise quantité");
     		        alert.setContentText("La quantité doit être d'au moins 1");
     		    	alert.showAndWait();
