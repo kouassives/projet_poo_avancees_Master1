@@ -1,9 +1,9 @@
 package gest.view;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import gest.MainApp;
-import gest.model.Article;
 import gest.model.Commande;
 import gest.util.DateUtil;
 import javafx.beans.property.ReadOnlyStringWrapper;
@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -21,6 +22,8 @@ import javafx.stage.Stage;
 public class FenTableCommandesController {
 
 	private MainApp mainApp;
+
+	private double totalTtc;
 
 	
 	@FXML
@@ -39,6 +42,8 @@ public class FenTableCommandesController {
 	
 	@FXML
 	private TextField rechercherTextField;
+	@FXML
+	private Label totalTtcLabel;
 	
 	  /**
 	     * Initializes the controller class. This method is automatically called
@@ -55,6 +60,7 @@ public class FenTableCommandesController {
 	    		return new ReadOnlyStringWrapper(datechaine);
 	    	});
 	    	
+	    	
 	    }
 	    
 	    /**
@@ -70,6 +76,8 @@ public class FenTableCommandesController {
 	         * dataTable.setItems(mainApp.getClientData());
 	         */
 	        commandeTable.setItems(mainApp.getCommandeData());
+	        if(!commandeTable.getItems().isEmpty())
+		    	totalTtcLabel.setText(calculTotal());
 	    }
 	    
 	    
@@ -86,6 +94,8 @@ public class FenTableCommandesController {
 	    	    	boolean okdatabase = selectedCommande.supprimerCRUD(selectedCommande.getCode());
 	    	        if (okdatabase)
 	    	    	commandeTable.getItems().remove(selectedIndex);
+	    	        if(!commandeTable.getItems().isEmpty())
+	    		    	totalTtcLabel.setText(calculTotal());
 	    	    }
 	        }
 	        else{
@@ -112,6 +122,26 @@ public class FenTableCommandesController {
 	        commandeTable.setItems(nouvelleListeObservale);
 	    }
 	    
+	    
+	    private String calculTotal() {
+	    	String total="";
+	    	try {
+	    		DecimalFormat format = new DecimalFormat("#,##0");
+	    		totalTtc=0.0;
+	    		for(int i =0;i<commandeTable.getItems().size();i++) {
+	    			totalTtc += Double.valueOf(commandeTable.getItems().get(i).getTotal_ttc());
+	    		}
+	    		total= format.format(totalTtc)+ "€";
+	    		
+	    	}catch(Exception e) {
+	    		Alert alert = new Alert(AlertType.ERROR);
+		        alert.setTitle("ERREUR");
+		        alert.setHeaderText("Mauvais format de nombre");
+		        alert.setContentText("");
+		    	alert.showAndWait();
+	    	}
+	    	return total;
+	    }
 	    
 	    
 	private Stage dialogStage;

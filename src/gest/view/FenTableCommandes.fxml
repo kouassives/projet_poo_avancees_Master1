@@ -63,7 +63,7 @@
          <children>
             <Label layoutX="9.0" layoutY="29.0" styleClass="label-header" text="GESTION DU FICHIER DES COMMANDES" />
             <Label layoutX="14.0" layoutY="466.0" styleClass="label-bright" text="Total des commandes :" />
-            <Label layoutX="138.0" layoutY="465.0" />
+            <Label fx:id="totalTtcLabel" layoutX="138.0" layoutY="465.0" />
             <ImageView fitHeight="34.0" fitWidth="34.0" layoutX="253.0" layoutY="459.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../resources/images/icone_valider.png" />
