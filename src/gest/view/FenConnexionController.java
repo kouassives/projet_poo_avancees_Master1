@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.PasswordField;
 
 public class FenConnexionController {
 	
@@ -17,7 +18,7 @@ public class FenConnexionController {
     private TextField userNom;
     
     @FXML
-    private TextField userMDP;
+    private PasswordField userMDP;
     
     /**
      * Is called by the main application to give a reference back to itself.

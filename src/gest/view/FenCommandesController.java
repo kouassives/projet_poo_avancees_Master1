@@ -28,11 +28,16 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Random;
 
+
 public class FenCommandesController {
 
 private Client client;
 private Article article;
 private MainApp mainApp;
+
+
+ArrayList<String> selectedCodeCategorieList = new ArrayList<String>();
+ArrayList<Integer> selectedQuantie= new ArrayList<Integer>();
 
 @FXML
 private TableView<LignesCommandes> lignesCommandesTable;
@@ -92,6 +97,38 @@ private ModeReglements mode = new ModeReglements();
     	quantite.setCellValueFactory(cellData -> cellData.getValue().quantiteProperty());
     	prixUnitaire.setCellValueFactory(cellData -> cellData.getValue().prixUnitaireProperty());
     	total.setCellValueFactory(cellData -> cellData.getValue().totalProperty());
+    	
+    	lignesCommandesTable.getSelectionModel().selectedItemProperty().addListener(
+	            (observable, oldValue, newValue) ->
+	            {
+	            	int index = lignesCommandesTable.getSelectionModel().getSelectedIndex();
+	            	LignesCommandes selectedLignesCommandes = lignesCommandesTable.getSelectionModel().getSelectedItem();
+	            	
+	            	if(article != null && selectedLignesCommandes !=null) {
+	            		article.setCode(selectedLignesCommandes.getcodeArticle());
+		            	article.setDesignation(selectedLignesCommandes.getdesignation());
+		            	article.setPrix_unitaire(selectedLignesCommandes.getprixUnitaire());
+	            	}
+	            	if(!selectedCodeCategorieList.isEmpty() && index>0)
+	            	codeCategorieTextField.setText(selectedCodeCategorieList.get(index));
+	            	
+	            	ArrayList<Integer> array = new ArrayList<Integer>();
+	        		ObservableList<Integer> quantiteList = FXCollections.observableArrayList(array);
+	        		
+	        		if (!selectedQuantie.isEmpty() && index>0
+	        				)
+	        		{
+	        			for (int i=0;i<selectedQuantie.get(index);i++)
+			        		{
+			        			quantiteList.add(i+1);
+			        		}
+				        //L'instruction qui sert à ajouter la liste au ComboBox quantité
+		        		quantiteComboBox.setItems(quantiteList);
+	        		}
+	            	if (newValue!=null)
+	            	showLignesCommandesDetails(newValue);
+	            	
+	            });
     	
     	/* 
     	 * On ajouter un listener pour reagir au
@@ -236,6 +273,11 @@ private ModeReglements mode = new ModeReglements();
 		    				 * faudrait que le calcul se fasse après l'ajout d'une nouvelle commadne
 		    				 */
 		    				totalLabel.setText(calculTotal());
+		    				
+		    				//pour la gestion de showLignesCommandesDetails()
+		    				selectedCodeCategorieList.add(codeCategorieTextField.getText());
+		    				selectedQuantie.add(article.getQuantite());
+		    				
 	        			}else {
 	        				Alert alert = new Alert(AlertType.ERROR);
 	        		        alert.setTitle("ERREUR");
@@ -253,6 +295,40 @@ private ModeReglements mode = new ModeReglements();
     		    	alert.showAndWait();
     			}
     		}
+    }
+    
+    
+    @FXML
+    public void handleEditOneRow(){
+    	if (!codeTextField.getText().equals("")|| codeTextField.getText().length() != 0) {
+            String selectedCodeArticle = lignesCommandesTable.getSelectionModel().getSelectedItem().getcodeArticle();
+    		if(codeTextField.getText().equals(selectedCodeArticle)) {
+	    		int quantite = quantiteComboBox.getValue();
+	            lignesCommandesTable.getSelectionModel().getSelectedItem().setQuantite(quantite);
+	            lignesCommandesTable.getSelectionModel().getSelectedItem().setTotal(quantiteComboBox.getValue()*(int)article.getPrix_unitaire());
+	            
+	            totalLabel.setText(calculTotal());
+            }else {
+            	Alert alert = new Alert(AlertType.WARNING);
+                alert.initOwner(mainApp.getPrimaryStage());
+                alert.setTitle("Probleme correspondance");
+                alert.setHeaderText("L'article à modifier n'est pas celui selectionné dans la table");
+                alert.setContentText(codeTextField.getText()+" different de "+selectedCodeArticle);
+
+                alert.showAndWait();
+            }
+
+        } else {
+            // Nothing selected.
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.initOwner(mainApp.getPrimaryStage());
+            alert.setTitle("Selection vide");
+            alert.setHeaderText("Aucune ligne selectionnée");
+            alert.setContentText("Veillez selectionner une ligne dans la table.");
+
+            alert.showAndWait();
+        }
+    	
     }
     
     @FXML
@@ -275,7 +351,11 @@ private ModeReglements mode = new ModeReglements();
 	    				lignesCommandes = new LignesCommandes(codeCommande,lignesCommandes.getcodeArticle(),lignesCommandes.getdesignation(),lignesCommandes.getquantite(),lignesCommandes.getprixUnitaire(),lignesCommandes.gettotal());
 	        			lignesCommandes.creerCRUD(codeCommande, lignesCommandes.getcodeArticle(), lignesCommandes.getquantite(), lignesCommandes.getprixUnitaire(),lignesCommandes.gettotal());	
 	    			}
-	    			
+    				
+    				//pour la gestion de showLignesCommandesDetails()
+    				selectedCodeCategorieList.clear();;
+    				selectedQuantie.clear();
+    				
 	    			nomCLientButton.setText("[ Cliquez ici pour selectionner un client");
 	    			codeTextField.setText("");
 	    			designationTextField.setText("");
@@ -329,6 +409,11 @@ private ModeReglements mode = new ModeReglements();
 				 */
 				
             	totalLabel.setText(calculTotal());
+            	
+            	//pour la gestion de showLignesCommandesDetails()
+				selectedCodeCategorieList.remove(selectedIndex);
+				selectedQuantie.remove(selectedIndex);
+				
     	    }
         }
         else{
@@ -357,6 +442,11 @@ private ModeReglements mode = new ModeReglements();
 			 */
 			
         	totalLabel.setText(calculTotal());
+        	
+        	//pour la gestion de showLignesCommandesDetails()
+			selectedCodeCategorieList.clear();;
+			selectedQuantie.clear();
+			
 	    }
     	
     }
@@ -386,6 +476,19 @@ private ModeReglements mode = new ModeReglements();
     	Random rand = new Random();
     	num+="FAC" + rand.nextInt(999);
     	return num;
+    }
+    
+    private void showLignesCommandesDetails(LignesCommandes selectedLignesCommandes) {
+    	if(article != null ) {
+    		codeTextField.setText(selectedLignesCommandes.getcodeArticle());
+	    	designationTextField.setText(selectedLignesCommandes.getdesignation());
+	    	
+	    	montantTextField.setText(Double.toString(selectedLignesCommandes.gettotal()));
+	    	//quantiteComboBox.setItems(value);
+	    	quantiteComboBox.setValue(selectedLignesCommandes.getquantite());
+	    	
+    	}
+    	
     }
     
 private Stage dialogStage;
