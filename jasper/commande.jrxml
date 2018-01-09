@@ -1,27 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.1.0.final using JasperReports Library version 6.1.0  -->
-<!-- 2015-06-10T10:31:55 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="commande" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5f231fad-e838-451c-8a92-db915cfa14c9">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="104"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="jasper\donneesCommande.xml"/>
-	<parameter name="imagesDir" class="java.lang.String" isForPrompting="false"/>
-	<field name="commande.code" class="java.lang.String"/>
-	<field name="article.code" class="java.lang.String"/>
-	<field name="quantite" class="java.lang.Integer"/>
-	<field name="prixUnitaire" class="java.lang.Double"/>
-	<field name="total" class="java.lang.Double"/>
-	<field name="commande.client.code" class="java.lang.String"/>
-	<field name="commande.totalTTC" class="java.lang.Double"/>
-	<field name="commande.reglement.code" class="java.lang.Integer"/>
-	<field name="commande.date" class="java.util.Date"/>
-	<field name="commande.client.nom" class="java.lang.String"/>
-	<field name="commande.client.prenom" class="java.lang.String"/>
-	<field name="commande.client.carteFidele" class="java.lang.Boolean"/>
-	<field name="article.categorie.code" class="java.lang.String"/>
-	<field name="article.designation" class="java.lang.String"/>
-	<field name="commande.reglement.type" class="java.lang.String"/>
+	<parameter name="codeCommande" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="imageLogo" class="java.lang.String"/>
+	<parameter name="imageCommande" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     commandes.`code` AS commandes_code,
+     clients.`nom` AS clients_nom,
+     clients.`prenom` AS clients_prenom,
+     clients.`carte_fidele` AS clients_carte_fidele,
+     articles.`code` AS articles_code,
+     lignes_commandes.`quantite` AS lignes_commandes_quantite,
+     lignes_commandes.`prix_unitaire` AS lignes_commandes_prix_unitaire,
+     lignes_commandes.`total` AS lignes_commandes_total,
+     commandes.`code_client` AS commandes_code_client,
+     commandes.`total_ttc` AS commandes_total_ttc,
+     commandes.`code_mode_reglement` AS commandes_code_mode_reglement,
+     commandes.`date` AS commandes_date,
+     articles.`code_categorie` AS articles_code_categorie,
+     articles.`designation` AS articles_designation,
+     mode_reglements.`type` AS mode_reglements_type
+FROM
+     `clients` clients INNER JOIN `commandes` commandes ON clients.`code` = commandes.`code_client`
+     INNER JOIN `lignes_commandes` lignes_commandes ON commandes.`code` = lignes_commandes.`code_commande`
+     AND lignes_commandes.`code_commande` = commandes.`code`
+     INNER JOIN `mode_reglements` mode_reglements ON commandes.`code_mode_reglement` = mode_reglements.`code`
+     INNER JOIN `articles` articles ON lignes_commandes.`code_article` = articles.`code`
+     AND articles.`code` = lignes_commandes.`code_article`
+WHERE
+     commandes.`code` LIKE $P{codeCommande}]]>
+	</queryString>
+	<field name="commandes_code" class="java.lang.String"/>
+	<field name="clients_nom" class="java.lang.String"/>
+	<field name="clients_prenom" class="java.lang.String"/>
+	<field name="clients_carte_fidele" class="java.lang.Boolean"/>
+	<field name="articles_code" class="java.lang.String"/>
+	<field name="lignes_commandes_quantite" class="java.lang.Integer"/>
+	<field name="lignes_commandes_prix_unitaire" class="java.lang.Double"/>
+	<field name="lignes_commandes_total" class="java.lang.Double"/>
+	<field name="commandes_code_client" class="java.lang.String"/>
+	<field name="commandes_total_ttc" class="java.lang.Double"/>
+	<field name="commandes_code_mode_reglement" class="java.lang.Integer"/>
+	<field name="commandes_date" class="java.sql.Date"/>
+	<field name="articles_code_categorie" class="java.lang.String"/>
+	<field name="articles_designation" class="java.lang.String"/>
+	<field name="mode_reglements_type" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -73,7 +102,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{commande.code}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{commandes_code}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="160" y="163" width="186" height="30" uuid="cf52098e-a836-4a1e-9031-f20ded921e50"/>
@@ -85,7 +114,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{commande.client.prenom}+" "+$F{commande.client.nom}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{clients_prenom}+" "+$F{clients_nom}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd MMMMM yyyy">
 				<reportElement x="346" y="163" width="132" height="30" uuid="f5b7f0bb-08c2-4576-9c1d-715a7d127df6"/>
@@ -98,15 +127,15 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{commande.date}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{commandes_date}]]></textFieldExpression>
 			</textField>
 			<image>
 				<reportElement x="505" y="0" width="50" height="50" uuid="020a0c89-25fe-41de-895f-7e57c45b3a27"/>
-				<imageExpression><![CDATA[$P{imagesDir}+"/Shopping-Bag-128.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{imageCommande}]]></imageExpression>
 			</image>
 			<image hAlign="Center">
 				<reportElement x="0" y="0" width="65" height="60" uuid="71df4337-8c3b-4123-a0ee-24444f915a21"/>
-				<imageExpression><![CDATA[$P{imagesDir}+"/Moon-256.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{imageLogo}]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="95" y="0" width="210" height="25" uuid="767b6e00-c60f-42d8-bf47-8cb518916000">
@@ -116,19 +145,19 @@
 				<textElement>
 					<font size="19" isBold="true"/>
 				</textElement>
-				<text><![CDATA[LUNA SARL]]></text>
+				<text><![CDATA[OXYGEN SARL]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="95" y="25" width="205" height="15" uuid="0807b1a5-1ce7-4055-afd7-89eb9c318f69"/>
-				<text><![CDATA[1, rue Tycho]]></text>
+				<text><![CDATA[Rue des banques, Vallon]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="95" y="40" width="205" height="15" uuid="fc28c833-92ed-47c1-8030-6143a80acae0"/>
-				<text><![CDATA[75014, Paris]]></text>
+				<text><![CDATA[00225, Abidjan]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="95" y="55" width="205" height="15" uuid="80ca10a2-8807-4748-9f15-2bbae3823e36"/>
-				<text><![CDATA[+33-1-2345678]]></text>
+				<text><![CDATA[+(225) 470 014 83]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -211,7 +240,7 @@
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{article.categorie.code}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{articles_code_categorie}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="78" y="0" width="298" height="20" uuid="09d3f60f-99f5-4de4-aadb-4ee8ea039fa5"/>
@@ -222,7 +251,7 @@
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{article.designation}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{articles_designation}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="376" y="0" width="37" height="20" uuid="ac5c38e1-cfc4-42a7-9a2b-3f8280c5fa26"/>
@@ -232,7 +261,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{quantite}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{lignes_commandes_quantite}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00">
 				<reportElement x="413" y="0" width="62" height="20" uuid="e1561625-54b8-4683-9c53-ae26a6cbc21d"/>
@@ -242,7 +271,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{prixUnitaire}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{lignes_commandes_prix_unitaire}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00">
 				<reportElement x="475" y="0" width="80" height="20" uuid="710fd221-79d6-43af-abbd-ba7c55f01ef7"/>
@@ -253,7 +282,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{lignes_commandes_total}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -301,7 +330,7 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{commande.totalTTC}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{commandes_total_ttc}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="0" y="23" width="114" height="20" uuid="c10cdb44-346c-4081-b64e-7a8af89feed4"/>
@@ -315,7 +344,7 @@
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{commande.reglement.type}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{mode_reglements_type}]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>

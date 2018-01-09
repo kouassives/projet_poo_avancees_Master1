@@ -6,7 +6,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.swing.JFileChooser;
 
 import connection.ControleConnexion;
 import net.sf.jasperreports.engine.JRDataSource;
@@ -64,66 +63,45 @@ public class JasperMySQL_Parametres {
 
 	// Etapes 1 à 3 du processus Jasper
 	// --------------------------------
-	public static JasperPrint chargeEtcompile(String rapport,
-			Collection<?> elements, Object... paramètres) throws JRException {
-		try {
-			// Etape 1
-			String dossierJasper = Systeme.getRepertoireCourant()
-					+ Systeme.getSeparateur() + "jasper"
-					+ Systeme.getSeparateur();
-			JasperDesign design = JRXmlLoader.load(dossierJasper + rapport);
-			// Etape 2
-			JasperReport report = JasperCompileManager.compileReport(design);
-			// Etape 3
-
-			// les paramètres sont passés en alternance:
-			// d'abord la clé puis la valeur,
-			// ceci répété pour chaque paramètre
-			Map<String, Object> mesParametres = new HashMap<String, Object>();
-			if (paramètres != null) {
-				for (int i = 0; i < paramètres.length; i += 2) {
-					mesParametres
-							.put((String) paramètres[i], paramètres[i + 1]);
-				}
-			}
-			mesParametres.put("imagesDir", dossierJasper + "images");
-
-			JRDataSource source = new JRBeanCollectionDataSource(elements);
-			return JasperFillManager.fillReport(report, mesParametres, source);
-		} catch (JRException e) {
-			throw e;
-		} catch (Exception e) {
+	
+	public static void chargeEtcompile(String rapport) throws JRException {
+		try{
+			System.out.println(Systeme.getRepertoireCourant());
+			design = JRXmlLoader.load(Systeme.getRepertoireCourant()+Systeme.getSeparateur()+"jasper"+Systeme.getSeparateur()+rapport);
+			report = JasperCompileManager.compileReport(design);
+			HashMap<String, Object> mesParametres = new HashMap<String, Object>();
+			mesParametres.put("imageLogo",new String(Systeme.getRepertoireCourant()+Systeme.getSeparateur()+"jasper"+Systeme.getSeparateur()+"images"+Systeme.getSeparateur()+"icone_eclipse.png"));
+			mesParametres.put("imageCommande",new String(Systeme.getRepertoireCourant()+Systeme.getSeparateur()+"jasper"+Systeme.getSeparateur()+"images"+Systeme.getSeparateur()+"Shopping-Bag-128.png"));
+			mesParametres.put("codeCommande",new String(getCodeCommande()));
+			print = JasperFillManager.fillReport(report,mesParametres,laConnexion);
+			
+		}catch(Exception e) {
 			Alert alert = new Alert(AlertType.ERROR);
 	        alert.setTitle("Erreur");
-	        alert.setHeaderText("La compilation du rapport a échouée :");
+	        alert.setHeaderText("");
 	        alert.setContentText( e.getMessage()+ "\n Veuillez contacter votre administrateur" );
 	    	alert.showAndWait();
-	    	
-			return null;
 		}
+		
 	}
 
 	// apercu avant impression
-	public static void apercu(String rapport, Collection<?> elements,
-			Object... paramètres) {
-		try {
-			JasperPrint print = chargeEtcompile(rapport, elements, paramètres);
-			apercu(print);
-		} catch (Exception e) {
+
+	public static void apercu(String rapport) throws JRException {
+		chargeEtcompile(rapport);
+		try{
+			JasperViewer.viewReport(print,false);
+		}
+		catch(Exception e){
 			Alert alert = new Alert(AlertType.ERROR);
 	        alert.setTitle("Erreur");
-	        alert.setHeaderText("Erreur lors de l'aperçu :");
+	        alert.setHeaderText("L'apercu a échouée :");
 	        alert.setContentText( e.getMessage()+ "\n Veuillez contacter votre administrateur" );
 	    	alert.showAndWait();
-	    	
 		}
 	}
 
-	public static void apercu(JasperPrint print) {
-		JasperViewer.viewReport(print, false);
-	}
-
-	// Impression du rapport tous les formats
+	/*// Impression du rapport tous les formats
 	public static void imprimer(String rapport, Collection<?> elements,
 			Object... paramètres) {
 		try {
@@ -137,12 +115,29 @@ public class JasperMySQL_Parametres {
 	    	alert.showAndWait();
 			
 		}
-	}
+	
 
 	public static void imprimer(JasperPrint print) throws JRException {
 		JasperPrintManager.printReport(print, true);
 	}
+	
+	*/
 
+	public static void printCommande(String rapport) throws JRException {
+		chargeEtcompile(rapport);
+		try {
+			JasperPrintManager.printReport(print,true);
+		}catch(Exception e) {
+			Alert alert = new Alert(AlertType.ERROR);
+	        alert.setTitle("Erreur");
+	        alert.setHeaderText("L'apercu a échouée :");
+	        alert.setContentText( e.getMessage()+ "\n Veuillez contacter votre administrateur" );
+	    	alert.showAndWait();
+		}
+		
+	}
+	
+/*
 	// Exporter formats Format quelconque à préciser dans l'appel
 	public static void export(FormatExport format, String prefixe, String rapport,
 			Collection<?> elements, Object... paramètres) {
@@ -163,7 +158,7 @@ public class JasperMySQL_Parametres {
 				
 			}
 		}
-	}
+	}}*/
 
 	
 }
