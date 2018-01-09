@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import gest.MainApp;
+import gest.etat.JasperMySQL_Parametres;
 import gest.model.Commande;
 import gest.util.DateUtil;
 import javafx.beans.property.ReadOnlyStringWrapper;
@@ -18,6 +19,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+import net.sf.jasperreports.engine.JRException;
 
 public class FenTableCommandesController {
 
@@ -110,6 +112,42 @@ public class FenTableCommandesController {
 	        }
 	    }
 	    
+	    
+	    @FXML
+	    private void handleViewCommande() throws JRException{
+	    	if (commandeTable.getSelectionModel().getSelectedItem() != null)
+	    	{
+	    		JasperMySQL_Parametres.setCodeCommande(commandeTable.getSelectionModel().getSelectedItem().getCode());
+	    		JasperMySQL_Parametres.apercu("commande.jrxml");
+	    		
+	    	}
+	    	else
+	    	{
+	    		Alert alert = new Alert(AlertType.INFORMATION);
+		        alert.setTitle("INFORMATION");
+		        alert.setHeaderText("Aucune commande selectionnée");
+		        alert.setContentText("Vous devez selectionner la commande à afficher");
+		    	alert.showAndWait();
+	    	}
+	    }
+	    
+	    @FXML
+	    private void handlePrintCommande() throws JRException{
+	    	if (commandeTable.getSelectionModel().getSelectedItem() != null)
+	    	{
+	    		JasperMySQL_Parametres.setCodeCommande(commandeTable.getSelectionModel().getSelectedItem().getCode());
+	    		JasperMySQL_Parametres.printCommande("commande.jrxml");
+	    		
+	    	}
+	    	else
+	    	{
+	    		Alert alert = new Alert(AlertType.INFORMATION);
+		        alert.setTitle("INFORMATION");
+		        alert.setHeaderText("Aucune commande selectionnée");
+		        alert.setContentText("Vous devez selectionner la commande à afficher");
+		    	alert.showAndWait();
+	    	}
+	    }
 	    
 	    @FXML
 	    private void handleRechercherCommandes() {

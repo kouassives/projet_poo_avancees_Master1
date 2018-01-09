@@ -299,7 +299,7 @@ private ModeReglements mode = new ModeReglements();
     
     @FXML
     public void handleEditOneRow(){
-    	if (!codeTextField.getText().equals("")|| codeTextField.getText().length() != 0) {
+    	if (lignesCommandesTable.getSelectionModel().getSelectedItem()!=null && !codeTextField.getText().equals("") && codeTextField.getText().length() != 0) {
             String selectedCodeArticle = lignesCommandesTable.getSelectionModel().getSelectedItem().getcodeArticle();
     		if(codeTextField.getText().equals(selectedCodeArticle)) {
 	    		int quantite = quantiteComboBox.getValue();

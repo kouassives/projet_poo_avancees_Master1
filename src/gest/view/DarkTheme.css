@@ -116,7 +116,7 @@
 }
 
 .button:pressed, .button:default:hover:pressed {
-  -fx-background-color: white;
+  -fx-background-color: #1d1d1d;
   /*-fx-text-fill: #1d1d1d;*/
 }
 
@@ -247,4 +247,21 @@
 
 #buttonValide{
 	-fx-background-image: url('../../../resources/images/icone_valide.png');
+}
+
+#buttonFichierCommandes{
+	-fx-background-size: 20%;
+	-fx-background-position: top center;
+	-fx-background-image: url('../../../resources/images/Receipt-48-actif.png');
+}
+
+#buttonSuppTous{
+	-fx-background-size: 20%;
+	-fx-background-position: top center;
+	-fx-background-image: url('../../../resources/images/supptous.png');
+}
+
+#buttonSuppUneLigneCommande{
+	-fx-background-position: top center;
+	-fx-background-image: url('../../../resources/images/icone_croix_rouge.png');
 }

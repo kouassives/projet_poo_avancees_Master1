@@ -15,7 +15,7 @@
    <children>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="507.0" prefWidth="228.0" styleClass="SplitPane">
          <children>
-            <Button id="buttonImpression" alignment="CENTER_RIGHT" layoutX="10.0" layoutY="43.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="219.0" style="-fx-background-size: 15%;" text="Imprimer la commande">
+            <Button id="buttonImpression" alignment="CENTER_RIGHT" layoutX="10.0" layoutY="43.0" mnemonicParsing="false" onAction="#handlePrintCommande" prefHeight="42.0" prefWidth="219.0" style="-fx-background-size: 15%;" text="Imprimer la commande">
                <styleClass>
                   <String fx:value="buttonWithImage" />
                   <String fx:value="buttonPanneau" />
@@ -33,7 +33,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="buttonApercuAvantImpression" alignment="CENTER_RIGHT" layoutX="14.0" layoutY="130.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="211.0" style="-fx-background-size: 25;" text="Apercu de la commande">
+            <Button id="buttonApercuAvantImpression" alignment="CENTER_RIGHT" layoutX="14.0" layoutY="130.0" mnemonicParsing="false" onAction="#handleViewCommande" prefHeight="50.0" prefWidth="211.0" style="-fx-background-size: 25;" text="Apercu de la commande">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
