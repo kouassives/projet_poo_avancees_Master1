@@ -7,5 +7,13 @@
 	<classpathentry kind="lib" path="lib/javax.persistence_2.1.0.v201304241213.jar"/>
 	<classpathentry kind="lib" path="lib/junit-4.12.jar"/>
 	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.45-bin.jar"/>
+	<classpathentry kind="lib" path="lib/com-jaspersoft-ireport-5.1.0.jar"/>
+	<classpathentry kind="lib" path="lib/commons-beanutils-1.9.0.jar"/>
+	<classpathentry kind="lib" path="lib/commons-digester-2.1.jar"/>
+	<classpathentry kind="lib" path="lib/commons-javaflow-20060411.jar"/>
+	<classpathentry kind="lib" path="lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/itext-2.1.7.js2.jar"/>
+	<classpathentry kind="lib" path="lib/jasperreports-6.5.0.jar"/>
+	<classpathentry kind="lib" path="lib/jdt-compiler.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

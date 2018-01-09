@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.1.0.final using JasperReports Library version 6.1.0  -->
+<!-- 2015-06-10T10:41:22 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="stats" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d9b0cbee-fe05-4269-a037-b3d4e25a4d18">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="30"/>
+	<parameter name="imagesDir" class="java.lang.String" isForPrompting="false"/>
+	<field name="mois" class="java.lang.String"/>
+	<field name="compteur" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="398" splitType="Stretch">
+			<pieChart>
+				<chart evaluationTime="Report">
+					<reportElement x="0" y="80" width="555" height="292" uuid="500d11ea-ce32-4662-8320-1a3721744b60"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{mois}]]></keyExpression>
+					<valueExpression><![CDATA[$F{compteur}]]></valueExpression>
+				</pieDataset>
+				<piePlot labelFormat="{0} : {1} commande(s) ({2})">
+					<plot/>
+					<itemLabel/>
+				</piePlot>
+			</pieChart>
+			<image hAlign="Center">
+				<reportElement x="0" y="0" width="65" height="60" uuid="d0e30d09-c836-46fc-bad1-7118a63aace6"/>
+				<imageExpression><![CDATA[$P{imagesDir}+"/Moon-256.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="95" y="25" width="205" height="15" uuid="018252b2-ce20-4fcc-a1c3-95afc82d4895"/>
+				<text><![CDATA[1, rue Tycho]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="95" y="0" width="210" height="25" uuid="0604ecc7-efe7-4a4b-b1be-2f43afb813b1">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="19" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LUNA SARL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="95" y="40" width="205" height="15" uuid="30a094ac-93c5-4bb2-84d3-3b72d24c678d"/>
+				<text><![CDATA[75014, Paris]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="95" y="55" width="205" height="15" uuid="c3489b38-6fbd-4a1b-a6f8-0c2bc4a290ea"/>
+				<text><![CDATA[+33-1-2345678]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="240" y="7" width="160" height="50" forecolor="#FF4444" uuid="40d42767-6507-4e5b-86f4-14ee30d4599b"/>
+				<box>
+					<topPen lineWidth="0.4" lineStyle="Solid" lineColor="#FF4444"/>
+					<leftPen lineWidth="0.4" lineStyle="Solid" lineColor="#FF4444"/>
+					<bottomPen lineWidth="0.4" lineStyle="Solid" lineColor="#FF4444"/>
+					<rightPen lineWidth="0.4" lineStyle="Solid" lineColor="#FF4444"/>
+				</box>
+				<textElement textAlignment="Center" rotation="None">
+					<font fontName="Arial" size="20"/>
+				</textElement>
+				<text><![CDATA[CONFIDENTIEL ENTREPRISE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="415" y="52" width="50" height="20" uuid="e9821948-38ee-4385-b992-3677be6a1fcc"/>
+				<box rightPadding="4"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="465" y="52" width="84" height="20" uuid="d4994b37-5800-43a0-a09c-eda0078309e0"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

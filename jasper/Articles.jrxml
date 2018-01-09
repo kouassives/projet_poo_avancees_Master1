@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.1.0.final using JasperReports Library version 6.1.0  -->
+<!-- 2015-06-10T10:36:30 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Articles" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="106f73fb-1261-490b-857b-a178c314bc6a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<style name="Title" fontSize="20" isBold="true"/>
+	<style name="SubTitle" forecolor="#736343" fontSize="12"/>
+	<style name="Column header" forecolor="#666666" fontSize="10" isBold="true"/>
+	<style name="Detail" fontSize="10"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="imagesDir" class="java.lang.String" isForPrompting="false"/>
+	<field name="code" class="java.lang.String"/>
+	<field name="categorie.code" class="java.lang.String"/>
+	<field name="designation" class="java.lang.String"/>
+	<field name="quantite" class="java.lang.Integer"/>
+	<field name="prixUnitaire" class="java.lang.Double"/>
+	<field name="date" class="java.sql.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="144" splitType="Stretch">
+			<staticText>
+				<reportElement style="SubTitle" x="170" y="70" width="228" height="40" forecolor="#000000" uuid="808b34d3-35f3-47d4-98e2-6490e340a64e"/>
+				<textElement textAlignment="Center">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Liste des articles en stock]]></text>
+			</staticText>
+			<image>
+				<reportElement x="504" y="0" width="50" height="50" uuid="f3c7728c-17df-4ae3-a5af-ba7f7ef7145a"/>
+				<imageExpression><![CDATA[$P{imagesDir}+"/Product-128.png"]]></imageExpression>
+			</image>
+			<image hAlign="Center">
+				<reportElement x="0" y="0" width="65" height="60" uuid="252e0be3-ae29-43b6-8c82-22e276df4207"/>
+				<imageExpression><![CDATA[$P{imagesDir}+"/Moon-256.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="95" y="0" width="210" height="25" uuid="a8b4e92a-93e0-4c39-b9f9-c22897955d41">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="19" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LUNA SARL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="95" y="25" width="205" height="15" uuid="e6fc0db7-b24d-4e7e-bd46-0cc1cc9721e4"/>
+				<text><![CDATA[1, rue Tycho]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="95" y="40" width="205" height="15" uuid="529e837d-0d25-441a-acf5-bc7e892a6978"/>
+				<text><![CDATA[75014, Paris]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="95" y="55" width="205" height="15" uuid="5d1704f1-656b-4580-88a7-687dbadf1a2b"/>
+				<text><![CDATA[+33-1-2345678]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="240" y="7" width="160" height="50" forecolor="#FF4444" uuid="e5caa738-b92f-4f88-b2d7-945cfe0cf190"/>
+				<box>
+					<topPen lineWidth="0.4" lineStyle="Solid" lineColor="#FF4444"/>
+					<leftPen lineWidth="0.4" lineStyle="Solid" lineColor="#FF4444"/>
+					<bottomPen lineWidth="0.4" lineStyle="Solid" lineColor="#FF4444"/>
+					<rightPen lineWidth="0.4" lineStyle="Solid" lineColor="#FF4444"/>
+				</box>
+				<textElement textAlignment="Center" rotation="None">
+					<font fontName="Arial" size="20"/>
+				</textElement>
+				<text><![CDATA[CONFIDENTIEL ENTREPRISE]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="72" height="15" forecolor="#736343" backcolor="#FFFFCC" uuid="06cb7711-56f2-4fcb-9550-8533d1b834f6"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Code]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="72" y="0" width="77" height="15" forecolor="#736343" backcolor="#FFFFCC" uuid="d29c6419-04e2-4490-857e-c5c196af19a6"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Référence]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="149" y="0" width="266" height="15" forecolor="#736343" backcolor="#FFFFCC" uuid="8d50867c-9380-4fbd-af76-dac5757953da"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Désignation]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="415" y="0" width="42" height="15" forecolor="#736343" backcolor="#FFFFCC" uuid="13ad536a-4b9a-47f3-b32e-3e29c477a46d"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Qté]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="457" y="0" width="98" height="15" forecolor="#736343" backcolor="#FFFFCC" uuid="708be880-7325-47db-8295-b8c24c625fe8"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Prix unitaire]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="15" uuid="2f5c2fb5-7f8c-45ff-942d-c92285d85ad2"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="0" y="0" width="72" height="15" uuid="a4ef50fc-f1f1-40a8-8808-f3028a051505"/>
+					<box leftPadding="5">
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.25"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{code}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="72" y="0" width="77" height="15" uuid="802be542-ae7c-4299-b5c0-71e4c9c58e1e"/>
+					<box leftPadding="5">
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.25"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{categorie.code}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="149" y="0" width="266" height="15" uuid="896f001a-3852-461c-b8de-d62550b8ec8c"/>
+					<box leftPadding="5">
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.25"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{designation}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="415" y="0" width="42" height="15" uuid="0ae47f70-e71b-476f-a44d-b8e041993c1a"/>
+					<box leftPadding="5">
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.25"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{quantite}+""]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="457" y="0" width="98" height="15" uuid="355ebbff-22a2-416a-a5a5-3dfae7dcf19a"/>
+					<box leftPadding="5">
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{prixUnitaire}+""]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="2" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="1" width="555" height="1" uuid="6d96574f-b3e0-4e05-82d9-7217ae48d0a2"/>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="51" splitType="Stretch">
+			<textField>
+				<reportElement x="500" y="0" width="22" height="20" uuid="183bda8f-b603-4e5f-b88c-651ee85a9c87"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="520" y="0" width="18" height="20" uuid="e4401c80-189a-47c1-96b9-b527209082e5"/>
+				<text><![CDATA[/]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="538" y="0" width="17" height="20" uuid="b7481b86-4399-4668-b810-cc293081743a"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="0" y="0" width="100" height="20" uuid="1e6efd84-2f15-47aa-9cc3-8a63cc0f22cc"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
