@@ -150,6 +150,23 @@ public class FenTableCommandesController {
 	    }
 	    
 	    @FXML
+	    private void handleExportCommande() throws JRException{
+	    	if (commandeTable.getSelectionModel().getSelectedItem() != null)
+	    	{
+	    		mainApp.showFenExport(commandeTable.getSelectionModel().getSelectedItem().getCode());
+	    		
+	    	}
+	    	else
+	    	{
+	    		Alert alert = new Alert(AlertType.INFORMATION);
+		        alert.setTitle("INFORMATION");
+		        alert.setHeaderText("Aucune commande selectionnée");
+		        alert.setContentText("Vous devez selectionner la commande à afficher");
+		    	alert.showAndWait();
+	    	}
+	    }
+	    
+	    @FXML
 	    private void handleRechercherCommandes() {
 	    	Commande uneCommande = new Commande();
 	    	uneCommande.getLesEnreg().clear();

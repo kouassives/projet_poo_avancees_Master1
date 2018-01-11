@@ -24,7 +24,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="buttonModifier" alignment="CENTER_RIGHT" layoutX="7.0" layoutY="219.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="211.0" style="-fx-background-size: 20%;" text="Exporter la commande">
+            <Button id="buttonModifier" alignment="CENTER_RIGHT" layoutX="7.0" layoutY="219.0" mnemonicParsing="false" onAction="#handleExportCommande" prefHeight="42.0" prefWidth="211.0" style="-fx-background-size: 20%;" text="Exporter la commande">
                <styleClass>
                   <String fx:value="buttonWithImage" />
                   <String fx:value="buttonPanneau" />

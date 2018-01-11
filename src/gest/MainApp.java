@@ -12,6 +12,7 @@ import gest.view.FenChoixArticleController;
 import gest.view.FenChoixClientController;
 import gest.view.FenCommandesController;
 import gest.view.FenConnexionController;
+import gest.view.FenExportController;
 import gest.view.FenFicheClientController;
 import gest.view.FenMenuPrincipalController;
 import gest.view.FenTableClientController;
@@ -38,6 +39,8 @@ public class MainApp extends Application {
     ObservableList<Commande> commandeDataObservale = FXCollections.observableArrayList(commandeData);
     ObservableList<LignesCommandes> lignesCommandeDataObservale = FXCollections.observableArrayList(lignesCommandesData);
     
+    
+    String urlLogo = "file:resources/images/icone_eclipse.png";
     /**
      * Returns the data as an observable list of Persons. 
      * @return
@@ -97,7 +100,7 @@ public class MainApp extends Application {
         this.getPrimaryStage().setTitle("Gestion");
 
         // Set the application icon.
-       this.getPrimaryStage().getIcons().add(new Image("file:resources/images/icone_eclipse.png"));
+       this.getPrimaryStage().getIcons().add(new Image(urlLogo));
 
         initPrimaryLayout();
 	}
@@ -142,7 +145,7 @@ public class MainApp extends Application {
             dialogStage.initOwner(getPrimaryStage());
             Scene sceneMenuPrincipal = new Scene(page);
             dialogStage.setScene(sceneMenuPrincipal);
-            dialogStage.getIcons().add(new Image("file:resources/images/icone_eclipse.png"));
+            dialogStage.getIcons().add(new Image(urlLogo));
             dialogStage.centerOnScreen();
             dialogStage.setResizable(false);
             
@@ -175,7 +178,7 @@ public class MainApp extends Application {
             dialogStage.initOwner(getPrimaryStage());
             Scene sceneTableClient = new Scene(page);
             dialogStage.setScene(sceneTableClient);
-            dialogStage.getIcons().add(new Image("file:resources/images/icone_eclipse.png"));
+            dialogStage.getIcons().add(new Image(urlLogo));
             dialogStage.centerOnScreen();
             dialogStage.setResizable(false);
             
@@ -207,7 +210,7 @@ public class MainApp extends Application {
             dialogStage.initOwner(getPrimaryStage());
             Scene sceneFicheClient = new Scene(page);
             dialogStage.setScene(sceneFicheClient);
-            dialogStage.getIcons().add(new Image("file:resources/images/icone_eclipse.png"));
+            dialogStage.getIcons().add(new Image(urlLogo));
             dialogStage.centerOnScreen();
             dialogStage.setResizable(false);
             
@@ -247,7 +250,7 @@ public class MainApp extends Application {
             dialogStage.initOwner(getPrimaryStage());
             Scene sceneArticle = new Scene(page);
             dialogStage.setScene(sceneArticle);
-            dialogStage.getIcons().add(new Image("file:resources/images/icone_eclipse.png"));
+            dialogStage.getIcons().add(new Image(urlLogo));
             dialogStage.centerOnScreen();
             dialogStage.setResizable(false);
             
@@ -280,7 +283,7 @@ public class MainApp extends Application {
             dialogStage.initOwner(getPrimaryStage());
             Scene sceneCommandes = new Scene(page);
             dialogStage.setScene(sceneCommandes);
-            dialogStage.getIcons().add(new Image("file:resources/images/icone_eclipse.png"));
+            dialogStage.getIcons().add(new Image(urlLogo));
             dialogStage.centerOnScreen();
             dialogStage.setResizable(false);
             
@@ -313,7 +316,7 @@ public class MainApp extends Application {
             dialogStage.initOwner(getPrimaryStage());
             Scene sceneTableCommandes = new Scene(page);
             dialogStage.setScene(sceneTableCommandes);
-            dialogStage.getIcons().add(new Image("file:resources/images/icone_eclipse.png"));
+            dialogStage.getIcons().add(new Image(urlLogo));
             dialogStage.centerOnScreen();
             dialogStage.setResizable(false);
             
@@ -345,7 +348,7 @@ public class MainApp extends Application {
             dialogStage.initOwner(getPrimaryStage());
             Scene sceneChoixClient = new Scene(page);
             dialogStage.setScene(sceneChoixClient);
-            dialogStage.getIcons().add(new Image("file:resources/images/icone_eclipse.png"));
+            dialogStage.getIcons().add(new Image(urlLogo));
             dialogStage.centerOnScreen();
             dialogStage.setResizable(false);
             
@@ -381,7 +384,7 @@ public class MainApp extends Application {
             dialogStage.initOwner(getPrimaryStage());
             Scene sceneChoixArticle = new Scene(page);
             dialogStage.setScene(sceneChoixArticle);
-            dialogStage.getIcons().add(new Image("file:resources/images/icone_eclipse.png"));
+            dialogStage.getIcons().add(new Image(urlLogo));
             dialogStage.centerOnScreen();
             dialogStage.setResizable(false);
             
@@ -399,6 +402,39 @@ public class MainApp extends Application {
 			catch (IOException e) {
             e.printStackTrace();
             return false;
+            }
+
+	    }
+	
+	public void showFenExport(String codeCommande) {
+		try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/FenExport.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+            
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Exportation");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(getPrimaryStage());
+            Scene sceneChoixClient = new Scene(page);
+            dialogStage.setScene(sceneChoixClient);
+            dialogStage.getIcons().add(new Image(urlLogo));
+            dialogStage.centerOnScreen();
+            dialogStage.setResizable(false);
+            
+            // Set the person into the controller.
+            FenExportController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            //controller.setMainApp(this);
+            controller.setCode(codeCommande);
+            
+            // Show the dialog
+            dialogStage.showAndWait();
+        	}
+			catch (IOException e) {
+            e.printStackTrace();
             }
 
 	    }
