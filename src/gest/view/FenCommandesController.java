@@ -173,6 +173,7 @@ private ModeReglements mode = new ModeReglements();
     
     @FXML
     private void handleFichierDesCommandes() {
+    	this.dialogStage.hide();
     	mainApp.showFenTableCommandes();
     }
     

@@ -48,6 +48,18 @@ public class FenFicheClientController {
 	@FXML
 	private TextField dateCreationTextField;
 	@FXML
+	private TextField adresseTextField;
+	@FXML
+	private TextField codePostalTextField;
+	@FXML
+	private TextField telFixeTextField;
+	@FXML
+	private TextField emailTextField;
+	@FXML
+	private TextField villeTextField;
+	@FXML
+	private TextField mobilisTextField;
+	@FXML
 	private Label dateDuJour;
 	@FXML
 	private Label titleLabel;
@@ -65,6 +77,7 @@ public class FenFicheClientController {
 	    @FXML
 	    private void initialize() {
 	    	 dateDuJour.setText(DateUtil.format(LocalDate.now()));
+	    	 
 	    }
 	    
 	    /**
@@ -260,6 +273,20 @@ public class FenFicheClientController {
 
           return false;
       }
+  }
+  
+  public void disableField() {
+	  
+   		dateCreationTextField.setDisable(true);
+   		carteFideleCheckBox.setDisable(true);
+   		adresseTextField.setDisable(true);
+   		codePostalTextField.setDisable(true);
+   		telFixeTextField.setDisable(true);
+   		emailTextField.setDisable(true);
+ 		dateDuJour.setDisable(true);
+ 		villeTextField.setDisable(true);
+ 		mobilisTextField.setDisable(true);
+ 		
   }
   
   public boolean isOkClicked() {

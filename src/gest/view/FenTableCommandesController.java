@@ -214,6 +214,7 @@ public void setDialogStage(Stage dialogStage) {
 @FXML
 private void handleBack() {
 	this.dialogStage.close();
+	mainApp.showFenCommandes();
 }
 
 }

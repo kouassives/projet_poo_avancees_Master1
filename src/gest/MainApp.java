@@ -223,7 +223,10 @@ public class MainApp extends Application {
             controller.setbuttonAction(demande);
             // gestion du cas de la recher 
             if(demande.equals("Rechercher"))
-            	controller.getOkButton().setVisible(true);
+            	{
+            		controller.getOkButton().setVisible(true);
+            		controller.disableField();
+            	}
             
             // Show the dialog
             dialogStage.showAndWait();

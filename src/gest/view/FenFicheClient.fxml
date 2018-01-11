@@ -122,7 +122,7 @@
                                           <TextField id="textfieldresize" fx:id="prenomTextField" alignment="BOTTOM_LEFT" minHeight="25.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                        </children>
                                     </GridPane>
-                                    <TextField id="textfieldresize" minHeight="25.0" GridPane.rowIndex="1" />
+                                    <TextField id="textfieldresize" fx:id="adresseTextField" minHeight="25.0" GridPane.rowIndex="1" />
                                  </children>
                               </GridPane>
                               <GridPane vgap="2.0" GridPane.rowIndex="1">
@@ -137,13 +137,13 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <TextField id="textfieldresize" alignment="BOTTOM_LEFT" minHeight="25.0" />
-                                    <TextField id="textfieldresize" alignment="BOTTOM_LEFT" minHeight="25.0" GridPane.rowIndex="1" />
-                                    <TextField id="textfieldresize" alignment="BOTTOM_LEFT" minHeight="25.0" GridPane.rowIndex="2" />
+                                    <TextField id="textfieldresize" fx:id="codePostalTextField" alignment="BOTTOM_LEFT" minHeight="25.0" />
+                                    <TextField id="textfieldresize" fx:id="telFixeTextField" alignment="BOTTOM_LEFT" minHeight="25.0" GridPane.rowIndex="1" />
+                                    <TextField id="textfieldresize" fx:id="emailTextField" alignment="BOTTOM_LEFT" minHeight="25.0" GridPane.rowIndex="2" />
                                     <Label text="Ville" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
                                     <Label text="Mobilis" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                                    <TextField id="textfieldresize" alignment="BOTTOM_LEFT" minHeight="23.0" GridPane.columnIndex="2" />
-                                    <TextField id="textfieldresize" alignment="BOTTOM_LEFT" minHeight="23.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <TextField id="textfieldresize" fx:id="villeTextField" alignment="BOTTOM_LEFT" minHeight="23.0" GridPane.columnIndex="2" />
+                                    <TextField id="textfieldresize" fx:id="mobilisTextField" alignment="BOTTOM_LEFT" minHeight="23.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                  </children>
                               </GridPane>
                            </children>
