@@ -121,10 +121,11 @@ public class FenFicheClientController {
       nomTextField.setText(client.getNom());
       prenomTextField.setText(client.getPrenom());
       // gestion du selected de CheckBox
-      if (client.isCarte_Fidele()==1)
-      carteFideleCheckBox.setSelected(true);
-      else
-    	  carteFideleCheckBox.setSelected(false);
+      if (client.getcarte_fideleString()!=null)
+    	  if (client.getcarte_fideleString().equals("oui"))
+    		  carteFideleCheckBox.setSelected(true);
+    	  else
+    		  carteFideleCheckBox.setSelected(false);
       dateCreationTextField.setText(DateUtil.format(client.getDate_creation()));
   }
   
@@ -133,37 +134,25 @@ public class FenFicheClientController {
   private void handleValider() {
 	  if (buttonAction.getText().equals("Rechercher"))
 	  {
-		  //Client leClient = new Client(codeTextField.getText());
+		  Client client = new Client(codeTextField.getText());
 	      //Recherche dans la base de données
 		  ArrayList<Client> nouvelleListe = client.chercherCRUD(codeTextField.getText());
 		  ObservableList<Client> nouvelleListeDataObservale = FXCollections.observableArrayList(nouvelleListe);
-		  	clientTable.setItems(nouvelleListeDataObservale);
 		  	code.setCellValueFactory(cellData -> cellData.getValue().codeProperty());
 	    	nom.setCellValueFactory(cellData -> cellData.getValue().nomProperty());
 	    	prenom.setCellValueFactory(cellData -> cellData.getValue().prenomProperty());
-	    	carte_Fidele.setCellValueFactory(cellData -> {
-	    		Integer carte = cellData.getValue().carte_FideleProperty().intValue();
-	    		
-	    		String carteAsString;
-	    		if(carte==1)
-	            {
-	                carteAsString = "Oui";
-	            }
-	            else
-	            {
-	            	carteAsString = "Non";
-	            }
-				return new ReadOnlyStringWrapper(carteAsString);
-	        });
+	    	carte_Fidele.setCellValueFactory(cellData -> cellData.getValue().carte_fideleStringProperty());
 	    		date_Creation.setCellValueFactory(cellData -> {
 	    		String datechaine = DateUtil.format(cellData.getValue().date_creationProperty().getValue());
 	    		return new ReadOnlyStringWrapper(datechaine);
 	    	});
 	    	
-	    
+	    	  	
 	    	clientTable.getSelectionModel().selectedItemProperty().addListener(
 	    		            (observable, oldValue, newValue) -> showClientDetails(newValue));
 	    
+	    	clientTable.setItems(nouvelleListeDataObservale);
+			
 		  /*
 		   * for (Client clt : nouvelleListe)
 		   *System.out.println(clt.getNom());
@@ -180,9 +169,9 @@ public class FenFicheClientController {
 		  this.client.setNom(nomTextField.getText());
 		  this.client.setPrenom(prenomTextField.getText());
 		  if (carteFideleCheckBox.isSelected())
-			  this.client.setCarte_fidele(1);
+			  this.client.setcarte_fideleString("oui");
 		  else
-			  this.client.setCarte_fidele(0);
+			  this.client.setcarte_fideleString("oui");
 		  this.client.setDate_creation(DateUtil.parse(dateCreationTextField.getText()));
 		  
 	      
@@ -199,9 +188,9 @@ public class FenFicheClientController {
 			this.client.setNom(nomTextField.getText());
 			this.client.setPrenom(prenomTextField.getText());
 			if (carteFideleCheckBox.isSelected())
-				this.client.setCarte_fidele(1);
+				this.client.setcarte_fideleString("oui");
 			else
-				this.client.setCarte_fidele(0);
+				this.client.setcarte_fideleString("non");
 			this.client.setDate_creation(DateUtil.parse(dateCreationTextField.getText()));
 			  
 			okClicked = true;
@@ -224,7 +213,7 @@ public class FenFicheClientController {
   		nomTextField.setText(client.getNom());
   		prenomTextField.setText(client.getPrenom());
   		codeTextField.setText(client.getCode());
-  		if (client.isCarte_Fidele()==1)
+  		if (client.getcarte_fideleString().equals("oui"))
   			carteFideleCheckBox.setSelected(true);
   		else 
   			carteFideleCheckBox.setSelected(false);

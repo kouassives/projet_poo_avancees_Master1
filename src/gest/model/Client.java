@@ -12,6 +12,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
@@ -27,6 +28,7 @@ public class Client extends Personne{
 	// =======
 	// Proprietes de base de la classe
 	private IntegerProperty carte_fidele; 
+	private StringProperty carte_fideleString; 
 	private ObjectProperty<LocalDate> date;
 	// Propriete pour etablir la connexion avec la BD
 	//----------------------------------
@@ -54,6 +56,13 @@ public class Client extends Personne{
 		return carte_fidele.get(); 
 	} 
 	
+	public StringProperty carte_fideleStringProperty() {
+		return carte_fideleString;
+	}
+	
+	public String getcarte_fideleString() {
+		return carte_fideleString.get();
+	}
 	public ObjectProperty<LocalDate> date_creationProperty() {
 		return date;
 	}
@@ -79,6 +88,9 @@ public class Client extends Personne{
 	public void setCarte_fidele(Integer carte_fidele) {
 		this.carte_fidele.set(carte_fidele); 
 	} 
+	public void setcarte_fideleString(String carte_fideleString) {
+		this.carte_fideleString.set(carte_fideleString);
+	}
 	public void setDate_creation(LocalDate date_creation) {
 		this.date.set(date_creation); 
 	}
@@ -86,12 +98,12 @@ public class Client extends Personne{
 	// CONSTRUCTEURS
 	// -------------
 	// ler Constructeur
-	public Client (String vCode, String vNom, String vPrenom, int carte_fidele, LocalDate date_creation) {
+	public Client (String vCode, String vNom, String vPrenom, String carte_fideleString, LocalDate date_creation) {
 		super (vCode, vNom, vPrenom);
 		this.code = new SimpleStringProperty(vCode);
 		this.nom = new SimpleStringProperty(vNom);
 		this.prenom = new SimpleStringProperty(vPrenom);
-		this.carte_fidele = new SimpleIntegerProperty(carte_fidele);
+		this.carte_fideleString = new SimpleStringProperty(carte_fideleString);
 		this.date = new SimpleObjectProperty<LocalDate>(date_creation);
 	} 
 	// 2eme Constructeur
@@ -122,9 +134,13 @@ public class Client extends Personne{
 				int carte_fidele;
 				carte_fidele=rs.getInt("carte_fidele");
 				LocalDate date_creation = rs.getDate("date").toLocalDate();
-				
+				String carte_fideleString;
+				if (carte_fidele==1)
+					carte_fideleString = "oui";
+					else 
+						carte_fideleString = "non";
 				//Ajout à l'ArrayList
-				lesEnreg.add(new Client(code, nom, prenom, carte_fidele, date_creation));
+				lesEnreg.add(new Client(code, nom, prenom, carte_fideleString, date_creation));
 				
 			}
 			
@@ -156,9 +172,14 @@ public class Client extends Personne{
 		return bCreation; 
 	}
 	
-	public boolean modifierCRUD(String vCode, String vNom, String vPrenom, int vCarte_fidele, String vDate) {
+	public boolean modifierCRUD(String vCode, String vNom, String vPrenom, String Carte_fidele, String vDate) {
 		boolean bModification = true;
 		String requete = null;
+		int vCarte_fidele;
+		if (Carte_fidele.equals("oui"))
+			vCarte_fidele = 1;
+		else
+			vCarte_fidele = 0;
 		try {
 			requete = "UPDATE clients SET " + "nom = '" + vNom +"'," + "prenom = '" + vPrenom + "'," + "carte_fidele = '" + vCarte_fidele+"'," + "date = '" + vDate + "'" + " WHERE code = '" + vCode + "'";
 			Statement state = laConnexion.createStatement();
@@ -258,9 +279,14 @@ public class Client extends Personne{
 				int carte_fidele;
 				carte_fidele=rs.getInt("carte_fidele");
 				LocalDate date_creation = rs.getDate("date").toLocalDate();
+				String carte_fideleString;
+				if (carte_fidele==1)
+					carte_fideleString = "oui";
+					else 
+						carte_fideleString = "non";
 				// ajout a l'Arraylist
 				
-				lesEnreg.add(new Client (code, nom, prenom, carte_fidele, date_creation)); 
+				lesEnreg.add(new Client (code, nom, prenom, carte_fideleString, date_creation)); 
 			}
 		} catch (SQLException e){
 			Alert alert = new Alert(AlertType.ERROR);
@@ -287,9 +313,14 @@ public class Client extends Personne{
 			int carte_fidele;
 			carte_fidele=rs.getInt("carte_fidele");
 			LocalDate date_creation = rs.getDate("date").toLocalDate();
-			
+			String carte_fideleString;
+			if (carte_fidele==1)
+				carte_fideleString = "oui";
+				else 
+					carte_fideleString = "non";
 			// ajout a l'Arraylist
-			lesEnreg.add(new Client(code, nom, prenom, carte_fidele, date_creation)); 
+			lesEnreg.add(new Client(code, nom, prenom, carte_fideleString, date_creation));
+			
 		}
 		}catch (SQLException e) {
 			Alert alert = new Alert(AlertType.ERROR);
