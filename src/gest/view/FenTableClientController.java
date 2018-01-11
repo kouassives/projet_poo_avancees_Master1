@@ -68,20 +68,7 @@ public class FenTableClientController {
     	code.setCellValueFactory(cellData -> cellData.getValue().codeProperty());
     	nom.setCellValueFactory(cellData -> cellData.getValue().nomProperty());
     	prenom.setCellValueFactory(cellData -> cellData.getValue().prenomProperty());
-    	carte_Fidele.setCellValueFactory(cellData -> {
-    		Integer carte = cellData.getValue().carte_FideleProperty().intValue();
-    		
-    		String carteAsString;
-    		if(carte==1)
-            {
-                carteAsString = "Oui";
-            }
-            else
-            {
-            	carteAsString = "Non";
-            }
-			return new ReadOnlyStringWrapper(carteAsString);
-        });
+    	carte_Fidele.setCellValueFactory(cellData -> cellData.getValue().carte_fideleStringProperty());
     		date_Creation.setCellValueFactory(cellData -> {
     		String datechaine = DateUtil.format(cellData.getValue().date_creationProperty().getValue());
     		return new ReadOnlyStringWrapper(datechaine);
@@ -108,7 +95,7 @@ public class FenTableClientController {
     		nomTextField.setText(client.getNom());
     		prenomTextField.setText(client.getPrenom());
     		codeTextField.setText(client.getCode());
-    		if (client.isCarte_Fidele()==1)
+    		if (client.getcarte_fideleString().equals("oui"))
     			carte_FideleTextField.setSelected(true);
     		else 
     			carte_FideleTextField.setSelected(false);
@@ -143,7 +130,7 @@ public void handleMenuPrincipal() {
 
 public void handleAddClient() {
 	String demande="Ajouter";
-	Client tempClient = new Client(null,null,null,2,null);
+	Client tempClient = new Client(null,null,null,null,null);
 	
     boolean okClicked = mainApp.showFenFicheClient(tempClient,demande);
     if (okClicked) {
@@ -180,10 +167,11 @@ private void handleEditClient() {
     if (selectedClient != null) {
         boolean okClicked = mainApp.showFenFicheClient(selectedClient,demande);
         if (okClicked) {
-            boolean okdatabase = selectedClient.modifierCRUD(selectedClient.getCode(), selectedClient.getNom(), selectedClient.getPrenom(), selectedClient.isCarte_Fidele(), selectedClient.getDate_creation().toString());
+            boolean okdatabase = selectedClient.modifierCRUD(selectedClient.getCode(), selectedClient.getNom(), selectedClient.getPrenom(), selectedClient.getcarte_fideleString(), selectedClient.getDate_creation().toString());
             if (okdatabase)
             	showClientDetails(selectedClient);	
         }
+        
 
     } else {
         // Nothing selected.
@@ -204,7 +192,7 @@ private void handleEditClient() {
 @FXML
 private void handlesearchClient() {
 	String demande="Rechercher";
-	Client tempClient = new Client(null,null,null,2,null);
+	Client tempClient = new Client(null,null,null,null,null);
 	
     boolean okClicked = mainApp.showFenFicheClient(tempClient,demande);
     if (okClicked) {
@@ -223,7 +211,6 @@ private void handlesearchClient() {
     		position++;
     	}
     	showClientDetails(tempClient);
-    	System.out.println(tempClient.getNom());
     	clientTable.getSelectionModel().clearAndSelect(position);
     }
 }

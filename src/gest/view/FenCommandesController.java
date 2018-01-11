@@ -179,7 +179,7 @@ private ModeReglements mode = new ModeReglements();
     
     @FXML
     private void handleSelectionClient() {
-    	client = new Client(null,null,null,2,null);
+    	client = new Client(null,null,null,null,null);
     	
     	boolean okRowDoubleClicked = mainApp.showFenChoixClient(client);
     	/*
