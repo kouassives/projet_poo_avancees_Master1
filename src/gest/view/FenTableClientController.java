@@ -182,7 +182,11 @@ private void handleEditClient() {
         if (okClicked) {
             boolean okdatabase = selectedClient.modifierCRUD(selectedClient.getCode(), selectedClient.getNom(), selectedClient.getPrenom(), selectedClient.isCarte_Fidele(), selectedClient.getDate_creation().toString());
             if (okdatabase)
-            	showClientDetails(selectedClient);	
+            	{
+            		showClientDetails(selectedClient);	
+            		// Utilisons refresh pour rafraichir une fois
+            		clientTable.refresh();
+            	}
         }
 
     } else {

@@ -6,8 +6,10 @@ import gest.etat.JasperMySQL_Parametres;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import net.sf.jasperreports.engine.JRException;
 
@@ -36,8 +38,15 @@ public class FenExportController {
 	@FXML
 	private void handleExporter() throws JRException {
 		JasperMySQL_Parametres.setCodeCommande(code);
-		JasperMySQL_Parametres.exportPdf("commande.jrxml");
-		
+		if(JasperMySQL_Parametres.exportPdf("commande.jrxml"))
+		{
+			this.dialogStage.hide();
+			Alert alert = new Alert(AlertType.INFORMATION);
+	        alert.setTitle("INFORMATION");
+	        alert.setHeaderText("L'exportation a reussie :");
+	        alert.setContentText("");
+	    	alert.showAndWait();
+		}	
 	}
 	    
 	private Stage dialogStage;

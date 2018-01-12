@@ -133,46 +133,49 @@ public class FenFicheClientController {
   private void handleValider() {
 	  if (buttonAction.getText().equals("Rechercher"))
 	  {
-		  //Client leClient = new Client(codeTextField.getText());
-	      //Recherche dans la base de données
-		  ArrayList<Client> nouvelleListe = client.chercherCRUD(codeTextField.getText());
-		  ObservableList<Client> nouvelleListeDataObservale = FXCollections.observableArrayList(nouvelleListe);
-		  	clientTable.setItems(nouvelleListeDataObservale);
-		  	code.setCellValueFactory(cellData -> cellData.getValue().codeProperty());
-	    	nom.setCellValueFactory(cellData -> cellData.getValue().nomProperty());
-	    	prenom.setCellValueFactory(cellData -> cellData.getValue().prenomProperty());
-	    	carte_Fidele.setCellValueFactory(cellData -> {
-	    		Integer carte = cellData.getValue().carte_FideleProperty().intValue();
-	    		
-	    		String carteAsString;
-	    		if(carte==1)
-	            {
-	                carteAsString = "Oui";
-	            }
-	            else
-	            {
-	            	carteAsString = "Non";
-	            }
-				return new ReadOnlyStringWrapper(carteAsString);
-	        });
-	    		date_Creation.setCellValueFactory(cellData -> {
-	    		String datechaine = DateUtil.format(cellData.getValue().date_creationProperty().getValue());
-	    		return new ReadOnlyStringWrapper(datechaine);
-	    	});
-	    	
-	    
-	    	clientTable.getSelectionModel().selectedItemProperty().addListener(
-	    		            (observable, oldValue, newValue) -> showClientDetails(newValue));
-	    
-		  /*
-		   * for (Client clt : nouvelleListe)
-		   *System.out.println(clt.getNom());
-		   *
-		   */
-			  
-		  
-		  //dialogStage.close();
-		  
+		  if(codeTextField.getText() != null && codeTextField.getText().length() !=0)
+		  {
+			  client = new Client(codeTextField.getText());
+		      //Recherche dans la base de données
+			  ArrayList<Client> nouvelleListe = client.chercherCRUD(codeTextField.getText());
+			  ObservableList<Client> nouvelleListeDataObservale = FXCollections.observableArrayList(nouvelleListe);
+			  	clientTable.setItems(nouvelleListeDataObservale);
+			  	code.setCellValueFactory(cellData -> cellData.getValue().codeProperty());
+		    	nom.setCellValueFactory(cellData -> cellData.getValue().nomProperty());
+		    	prenom.setCellValueFactory(cellData -> cellData.getValue().prenomProperty());
+		    	carte_Fidele.setCellValueFactory(cellData -> {
+		    		Integer carte = cellData.getValue().carte_FideleProperty().intValue();
+		    		
+		    		String carteAsString;
+		    		if(carte==1)
+		            {
+		                carteAsString = "Oui";
+		            }
+		            else
+		            {
+		            	carteAsString = "Non";
+		            }
+					return new ReadOnlyStringWrapper(carteAsString);
+		        });
+		    		date_Creation.setCellValueFactory(cellData -> {
+		    		String datechaine = DateUtil.format(cellData.getValue().date_creationProperty().getValue());
+		    		return new ReadOnlyStringWrapper(datechaine);
+		    	});
+		    	
+		    
+		    	clientTable.getSelectionModel().selectedItemProperty().addListener(
+		    		            (observable, oldValue, newValue) -> showClientDetails(newValue));
+		    
+		  }else {
+			// Show the error message.
+	          Alert alert = new Alert(AlertType.ERROR);
+	          alert.initOwner(dialogStage);
+	          alert.setTitle("Champs Vide");
+	          alert.setHeaderText("Veillez écrire au moins l'un des champs");
+	          alert.setContentText("");
+
+	          alert.showAndWait();
+		  }  
 	  }
 	  else
 		if (isInputValid()) {
@@ -193,8 +196,8 @@ public class FenFicheClientController {
 
   @FXML
   private void handleOk() {
-	  int selectedIndex = clientTable.getSelectionModel().getSelectedIndex();
-	    if (selectedIndex >= 0) {
+		  int selectedIndex = clientTable.getSelectionModel().getSelectedIndex();
+		  if (selectedIndex >= 0) {
 	    	this.client.setCode(codeTextField.getText());
 			this.client.setNom(nomTextField.getText());
 			this.client.setPrenom(prenomTextField.getText());
@@ -206,18 +209,19 @@ public class FenFicheClientController {
 			  
 			okClicked = true;
 			dialogStage.close();
-	    }
-	    else
-	    {
-	    	// Show the error message.
-	          Alert alert = new Alert(AlertType.ERROR);
-	          alert.initOwner(dialogStage);
-	          alert.setTitle("Champs Vide");
-	          alert.setHeaderText("Veillez écrire au moins le code client");
-	          alert.setContentText("");
-
-	          alert.showAndWait();
-	    }
+		    }
+		    else
+		    {
+		    	// Show the error message.
+		          Alert alert = new Alert(AlertType.ERROR);
+		          alert.initOwner(dialogStage);
+		          alert.setTitle("Champs Vide");
+		          alert.setHeaderText("Veillez selectionner le client recherché");
+		          alert.setContentText("");
+	
+		          alert.showAndWait();
+		    }
+	
   }
   private void showClientDetails(Client client) {
   	if(client != null) {

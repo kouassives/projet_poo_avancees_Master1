@@ -123,7 +123,7 @@ public class JasperMySQL_Parametres {
 		
 	}
 	
-	public static void exportPdf(String rapport){
+	public static boolean exportPdf(String rapport){
 		chargeEtcompile(rapport);
 		try {
 			FileChooser fileChooser = new FileChooser();
@@ -135,6 +135,7 @@ public class JasperMySQL_Parametres {
 			{
 				
 				JasperExportManager.exportReportToPdfFile(print, file.getPath());
+				return true;
 				//JasperExportManager.exportReportToPdfFile(print, Systeme.getRepertoireCourant()+Systeme.getSeparateur()+"jasper"+Systeme.getSeparateur()+"commandeExport.pdf");
 				
 				// exports report to pdf
@@ -149,6 +150,7 @@ public class JasperMySQL_Parametres {
 	        alert.setContentText( e.getMessage()+ "\n Veuillez contacter votre administrateur" );
 	    	alert.showAndWait();
 		}
+		return false;
 	}
 	
 
