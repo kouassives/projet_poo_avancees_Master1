@@ -409,7 +409,7 @@ public class MainApp extends Application {
 
 	    }
 	
-	public void showFenExport(String codeCommande) {
+	public void showFenExport(String codeCommande, String model) {
 		try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
@@ -421,8 +421,8 @@ public class MainApp extends Application {
             dialogStage.setTitle("Exportation");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(getPrimaryStage());
-            Scene sceneChoixClient = new Scene(page);
-            dialogStage.setScene(sceneChoixClient);
+            Scene sceneExport = new Scene(page);
+            dialogStage.setScene(sceneExport);
             dialogStage.getIcons().add(new Image(urlLogo));
             dialogStage.centerOnScreen();
             dialogStage.setResizable(false);
@@ -432,6 +432,7 @@ public class MainApp extends Application {
             controller.setDialogStage(dialogStage);
             //controller.setMainApp(this);
             controller.setCode(codeCommande);
+            controller.setModel(model);
             
             // Show the dialog
             dialogStage.showAndWait();

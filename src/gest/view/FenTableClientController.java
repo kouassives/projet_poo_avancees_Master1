@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import gest.MainApp;
+import gest.etat.JasperMySQL_Parametres;
 import gest.model.Client;
 import gest.util.DateUtil;
 import javafx.beans.property.BooleanProperty;
@@ -25,6 +26,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
+import net.sf.jasperreports.engine.JRException;
 
 public class FenTableClientController {
 	private MainApp mainApp;
@@ -262,6 +264,25 @@ private void handleDeleteClient() {
 
         alert.showAndWait();
     }
+}
+
+@FXML
+private void handleViewClient() throws JRException{
+		JasperMySQL_Parametres.apercu("Clients.jrxml");
+	
+}
+
+@FXML
+private void handlePrintClient() throws JRException{
+	JasperMySQL_Parametres.printCommande("Clients.jrxml");
+	
+}
+
+@FXML
+private void handleExportClients() throws JRException{
+	
+		mainApp.showFenExport("","Clients");
+
 }
 
 }

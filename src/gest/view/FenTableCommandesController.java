@@ -153,7 +153,7 @@ public class FenTableCommandesController {
 	    private void handleExportCommande() throws JRException{
 	    	if (commandeTable.getSelectionModel().getSelectedItem() != null)
 	    	{
-	    		mainApp.showFenExport(commandeTable.getSelectionModel().getSelectedItem().getCode());
+	    		mainApp.showFenExport(commandeTable.getSelectionModel().getSelectedItem().getCode(),"commande");
 	    		
 	    	}
 	    	else

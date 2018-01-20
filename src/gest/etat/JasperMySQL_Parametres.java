@@ -42,8 +42,10 @@ public class JasperMySQL_Parametres {
 	private static JasperDesign design = null;
 	private static JasperReport report = null;
 	private static JasperPrint print= null;
+	private static String model;
 	private static String codeCommande = "";
 	private static String codeClient = "";
+	private static String codeArticle= "";
 	private static String rechercheArticle = "";
 	
 	
@@ -77,23 +79,44 @@ public class JasperMySQL_Parametres {
 	// --------------------------------
 	
 	public static void chargeEtcompile(String rapport){
-		try{
-			design = JRXmlLoader.load(Systeme.getRepertoireCourant()+Systeme.getSeparateur()+"jasper"+Systeme.getSeparateur()+rapport);
-			report = JasperCompileManager.compileReport(design);
-			HashMap<String, Object> mesParametres = new HashMap<String, Object>();
-			mesParametres.put("imageLogo",new String(Systeme.getRepertoireCourant()+Systeme.getSeparateur()+"jasper"+Systeme.getSeparateur()+"images"+Systeme.getSeparateur()+"icone_eclipse.png"));
-			mesParametres.put("imageCommande",new String(Systeme.getRepertoireCourant()+Systeme.getSeparateur()+"jasper"+Systeme.getSeparateur()+"images"+Systeme.getSeparateur()+"Shopping-Bag-128.png"));
-			mesParametres.put("codeCommande",new String(getCodeCommande()));
-			print = JasperFillManager.fillReport(report,mesParametres,laConnexion);
-			
-		}catch(Exception e) {
-			Alert alert = new Alert(AlertType.ERROR);
-	        alert.setTitle("Erreur");
-	        alert.setHeaderText("");
-	        alert.setContentText( e.getMessage()+ "\n Veuillez contacter votre administrateur" );
-	    	alert.showAndWait();
+		if (rapport.equals("commande.jrxml")){
+				try{
+					model="commande";
+					design = JRXmlLoader.load(Systeme.getRepertoireCourant()+Systeme.getSeparateur()+"jasper"+Systeme.getSeparateur()+rapport);
+					report = JasperCompileManager.compileReport(design);
+					HashMap<String, Object> mesParametres = new HashMap<String, Object>();
+					mesParametres.put("imageLogo",new String(Systeme.getRepertoireCourant()+Systeme.getSeparateur()+"jasper"+Systeme.getSeparateur()+"images"+Systeme.getSeparateur()+"icone_eclipse.png"));
+					mesParametres.put("imageCommande",new String(Systeme.getRepertoireCourant()+Systeme.getSeparateur()+"jasper"+Systeme.getSeparateur()+"images"+Systeme.getSeparateur()+"Shopping-Bag-128.png"));
+					mesParametres.put("codeCommande",new String(getCodeCommande()));
+					print = JasperFillManager.fillReport(report,mesParametres,laConnexion);
+					
+				}catch(Exception e) {
+					Alert alert = new Alert(AlertType.ERROR);
+			        alert.setTitle("Erreur");
+			        alert.setHeaderText("");
+			        alert.setContentText( e.getMessage()+ "\n Veuillez contacter votre administrateur" );
+			    	alert.showAndWait();
+				}
+			}
+		if (rapport.equals("Clients.jrxml")){
+			try{
+				model="Clients";
+				design = JRXmlLoader.load(Systeme.getRepertoireCourant()+Systeme.getSeparateur()+"jasper"+Systeme.getSeparateur()+rapport);
+				report = JasperCompileManager.compileReport(design);
+				HashMap<String, Object> mesParametres = new HashMap<String, Object>();
+				mesParametres.put("imageLogo",new String(Systeme.getRepertoireCourant()+Systeme.getSeparateur()+"jasper"+Systeme.getSeparateur()+"images"+Systeme.getSeparateur()+"icone_eclipse.png"));
+				mesParametres.put("imageCommande",new String(Systeme.getRepertoireCourant()+Systeme.getSeparateur()+"jasper"+Systeme.getSeparateur()+"images"+Systeme.getSeparateur()+"Shopping-Bag-128.png"));
+				print = JasperFillManager.fillReport(report,mesParametres,laConnexion);
+				
+			}catch(Exception e) {
+				Alert alert = new Alert(AlertType.ERROR);
+		        alert.setTitle("Erreur");
+		        alert.setHeaderText("");
+		        alert.setContentText( e.getMessage()+ "\n Veuillez contacter votre administrateur" );
+		    	alert.showAndWait();
+			}
 		}
-		
+			
 	}
 
 	// apercu avant impression
@@ -132,8 +155,8 @@ public class JasperMySQL_Parametres {
 		chargeEtcompile(rapport);
 		try {
 			FileChooser fileChooser = new FileChooser();
-			fileChooser.setTitle("Exportation de commande");
-			fileChooser.setInitialFileName("commande"+codeCommande);
+			fileChooser.setTitle("Exportation de "+model);
+			fileChooser.setInitialFileName(model+codeCommande);
 			FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PDF files (*.pdf)", "*.pdf");
 			fileChooser.getExtensionFilters().add(extFilter);
 			File file = fileChooser.showSaveDialog(null);
@@ -163,8 +186,8 @@ public class JasperMySQL_Parametres {
 		chargeEtcompile(rapport);
 		try {
 			FileChooser fileChooser = new FileChooser();
-			fileChooser.setTitle("Exportation de commande");
-			fileChooser.setInitialFileName("commande"+codeCommande);
+			fileChooser.setTitle("Exportation de "+ model);
+			fileChooser.setInitialFileName(model+codeCommande);
 			FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("HTML files (*.html)", "*.html");
 			fileChooser.getExtensionFilters().add(extFilter);
 			File file = fileChooser.showSaveDialog(null);
@@ -188,8 +211,8 @@ public class JasperMySQL_Parametres {
 		chargeEtcompile(rapport);
 		try {
 			FileChooser fileChooser = new FileChooser();
-			fileChooser.setTitle("Exportation de commande");
-			fileChooser.setInitialFileName("commande"+codeCommande);
+			fileChooser.setTitle("Exportation de "+ model);
+			fileChooser.setInitialFileName(model+codeCommande);
 			FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("DOCX files (*.docx)", "*.docx");
 			fileChooser.getExtensionFilters().add(extFilter);
 			File file = fileChooser.showSaveDialog(null);

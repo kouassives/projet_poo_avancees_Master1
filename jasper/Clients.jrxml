@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.1.0.final using JasperReports Library version 6.1.0  -->
-<!-- 2015-06-10T10:21:49 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Invoice" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4eedbb89-b4f6-4469-9ab6-f642a1688cf7">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="jasper\donneesClients.xml"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="96"/>
 	<style name="Ligne" mode="Opaque" backcolor="rgba(255, 255, 255, 0.2)" fontName="Arial" fontSize="14" isBold="false">
 		<conditionalStyle>
-			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
 			<style mode="Opaque" backcolor="rgba(184, 184, 184, 0.6431373)"/>
 		</conditionalStyle>
 	</style>
-	<parameter name="imagesDir" class="java.lang.String" isForPrompting="false"/>
-	<field name="dateCreation" class="java.time.Instant">
-		<fieldDescription><![CDATA[dateCreation]]></fieldDescription>
-	</field>
+	<parameter name="imageLogo" class="java.lang.String"/>
+	<parameter name="imageCommande" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select code,nom,prenom,date,carte_fidele from clients;]]>
+	</queryString>
 	<field name="code" class="java.lang.String">
-		<fieldDescription><![CDATA[code]]></fieldDescription>
-	</field>
-	<field name="carteFidele" class="java.lang.Boolean">
-		<fieldDescription><![CDATA[carteFidele]]></fieldDescription>
+		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="nom" class="java.lang.String">
-		<fieldDescription><![CDATA[nom]]></fieldDescription>
+		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="prenom" class="java.lang.String">
-		<fieldDescription><![CDATA[prenom]]></fieldDescription>
+		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="creation" class="java.util.Date">
-		<fieldDescription><![CDATA[creation]]></fieldDescription>
+	<field name="date" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="carte_fidele" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<group name="Gruppo1">
-		<groupExpression><![CDATA[(int)($V{REPORT_COUNT}/15)]]></groupExpression>
 		<groupHeader>
 			<band/>
 		</groupHeader>
@@ -90,7 +90,7 @@
 			</textField>
 			<image hAlign="Center">
 				<reportElement x="0" y="0" width="65" height="60" uuid="94883631-a913-43e2-b182-ab8d77d0181e"/>
-				<imageExpression><![CDATA[$P{imagesDir}+"/Moon-256.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{imageLogo}]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="95" y="0" width="210" height="25" uuid="e622555d-198b-4ccd-a4a1-c59c53304058">
@@ -129,14 +129,14 @@
 			</staticText>
 			<image>
 				<reportElement x="504" y="0" width="50" height="50" uuid="7c804fb2-4fa0-4973-9f7c-68617fc37c6b"/>
-				<imageExpression><![CDATA[$P{imagesDir}+"/People-128.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{imageCommande}]]></imageExpression>
 			</image>
 			<textField evaluationTime="Report">
 				<reportElement x="0" y="76" width="556" height="30" uuid="21c109b4-1f79-4be3-adab-e4ee3b2a88de"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Liste des " +$V{REPORT_COUNT} +" clients"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Liste des clients"]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
@@ -188,11 +188,11 @@
 			</textField>
 			<textField pattern="">
 				<reportElement style="Ligne" x="400" y="0" width="80" height="20" uuid="b1e35141-62fc-4bd5-90b7-0910e6a9304b"/>
-				<textFieldExpression><![CDATA[$F{carteFidele}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{carte_fidele}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd MMMM yyyy">
 				<reportElement style="Ligne" x="480" y="0" width="76" height="20" uuid="ef52eb4a-50fb-424f-a51b-a38007a7282e"/>
-				<textFieldExpression><![CDATA[$F{creation}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{date}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

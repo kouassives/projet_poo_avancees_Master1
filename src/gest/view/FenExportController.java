@@ -21,6 +21,11 @@ public class FenExportController {
 	private ComboBox<String> typeComboBox;
 	
 	private String code;
+	private String model;
+	
+	public void setModel(String model) {
+		this.model=model;
+	}
 	  /**
 	     * Initializes the controller class. This method is automatically called
 	     * after the fxml file has been loaded.
@@ -38,6 +43,16 @@ public class FenExportController {
 	    
 	@FXML
 	private void handleExporter() throws JRException {
+		if(model.equals("commande")){
+			expcommande();
+		}
+		else if(model.equals("Clients")) {
+			expClients();
+		}
+	}
+	    
+	
+	private void expcommande() {
 		if (typeComboBox.getValue().equals("PDF(*.pdf)"))
 		{
 			JasperMySQL_Parametres.setCodeCommande(code);
@@ -73,8 +88,48 @@ public class FenExportController {
 		    	alert.showAndWait();
 			}
 		}
+
 	}
-	    
+	
+	private void expClients() {
+		if (typeComboBox.getValue().equals("PDF(*.pdf)"))
+		{
+			if(JasperMySQL_Parametres.exportPdf("Clients.jrxml"))
+			{
+				this.dialogStage.hide();
+				Alert alert = new Alert(AlertType.INFORMATION);
+		        alert.setTitle("INFORMATION");
+		        alert.setHeaderText("L'exportation a reussie :");
+		        alert.setContentText("");
+		    	alert.showAndWait();
+			}
+		}else if (typeComboBox.getValue().equals("HTML(*.html)") ) {
+			
+			if(JasperMySQL_Parametres.exportHtml("commande.jrxml"))
+			{
+				this.dialogStage.hide();
+				Alert alert = new Alert(AlertType.INFORMATION);
+		        alert.setTitle("INFORMATION");
+		        alert.setHeaderText("L'exportation a reussie :");
+		        alert.setContentText("");
+		    	alert.showAndWait();
+			}
+		}else if (typeComboBox.getValue().equals("DOCX(*.docx)") ) {
+			
+			if(JasperMySQL_Parametres.exportDocx("commande.jrxml"))
+			{
+				this.dialogStage.hide();
+				Alert alert = new Alert(AlertType.INFORMATION);
+		        alert.setTitle("INFORMATION");
+		        alert.setHeaderText("L'exportation a reussie :");
+		        alert.setContentText("");
+		    	alert.showAndWait();
+			}
+		}
+
+	}
+	
+	
 	private Stage dialogStage;
 
 	/**
