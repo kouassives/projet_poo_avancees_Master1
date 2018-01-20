@@ -28,6 +28,7 @@ public class FenExportController {
 	    @FXML
 	    private void initialize() {
 	    	typeObservable.add("PDF(*.pdf)");
+	    	typeObservable.add("HTML(*.html)");
 	    	typeObservable.add("DOCX(*.docx)");
 	    	typeComboBox.setItems(typeObservable);
 	    	typeComboBox.setItems(typeObservable);
@@ -37,16 +38,41 @@ public class FenExportController {
 	    
 	@FXML
 	private void handleExporter() throws JRException {
-		JasperMySQL_Parametres.setCodeCommande(code);
-		if(JasperMySQL_Parametres.exportPdf("commande.jrxml"))
+		if (typeComboBox.getValue().equals("PDF(*.pdf)"))
 		{
-			this.dialogStage.hide();
-			Alert alert = new Alert(AlertType.INFORMATION);
-	        alert.setTitle("INFORMATION");
-	        alert.setHeaderText("L'exportation a reussie :");
-	        alert.setContentText("");
-	    	alert.showAndWait();
-		}	
+			JasperMySQL_Parametres.setCodeCommande(code);
+			if(JasperMySQL_Parametres.exportPdf("commande.jrxml"))
+			{
+				this.dialogStage.hide();
+				Alert alert = new Alert(AlertType.INFORMATION);
+		        alert.setTitle("INFORMATION");
+		        alert.setHeaderText("L'exportation a reussie :");
+		        alert.setContentText("");
+		    	alert.showAndWait();
+			}
+		}else if (typeComboBox.getValue().equals("HTML(*.html)") ) {
+			JasperMySQL_Parametres.setCodeCommande(code);
+			if(JasperMySQL_Parametres.exportHtml("commande.jrxml"))
+			{
+				this.dialogStage.hide();
+				Alert alert = new Alert(AlertType.INFORMATION);
+		        alert.setTitle("INFORMATION");
+		        alert.setHeaderText("L'exportation a reussie :");
+		        alert.setContentText("");
+		    	alert.showAndWait();
+			}
+		}else if (typeComboBox.getValue().equals("DOCX(*.docx)") ) {
+			JasperMySQL_Parametres.setCodeCommande(code);
+			if(JasperMySQL_Parametres.exportDocx("commande.jrxml"))
+			{
+				this.dialogStage.hide();
+				Alert alert = new Alert(AlertType.INFORMATION);
+		        alert.setTitle("INFORMATION");
+		        alert.setHeaderText("L'exportation a reussie :");
+		        alert.setContentText("");
+		    	alert.showAndWait();
+			}
+		}
 	}
 	    
 	private Stage dialogStage;

@@ -1,5 +1,6 @@
 package gest.etat;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -22,7 +23,11 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.engine.export.ooxml.JRDocxExporter;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.export.Exporter;
+import net.sf.jasperreports.export.SimpleExporterInput;
+import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 import net.sf.jasperreports.view.JasperViewer;
 import gest.MainApp;
 // pour la gestion du chemin et des différents OS
@@ -128,6 +133,7 @@ public class JasperMySQL_Parametres {
 		try {
 			FileChooser fileChooser = new FileChooser();
 			fileChooser.setTitle("Exportation de commande");
+			fileChooser.setInitialFileName("commande"+codeCommande);
 			FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PDF files (*.pdf)", "*.pdf");
 			fileChooser.getExtensionFilters().add(extFilter);
 			File file = fileChooser.showSaveDialog(null);
@@ -142,6 +148,59 @@ public class JasperMySQL_Parametres {
 				//JRPdfExporter exporter = new JRPdfExporter();
 				//exporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
 				//exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, new FileOutputStream(Systeme.getRepertoireCourant()+Systeme.getSeparateur()+"jasper"+Systeme.getSeparateur()+rapport + ".pdf")); // your output goes here
+			}
+		}catch(Exception e) {
+			Alert alert = new Alert(AlertType.ERROR);
+	        alert.setTitle("Erreur");
+	        alert.setHeaderText("L'exportation a échouée :");
+	        alert.setContentText( e.getMessage()+ "\n Veuillez contacter votre administrateur" );
+	    	alert.showAndWait();
+		}
+		return false;
+	}
+	
+	public static boolean exportHtml(String rapport){
+		chargeEtcompile(rapport);
+		try {
+			FileChooser fileChooser = new FileChooser();
+			fileChooser.setTitle("Exportation de commande");
+			fileChooser.setInitialFileName("commande"+codeCommande);
+			FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("HTML files (*.html)", "*.html");
+			fileChooser.getExtensionFilters().add(extFilter);
+			File file = fileChooser.showSaveDialog(null);
+			if (file != null )
+			{
+				
+				JasperExportManager.exportReportToHtmlFile(print, file.getPath());
+				return true;
+				
+			}
+		}catch(Exception e) {
+			Alert alert = new Alert(AlertType.ERROR);
+	        alert.setTitle("Erreur");
+	        alert.setHeaderText("L'exportation a échouée :");
+	        alert.setContentText( e.getMessage()+ "\n Veuillez contacter votre administrateur" );
+	    	alert.showAndWait();
+		}
+		return false;
+	}
+	public static boolean exportDocx(String rapport){
+		chargeEtcompile(rapport);
+		try {
+			FileChooser fileChooser = new FileChooser();
+			fileChooser.setTitle("Exportation de commande");
+			fileChooser.setInitialFileName("commande"+codeCommande);
+			FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("DOCX files (*.docx)", "*.docx");
+			fileChooser.getExtensionFilters().add(extFilter);
+			File file = fileChooser.showSaveDialog(null);
+			if (file != null )
+			{
+				Exporter exporter = new JRDocxExporter();
+				exporter.setExporterInput(new SimpleExporterInput(print));
+				exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(file));
+				exporter.exportReport();
+				return true;
+				
 			}
 		}catch(Exception e) {
 			Alert alert = new Alert(AlertType.ERROR);
