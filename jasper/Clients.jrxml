@@ -3,14 +3,14 @@
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="jasper\donneesClients.xml"/>
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="96"/>
+	<property name="ireport.y" value="0"/>
 	<style name="Ligne" mode="Opaque" backcolor="rgba(255, 255, 255, 0.2)" fontName="Arial" fontSize="14" isBold="false">
 		<conditionalStyle>
 			<style mode="Opaque" backcolor="rgba(184, 184, 184, 0.6431373)"/>
 		</conditionalStyle>
 	</style>
 	<parameter name="imageLogo" class="java.lang.String"/>
-	<parameter name="imageCommande" class="java.lang.String"/>
+	<parameter name="imageClient" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[select code,nom,prenom,date,carte_fidele from clients;]]>
 	</queryString>
@@ -93,28 +93,6 @@
 				<imageExpression><![CDATA[$P{imageLogo}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="95" y="0" width="210" height="25" uuid="e622555d-198b-4ccd-a4a1-c59c53304058">
-					<property name="local_mesure_unitheight" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<textElement>
-					<font size="19" isBold="true"/>
-				</textElement>
-				<text><![CDATA[LUNA SARL]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="95" y="55" width="205" height="15" uuid="b8cc42fd-b569-497d-834d-7e854040ad18"/>
-				<text><![CDATA[+33-1-2345678]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="95" y="25" width="205" height="15" uuid="c226e44d-3bb5-4145-b0b3-903bf1d79fde"/>
-				<text><![CDATA[1, rue Tycho]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="95" y="40" width="205" height="15" uuid="b96f7183-44f8-43ad-ba60-43d8fbf50b6e"/>
-				<text><![CDATA[75014, Paris]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="240" y="7" width="160" height="50" forecolor="#FF4444" uuid="d21eeaae-a4ad-441e-bb0d-21866f132c1f"/>
 				<box>
 					<topPen lineWidth="0.4" lineStyle="Solid" lineColor="#FF4444"/>
@@ -129,7 +107,7 @@
 			</staticText>
 			<image>
 				<reportElement x="504" y="0" width="50" height="50" uuid="7c804fb2-4fa0-4973-9f7c-68617fc37c6b"/>
-				<imageExpression><![CDATA[$P{imageCommande}]]></imageExpression>
+				<imageExpression><![CDATA[$P{imageClient}]]></imageExpression>
 			</image>
 			<textField evaluationTime="Report">
 				<reportElement x="0" y="76" width="556" height="30" uuid="21c109b4-1f79-4be3-adab-e4ee3b2a88de"/>
@@ -138,6 +116,28 @@
 				</textElement>
 				<textFieldExpression><![CDATA["Liste des clients"]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="90" y="0" width="210" height="25" uuid="e44011c9-80d8-47d6-9d39-b052eb95607b">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="19" isBold="true"/>
+				</textElement>
+				<text><![CDATA[OXYGEN SARL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="90" y="25" width="205" height="15" uuid="28f9e36e-60fe-4728-8fdd-6271e823a4ce"/>
+				<text><![CDATA[Rue des banques, Vallon]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="90" y="40" width="205" height="15" uuid="b301a948-8040-4ced-9303-2194a6677d26"/>
+				<text><![CDATA[00225, Abidjan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="90" y="55" width="205" height="15" uuid="b5f73d0f-9b34-4900-942b-2c3caa7f194b"/>
+				<text><![CDATA[+(225) 470 014 83]]></text>
+			</staticText>
 		</band>
 	</title>
 	<columnHeader>

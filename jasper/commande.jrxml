@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="commande" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5f231fad-e838-451c-8a92-db915cfa14c9">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="104"/>
+	<property name="ireport.y" value="0"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="jasper\donneesCommande.xml"/>
 	<parameter name="codeCommande" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
@@ -138,7 +138,7 @@ WHERE
 				<imageExpression><![CDATA[$P{imageLogo}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="95" y="0" width="210" height="25" uuid="767b6e00-c60f-42d8-bf47-8cb518916000">
+				<reportElement x="91" y="0" width="210" height="25" uuid="767b6e00-c60f-42d8-bf47-8cb518916000">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -148,15 +148,15 @@ WHERE
 				<text><![CDATA[OXYGEN SARL]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="95" y="25" width="205" height="15" uuid="0807b1a5-1ce7-4055-afd7-89eb9c318f69"/>
+				<reportElement x="91" y="25" width="205" height="15" uuid="0807b1a5-1ce7-4055-afd7-89eb9c318f69"/>
 				<text><![CDATA[Rue des banques, Vallon]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="95" y="40" width="205" height="15" uuid="fc28c833-92ed-47c1-8030-6143a80acae0"/>
+				<reportElement x="91" y="40" width="205" height="15" uuid="fc28c833-92ed-47c1-8030-6143a80acae0"/>
 				<text><![CDATA[00225, Abidjan]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="95" y="55" width="205" height="15" uuid="80ca10a2-8807-4748-9f15-2bbae3823e36"/>
+				<reportElement x="91" y="55" width="205" height="15" uuid="80ca10a2-8807-4748-9f15-2bbae3823e36"/>
 				<text><![CDATA[+(225) 470 014 83]]></text>
 			</staticText>
 		</band>

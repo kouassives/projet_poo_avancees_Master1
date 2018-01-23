@@ -56,7 +56,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="buttonApercuAvantImpression" alignment="CENTER_RIGHT" layoutX="4.0" layoutY="284.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="221.0" text="Aperçu avant impression">
+            <Button id="buttonApercuAvantImpression" alignment="CENTER_RIGHT" layoutX="4.0" layoutY="284.0" mnemonicParsing="false" onAction="#handleViewArticle" prefHeight="42.0" prefWidth="221.0" text="Aperçu avant impression">
                <styleClass>
                   <String fx:value="buttonWithImage" />
                   <String fx:value="buttonPanneau" />
@@ -65,7 +65,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="buttonImpression" alignment="CENTER_RIGHT" layoutX="4.0" layoutY="335.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="125.0" text="Imprimer">
+            <Button id="buttonImpression" alignment="CENTER_RIGHT" layoutX="4.0" layoutY="335.0" mnemonicParsing="false" onAction="#handlePrintArticle" prefHeight="33.0" prefWidth="125.0" text="Imprimer">
                <styleClass>
                   <String fx:value="buttonWithImage" />
                   <String fx:value="buttonPanneau" />
@@ -74,7 +74,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="buttonExporter" alignment="CENTER_RIGHT" layoutX="7.0" layoutY="382.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="119.0" text="Exporter">
+            <Button id="buttonExporter" alignment="CENTER_RIGHT" layoutX="7.0" layoutY="382.0" mnemonicParsing="false" onAction="#handleExportArticle" prefHeight="33.0" prefWidth="119.0" text="Exporter">
                <styleClass>
                   <String fx:value="buttonWithImage" />
                   <String fx:value="buttonPanneau" />

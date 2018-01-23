@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.1.0.final using JasperReports Library version 6.1.0  -->
-<!-- 2015-06-10T10:36:30 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Articles" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="106f73fb-1261-490b-857b-a178c314bc6a">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
@@ -12,17 +10,32 @@
 	<style name="Detail" fontSize="10"/>
 	<style name="Row" mode="Transparent">
 		<conditionalStyle>
-			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
 			<style backcolor="#E6DAC3"/>
 		</conditionalStyle>
 	</style>
-	<parameter name="imagesDir" class="java.lang.String" isForPrompting="false"/>
-	<field name="code" class="java.lang.String"/>
-	<field name="categorie.code" class="java.lang.String"/>
-	<field name="designation" class="java.lang.String"/>
-	<field name="quantite" class="java.lang.Integer"/>
-	<field name="prixUnitaire" class="java.lang.Double"/>
-	<field name="date" class="java.sql.Date"/>
+	<parameter name="imageLogo" class="java.lang.String"/>
+	<parameter name="imageArticle" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select code, code_categorie, designation, quantite, prix_unitaire, date from articles;]]>
+	</queryString>
+	<field name="code" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="code_categorie" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="designation" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="quantite" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="prix_unitaire" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="date" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -35,36 +48,14 @@
 				</textElement>
 				<text><![CDATA[Liste des articles en stock]]></text>
 			</staticText>
-			<image>
-				<reportElement x="504" y="0" width="50" height="50" uuid="f3c7728c-17df-4ae3-a5af-ba7f7ef7145a"/>
-				<imageExpression><![CDATA[$P{imagesDir}+"/Product-128.png"]]></imageExpression>
-			</image>
 			<image hAlign="Center">
 				<reportElement x="0" y="0" width="65" height="60" uuid="252e0be3-ae29-43b6-8c82-22e276df4207"/>
-				<imageExpression><![CDATA[$P{imagesDir}+"/Moon-256.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{imageLogo}]]></imageExpression>
 			</image>
-			<staticText>
-				<reportElement x="95" y="0" width="210" height="25" uuid="a8b4e92a-93e0-4c39-b9f9-c22897955d41">
-					<property name="local_mesure_unitheight" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<textElement>
-					<font size="19" isBold="true"/>
-				</textElement>
-				<text><![CDATA[LUNA SARL]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="95" y="25" width="205" height="15" uuid="e6fc0db7-b24d-4e7e-bd46-0cc1cc9721e4"/>
-				<text><![CDATA[1, rue Tycho]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="95" y="40" width="205" height="15" uuid="529e837d-0d25-441a-acf5-bc7e892a6978"/>
-				<text><![CDATA[75014, Paris]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="95" y="55" width="205" height="15" uuid="5d1704f1-656b-4580-88a7-687dbadf1a2b"/>
-				<text><![CDATA[+33-1-2345678]]></text>
-			</staticText>
+			<image>
+				<reportElement x="504" y="0" width="50" height="50" uuid="f3c7728c-17df-4ae3-a5af-ba7f7ef7145a"/>
+				<imageExpression><![CDATA[$P{imageArticle}]]></imageExpression>
+			</image>
 			<staticText>
 				<reportElement x="240" y="7" width="160" height="50" forecolor="#FF4444" uuid="e5caa738-b92f-4f88-b2d7-945cfe0cf190"/>
 				<box>
@@ -77,6 +68,28 @@
 					<font fontName="Arial" size="20"/>
 				</textElement>
 				<text><![CDATA[CONFIDENTIEL ENTREPRISE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="89" y="0" width="210" height="25" uuid="4b9c24e8-8904-4b6d-b491-2a9b5b678878">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="19" isBold="true"/>
+				</textElement>
+				<text><![CDATA[OXYGEN SARL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="89" y="25" width="205" height="15" uuid="c3388deb-fb6d-4e43-90a8-2e1eab9ed1dc"/>
+				<text><![CDATA[Rue des banques, Vallon]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="89" y="40" width="205" height="15" uuid="72baf0e8-d4ff-430c-a05e-5fe819d0b808"/>
+				<text><![CDATA[00225, Abidjan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="89" y="55" width="205" height="15" uuid="5efcfa9f-64df-44c5-8b60-9ae86938d712"/>
+				<text><![CDATA[+(225) 470 014 83]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -162,7 +175,7 @@
 					<textElement verticalAlignment="Middle">
 						<font size="10"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{categorie.code}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{code_categorie}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
 					<reportElement style="Detail" x="149" y="0" width="266" height="15" uuid="896f001a-3852-461c-b8de-d62550b8ec8c"/>
@@ -196,7 +209,7 @@
 					<textElement verticalAlignment="Middle">
 						<font size="10"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{prixUnitaire}+""]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{prix_unitaire}+""]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>

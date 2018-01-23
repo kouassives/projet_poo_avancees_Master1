@@ -7,7 +7,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
@@ -49,13 +48,16 @@ public class FenExportController {
 		else if(model.equals("Clients")) {
 			expClients();
 		}
+		else if(model.equals("Articles")) {
+			expArticle();
+		}
 	}
 	    
 	
 	private void expcommande() {
+		JasperMySQL_Parametres.setCodeCommande(code);
 		if (typeComboBox.getValue().equals("PDF(*.pdf)"))
 		{
-			JasperMySQL_Parametres.setCodeCommande(code);
 			if(JasperMySQL_Parametres.exportPdf("commande.jrxml"))
 			{
 				this.dialogStage.hide();
@@ -66,7 +68,6 @@ public class FenExportController {
 		    	alert.showAndWait();
 			}
 		}else if (typeComboBox.getValue().equals("HTML(*.html)") ) {
-			JasperMySQL_Parametres.setCodeCommande(code);
 			if(JasperMySQL_Parametres.exportHtml("commande.jrxml"))
 			{
 				this.dialogStage.hide();
@@ -77,7 +78,6 @@ public class FenExportController {
 		    	alert.showAndWait();
 			}
 		}else if (typeComboBox.getValue().equals("DOCX(*.docx)") ) {
-			JasperMySQL_Parametres.setCodeCommande(code);
 			if(JasperMySQL_Parametres.exportDocx("commande.jrxml"))
 			{
 				this.dialogStage.hide();
@@ -92,6 +92,7 @@ public class FenExportController {
 	}
 	
 	private void expClients() {
+		JasperMySQL_Parametres.setCodeCommande("");
 		if (typeComboBox.getValue().equals("PDF(*.pdf)"))
 		{
 			if(JasperMySQL_Parametres.exportPdf("Clients.jrxml"))
@@ -105,7 +106,7 @@ public class FenExportController {
 			}
 		}else if (typeComboBox.getValue().equals("HTML(*.html)") ) {
 			
-			if(JasperMySQL_Parametres.exportHtml("commande.jrxml"))
+			if(JasperMySQL_Parametres.exportHtml("Clients.jrxml"))
 			{
 				this.dialogStage.hide();
 				Alert alert = new Alert(AlertType.INFORMATION);
@@ -116,7 +117,7 @@ public class FenExportController {
 			}
 		}else if (typeComboBox.getValue().equals("DOCX(*.docx)") ) {
 			
-			if(JasperMySQL_Parametres.exportDocx("commande.jrxml"))
+			if(JasperMySQL_Parametres.exportDocx("Clients.jrxml"))
 			{
 				this.dialogStage.hide();
 				Alert alert = new Alert(AlertType.INFORMATION);
@@ -128,6 +129,47 @@ public class FenExportController {
 		}
 
 	}
+	
+	
+	private void expArticle() {
+		JasperMySQL_Parametres.setCodeCommande("");
+		if (typeComboBox.getValue().equals("PDF(*.pdf)"))
+		{
+			if(JasperMySQL_Parametres.exportPdf("Articles.jrxml"))
+			{
+				this.dialogStage.hide();
+				Alert alert = new Alert(AlertType.INFORMATION);
+		        alert.setTitle("INFORMATION");
+		        alert.setHeaderText("L'exportation a reussie :");
+		        alert.setContentText("");
+		    	alert.showAndWait();
+			}
+		}else if (typeComboBox.getValue().equals("HTML(*.html)") ) {
+			
+			if(JasperMySQL_Parametres.exportHtml("Articles.jrxml"))
+			{
+				this.dialogStage.hide();
+				Alert alert = new Alert(AlertType.INFORMATION);
+		        alert.setTitle("INFORMATION");
+		        alert.setHeaderText("L'exportation a reussie :");
+		        alert.setContentText("");
+		    	alert.showAndWait();
+			}
+		}else if (typeComboBox.getValue().equals("DOCX(*.docx)") ) {
+			
+			if(JasperMySQL_Parametres.exportDocx("Articles.jrxml"))
+			{
+				this.dialogStage.hide();
+				Alert alert = new Alert(AlertType.INFORMATION);
+		        alert.setTitle("INFORMATION");
+		        alert.setHeaderText("L'exportation a reussie :");
+		        alert.setContentText("");
+		    	alert.showAndWait();
+			}
+		}
+
+	}
+	
 	
 	
 	private Stage dialogStage;

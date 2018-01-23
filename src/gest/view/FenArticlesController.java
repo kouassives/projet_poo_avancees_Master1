@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import gest.MainApp;
+import gest.etat.JasperMySQL_Parametres;
 import gest.model.Article;
 import gest.model.Client;
 import gest.util.DateUtil;
@@ -19,6 +20,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+import net.sf.jasperreports.engine.JRException;
 
 public class FenArticlesController {
 	private MainApp mainApp;
@@ -255,6 +257,28 @@ private void handleAnnuler() {
 	
 	articleTable.setItems(mainApp.getArticleData());
 }
+
+
+@FXML
+private void handleViewArticle() throws JRException{
+	
+	JasperMySQL_Parametres.apercu("Articles.jrxml");
+	
+}
+
+@FXML
+private void handlePrintArticle() throws JRException{
+	JasperMySQL_Parametres.printCommande("Articles.jrxml");
+	
+}
+
+@FXML
+private void handleExportArticle() throws JRException{
+	
+		mainApp.showFenExport("","Articles");
+
+}
+
 
 
 private Stage dialogStage;

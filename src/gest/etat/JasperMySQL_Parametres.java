@@ -13,7 +13,6 @@ import java.util.Map;
 import connection.ControleConnexion;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JRExporterParameter;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -105,7 +104,26 @@ public class JasperMySQL_Parametres {
 				report = JasperCompileManager.compileReport(design);
 				HashMap<String, Object> mesParametres = new HashMap<String, Object>();
 				mesParametres.put("imageLogo",new String(Systeme.getRepertoireCourant()+Systeme.getSeparateur()+"jasper"+Systeme.getSeparateur()+"images"+Systeme.getSeparateur()+"icone_eclipse.png"));
-				mesParametres.put("imageCommande",new String(Systeme.getRepertoireCourant()+Systeme.getSeparateur()+"jasper"+Systeme.getSeparateur()+"images"+Systeme.getSeparateur()+"Shopping-Bag-128.png"));
+				mesParametres.put("imageClient",new String(Systeme.getRepertoireCourant()+Systeme.getSeparateur()+"jasper"+Systeme.getSeparateur()+"images"+Systeme.getSeparateur()+"Shopping-Bag-128.png"));
+				print = JasperFillManager.fillReport(report,mesParametres,laConnexion);
+				
+			}catch(Exception e) {
+				Alert alert = new Alert(AlertType.ERROR);
+		        alert.setTitle("Erreur");
+		        alert.setHeaderText("");
+		        alert.setContentText( e.getMessage()+ "\n Veuillez contacter votre administrateur" );
+		    	alert.showAndWait();
+			}
+		}
+		
+		if (rapport.equals("Articles.jrxml")){
+			try{
+				model="Articles";
+				design = JRXmlLoader.load(Systeme.getRepertoireCourant()+Systeme.getSeparateur()+"jasper"+Systeme.getSeparateur()+rapport);
+				report = JasperCompileManager.compileReport(design);
+				HashMap<String, Object> mesParametres = new HashMap<String, Object>();
+				mesParametres.put("imageLogo",new String(Systeme.getRepertoireCourant()+Systeme.getSeparateur()+"jasper"+Systeme.getSeparateur()+"images"+Systeme.getSeparateur()+"icone_eclipse.png"));
+				mesParametres.put("imageArticle",new String(Systeme.getRepertoireCourant()+Systeme.getSeparateur()+"jasper"+Systeme.getSeparateur()+"images"+Systeme.getSeparateur()+"Shopping-Bag-128.png"));
 				print = JasperFillManager.fillReport(report,mesParametres,laConnexion);
 				
 			}catch(Exception e) {
@@ -144,7 +162,7 @@ public class JasperMySQL_Parametres {
 		}catch(Exception e) {
 			Alert alert = new Alert(AlertType.ERROR);
 	        alert.setTitle("Erreur");
-	        alert.setHeaderText("L'impression a échouée :");
+	        alert.setHeaderText("L'impression non effectuée :");
 	        alert.setContentText( e.getMessage()+ "\n Veuillez contacter votre administrateur" );
 	    	alert.showAndWait();
 		}
