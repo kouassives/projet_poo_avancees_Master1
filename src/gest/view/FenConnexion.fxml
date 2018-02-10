@@ -56,5 +56,6 @@
                </image>
             </ImageView>
          </graphic></Button>
+      <Button layoutX="14.0" layoutY="211.0" mnemonicParsing="false" onAction="#handleDataBase" text="BD" />
    </children>
 </AnchorPane>

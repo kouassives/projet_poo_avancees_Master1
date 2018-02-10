@@ -1,12 +1,18 @@
 package gest;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.prefs.Preferences;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Unmarshaller;
 
 import gest.model.Article;
 import gest.model.Client;
 import gest.model.Commande;
 import gest.model.LignesCommandes;
+import gest.model.UtilisateurDB;
 import gest.view.FenArticlesController;
 import gest.view.FenChoixArticleController;
 import gest.view.FenChoixClientController;
@@ -17,6 +23,7 @@ import gest.view.FenFicheClientController;
 import gest.view.FenMenuPrincipalController;
 import gest.view.FenTableClientController;
 import gest.view.FenTableCommandesController;
+import gest.view.FenUtilisateurDBController;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -77,21 +84,28 @@ public class MainApp extends Application {
 	private Stage primaryStage;
 	
 	public MainApp() {
-        // Add some sample data
+        /*
+         * Les chargements de données sont effectuées dans la fenetre
+         * FenControleConnexion après que la vérification du nom et
+         * du mot de passe se soit passé avec succès
+         */
+	}
+	
+	public void chargerLesDonnees() {
+		// Add some sample data
 		// Traimenents des donnnées
 		// Reccuperation des clients dans la base de données
 		// Add some sample data
 		clientDataObservale=FXCollections.observableArrayList((new Client()).getlesEnreg());
-		
+				
 		articleDataObservale=FXCollections.observableArrayList((new Article()).getLesEnreg());
-		
+				
 		commandeDataObservale=FXCollections.observableArrayList((new Commande()).getLesEnreg());
-		
+				
 		lignesCommandeDataObservale=FXCollections.observableArrayList((new LignesCommandes()).getLesEnreg());
+		
 		//lignesCommandeDataObservale.clear();
-		/*  // Pour les en-têtes de colonnes
-		private final String[] lesTitres =  {"Code", "Nom", "Prenom", "Carte Fidélité", "Date Création"};
-		*/
+		
 	}
 
 	@Override
@@ -442,6 +456,40 @@ public class MainApp extends Application {
             }
 
 	    }
+	
+	
+	public void showFenUtilisateurDB() {
+		try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/FenUtilisateurDB.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+            
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("INDIGO Commandes");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(getPrimaryStage());
+            Scene sceneUtilisateurDB = new Scene(page);
+            dialogStage.setScene(sceneUtilisateurDB);
+            dialogStage.getIcons().add(new Image(urlLogo));
+            dialogStage.centerOnScreen();
+            dialogStage.setResizable(false);
+            
+            // Set the person into the controller.
+            FenUtilisateurDBController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setMainApp(this);
+            
+            
+            // Show the dialog
+            dialogStage.showAndWait();
+        	}
+			catch (IOException e) {
+            e.printStackTrace();
+            }
+	    }
+	
 
 	public Stage getPrimaryStage() {
 		return primaryStage;
@@ -451,6 +499,7 @@ public class MainApp extends Application {
 		this.primaryStage = primaryStage;
 	}	
 
+	
 }
 	
 

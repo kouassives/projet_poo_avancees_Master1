@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="300.0" prefWidth="400.0" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gest.view.FenUtilisateurDBController">
+   <children>
+      <TextField fx:id="userNom" layoutX="153.0" layoutY="59.0" />
+      <TextField fx:id="serverAdress" layoutX="153.0" layoutY="158.0" />
+      <Label layoutX="34.0" layoutY="67.0" text="Nom utilisateur" />
+      <Label layoutX="51.0" layoutY="115.0" text="Mot de passe" />
+      <Label layoutX="14.0" layoutY="166.0" prefWidth="127.0" text="adresse serveur BD" />
+      <Button layoutX="15.0" layoutY="261.0" mnemonicParsing="false" onAction="#handleBack" text="Retour" />
+      <PasswordField fx:id="userMDP" layoutX="154.0" layoutY="107.0" />
+      <Button layoutX="202.0" layoutY="207.0" mnemonicParsing="false" onAction="#handleSave" text="Sauver" />
+   </children>
+</AnchorPane>

@@ -1,6 +1,7 @@
 package connection;
 
  
+import java.io.File;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,6 +10,7 @@ import java.sql.Statement;
 import com.mysql.jdbc.Connection;
 
 import gest.model.Parametres;
+import gest.view.FenUtilisateurDBController;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
@@ -17,8 +19,10 @@ public class ControleConnexion {
 	static boolean etatConnexion;
 	static Connection laConnectionStatique; 
 static {
+	
+    
 	boolean ok = true;
-	lesParametres = new Parametres(); 
+	lesParametres = new Parametres();
 	try 
  { 
 		Class.forName(lesParametres.getDriverSGBD());
@@ -35,24 +39,33 @@ catch(ClassNotFoundException e)
     alert.showAndWait();
 	}
 	if (ok == true){ 
-		try { 
+		 
 			String urlBD = lesParametres.getServeurBD();
 			String nomUtilisateur = lesParametres.getNomUtilisateur();
 			String MDP = lesParametres.getMotDePasse();
-			// Creation d'une connexion
-			// contenant les parametres de connexion
-			laConnectionStatique = (Connection) DriverManager.getConnection(urlBD, nomUtilisateur, MDP);
-			etatConnexion = true;
-		}
-		catch(Exception e)
-		{
-			Alert alert = new Alert(AlertType.ERROR);
-		    alert.setTitle("Error");
-		    alert.setHeaderText("Connection");
-		    alert.setContentText("Impossible de se connecter" + " a la base de données ");
-			etatConnexion = false;
-			alert.showAndWait();
-		}
+			
+			editLaconnexionStatique(urlBD, nomUtilisateur, MDP);
+			
+	}
+}
+
+public static void editLaconnexionStatique(String urlBD,String nomUtilisateur,String MDP) {
+	try {
+		// Creation d'une connexion
+		// contenant les parametres de connexion
+		laConnectionStatique = (Connection) DriverManager.getConnection(urlBD, nomUtilisateur, MDP);
+		etatConnexion = true;
+		Alert alert = new Alert(AlertType.INFORMATION);
+	    alert.setTitle("INFORMATION");
+	    alert.setHeaderText("La base de données est bien connectée");
+		alert.showAndWait();
+	} catch (SQLException e) {
+		Alert alert = new Alert(AlertType.ERROR);
+	    alert.setTitle("Error de connexion");
+	    alert.setHeaderText("Impossible de se connecter à la base de données ");
+	    alert.setContentText("Vérifier les informations de configuration de la base de données");
+		etatConnexion = false;
+		alert.showAndWait();
 	}
 }
 
@@ -67,6 +80,10 @@ public static boolean getControleConnexion(){
 public static Connection getConnexion() {
 	return laConnectionStatique;
 	}
+public static void setLesParametres(Parametres lesParametres) {
+	ControleConnexion.lesParametres = lesParametres;
+}
+
 public static boolean controle(String Nom, String MotDePasse){
 	boolean verificationSaisie; 
 	if (Nom.equals(lesParametres.getNomUtilisateur()) && MotDePasse.equals(lesParametres.getMotDePasse())){
