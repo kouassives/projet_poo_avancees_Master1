@@ -148,6 +148,21 @@ public class Article {
 		boolean bCreation = false;
 		String requete = null;
 		try {
+			// On vérifie initialement s'il existe une catégorie de l'article a ajouter
+			Statement state = laConnexion.createStatement();
+			String requete2 = "SELECT count(*) AS nb FROM categories WHERE code = '"+vReference+"'";
+			ResultSet rs = state.executeQuery(requete2);
+			rs.next();
+			if (rs.getInt("nb")==0) {
+				requete2 = "INSERT INTO categories VALUES (?,?)"; 
+				PreparedStatement prepare2 = laConnexion.prepareStatement(requete2);
+				prepare2.setString(1, vReference);
+				prepare2.setString(2, vDesignation);
+				
+				prepare2.executeUpdate();
+				
+			}
+			
 			requete = "INSERT INTO articles VALUES (?,?,?,?,?,NOW())"; 
 			PreparedStatement prepare = laConnexion.prepareStatement(requete);
 			prepare.setString(1, vCode);
@@ -161,7 +176,7 @@ public class Article {
 		catch(SQLException e) {
 			Alert alert = new Alert(AlertType.ERROR);
 	        alert.setTitle("Probleme rencontre ");
-	        alert.setHeaderText("Ajout dans la ED non effectue : ");
+	        alert.setHeaderText("Ajout dans la DB non effectue : ");
 	        alert.setContentText( e.getMessage());
 	    	alert.showAndWait();
 		}

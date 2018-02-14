@@ -20,34 +20,7 @@
    <children>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="507.0" prefWidth="228.0" styleClass="SplitPane">
          <children>
-            <Button id="buttonAjouter" alignment="CENTER_RIGHT" layoutX="4.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleCleanFields" prefHeight="33.0" prefWidth="119.0" text="Ajouter">
-               <styleClass>
-                  <String fx:value="buttonWithImage" />
-                  <String fx:value="buttonPanneau" />
-               </styleClass>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button id="buttonRechercher" alignment="CENTER_RIGHT" layoutX="4.0" layoutY="70.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="142.0" text="Rechercher">
-               <styleClass>
-                  <String fx:value="buttonWithImage" />
-                  <String fx:value="buttonPanneau" />
-               </styleClass>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button id="buttonModifier" alignment="CENTER_RIGHT" layoutX="4.0" layoutY="121.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="125.0" text="Modifier">
-               <styleClass>
-                  <String fx:value="buttonWithImage" />
-                  <String fx:value="buttonPanneau" />
-               </styleClass>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button id="buttonSupprimer" alignment="CENTER_RIGHT" layoutX="8.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleDeleteArticle" prefHeight="33.0" prefWidth="132.0" text="Supprimer">
+            <Button id="buttonSupprimer" alignment="CENTER_RIGHT" layoutX="7.0" layoutY="140.0" mnemonicParsing="false" onAction="#handleDeleteArticle" prefHeight="51.0" prefWidth="199.0" text="Supprimer un article">
                <styleClass>
                   <String fx:value="buttonWithImage" />
                   <String fx:value="buttonPanneau" />
