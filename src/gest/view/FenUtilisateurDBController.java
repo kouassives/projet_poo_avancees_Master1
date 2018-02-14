@@ -139,14 +139,7 @@ public static void loadPersonDataFromFile(File file) {
         setPersonFilePath(file);
 
     } catch (Exception e) { // catches ANY exception
-        /*
-         * Alert alert = new Alert(AlertType.WARNING);
-         * alert.setTitle("Attention");
-         * alert.setHeaderText("Could not load data");
-         * alert.setContentText("Could not load data from file:\n" + file.getPath());
-         * alert.showAndWait();
-         */
-    	e.printStackTrace();
+        
         }
 }
 

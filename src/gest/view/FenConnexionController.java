@@ -1,6 +1,5 @@
 package gest.view;
 
-import java.io.File;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,9 +16,7 @@ import javafx.scene.control.PasswordField;
 public class FenConnexionController {
 	// Propriete pour etablir la connexion avec la BD
 	//----------------------------------
-	private static Connection laConnexion = ControleConnexion.getConnexion();
-	 // Reference to the main application
-    private MainApp mainApp;
+	private MainApp mainApp;
 
     
     @FXML
@@ -90,8 +87,8 @@ public class FenConnexionController {
 		    	alert.showAndWait();
     		}else
     		{
-    			Statement state = laConnexion.createStatement();
-    			ResultSet rs = state.executeQuery("SELECT *,count(*) AS nombre "+"FROM utilisateurdb WHERE mdp = '"+mot+"'");
+    			Statement state = ControleConnexion.getConnexion().createStatement();
+    			ResultSet rs = state.executeQuery("SELECT mdp,count(*) AS nombre "+"FROM utilisateurdb WHERE nomutilisateurdb = '"+ nom+"'");
     			rs.next();
     			int nombre = rs.getInt("nombre");
     			if( nombre == 1 )
@@ -118,6 +115,12 @@ public class FenConnexionController {
 	    			        alert.setContentText("Impossible de se connecter" + " à la base de données"+ "\n"+ "Vos nom et mot de passe sont corrects"+"\n"+"Mais les paramètres"+"\n"+"Pour le pilote"+"\n"+"Et la base de données"+"\n"+"doivent être vérifié"+"\n \n"+"Contactez le responsable informatique");
 	    			    	alert.showAndWait();
 	    			    }
+	    			}
+	    			else {
+	    				Alert alert = new Alert(AlertType.ERROR);
+				        alert.setTitle("Error de connexion");
+				        alert.setHeaderText("Le mot de passe est incorrect");
+				        alert.showAndWait();
 	    			}
     			}else {
     				Alert alert = new Alert(AlertType.ERROR);

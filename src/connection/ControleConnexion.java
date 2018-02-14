@@ -1,7 +1,6 @@
 package connection;
 
- 
-import java.io.File;
+
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,7 +9,6 @@ import java.sql.Statement;
 import com.mysql.jdbc.Connection;
 
 import gest.model.Parametres;
-import gest.view.FenUtilisateurDBController;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
@@ -44,7 +42,17 @@ catch(ClassNotFoundException e)
 			String nomUtilisateur = lesParametres.getNomUtilisateur();
 			String MDP = lesParametres.getMotDePasse();
 			
-			editLaconnexionStatique(urlBD, nomUtilisateur, MDP);
+			try {
+				laConnectionStatique = (Connection) DriverManager.getConnection(urlBD, nomUtilisateur, MDP);
+				etatConnexion = true;
+			} catch (SQLException e) {
+				etatConnexion = false;
+				Alert alert = new Alert(AlertType.ERROR);
+			    alert.setTitle("Error de connexion");
+			    alert.setHeaderText("Impossible de se connecter à la base de données ");
+			    alert.setContentText("Vérifier les informations de configuration de la base de données");
+				alert.showAndWait();
+			}
 			
 	}
 }
@@ -60,11 +68,11 @@ public static void editLaconnexionStatique(String urlBD,String nomUtilisateur,St
 	    alert.setHeaderText("La base de données est bien connectée");
 		alert.showAndWait();
 	} catch (SQLException e) {
+		etatConnexion = false;
 		Alert alert = new Alert(AlertType.ERROR);
 	    alert.setTitle("Error de connexion");
 	    alert.setHeaderText("Impossible de se connecter à la base de données ");
 	    alert.setContentText("Vérifier les informations de configuration de la base de données");
-		etatConnexion = false;
 		alert.showAndWait();
 	}
 }

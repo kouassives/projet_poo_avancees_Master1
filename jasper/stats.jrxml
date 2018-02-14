@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.1.0.final using JasperReports Library version 6.1.0  -->
-<!-- 2015-06-10T10:41:22 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="stats" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d9b0cbee-fe05-4269-a037-b3d4e25a4d18">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="30"/>
-	<parameter name="imagesDir" class="java.lang.String" isForPrompting="false"/>
-	<field name="mois" class="java.lang.String"/>
-	<field name="compteur" class="java.lang.Long"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="imageLogo" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT MONTH(c.date), COUNT(c.date), m.nom FROM commandes as c,mois as m WHERE YEAR(date) = '2018' and m.id = MONTH(c.date) GROUP BY MONTH(date)]]>
+	</queryString>
+	<field name="MONTH(c.date)" class="java.lang.Integer"/>
+	<field name="COUNT(c.date)" class="java.lang.Long"/>
+	<field name="nom" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -21,8 +25,8 @@
 					<chartLegend/>
 				</chart>
 				<pieDataset>
-					<keyExpression><![CDATA[$F{mois}]]></keyExpression>
-					<valueExpression><![CDATA[$F{compteur}]]></valueExpression>
+					<keyExpression><![CDATA[$F{nom}]]></keyExpression>
+					<valueExpression><![CDATA[$F{COUNT(c.date)}]]></valueExpression>
 				</pieDataset>
 				<piePlot labelFormat="{0} : {1} commande(s) ({2})">
 					<plot/>
@@ -31,30 +35,8 @@
 			</pieChart>
 			<image hAlign="Center">
 				<reportElement x="0" y="0" width="65" height="60" uuid="d0e30d09-c836-46fc-bad1-7118a63aace6"/>
-				<imageExpression><![CDATA[$P{imagesDir}+"/Moon-256.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{imageLogo}]]></imageExpression>
 			</image>
-			<staticText>
-				<reportElement x="95" y="25" width="205" height="15" uuid="018252b2-ce20-4fcc-a1c3-95afc82d4895"/>
-				<text><![CDATA[1, rue Tycho]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="95" y="0" width="210" height="25" uuid="0604ecc7-efe7-4a4b-b1be-2f43afb813b1">
-					<property name="local_mesure_unitheight" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<textElement>
-					<font size="19" isBold="true"/>
-				</textElement>
-				<text><![CDATA[LUNA SARL]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="95" y="40" width="205" height="15" uuid="30a094ac-93c5-4bb2-84d3-3b72d24c678d"/>
-				<text><![CDATA[75014, Paris]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="95" y="55" width="205" height="15" uuid="c3489b38-6fbd-4a1b-a6f8-0c2bc4a290ea"/>
-				<text><![CDATA[+33-1-2345678]]></text>
-			</staticText>
 			<staticText>
 				<reportElement x="240" y="7" width="160" height="50" forecolor="#FF4444" uuid="40d42767-6507-4e5b-86f4-14ee30d4599b"/>
 				<box>
@@ -78,6 +60,28 @@
 				<reportElement x="465" y="52" width="84" height="20" uuid="d4994b37-5800-43a0-a09c-eda0078309e0"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="83" y="2" width="210" height="25" uuid="a614b653-b71c-4646-a625-30b1c8055e8d">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="19" isBold="true"/>
+				</textElement>
+				<text><![CDATA[OXYGEN SARL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="83" y="27" width="205" height="15" uuid="f3b0c3da-3535-4ddc-8f11-8584b502c45f"/>
+				<text><![CDATA[Rue des banques, Vallon]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="83" y="42" width="205" height="15" uuid="4dc5acc7-09be-49a7-afbf-536a9560b4de"/>
+				<text><![CDATA[00225, Abidjan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="83" y="57" width="205" height="15" uuid="ecce5322-4965-4e64-b6f0-7a96021bc94c"/>
+				<text><![CDATA[+(225) 470 014 83]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageHeader>

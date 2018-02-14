@@ -23,7 +23,6 @@ public class FenMenuPrincipalController {
 	    public void setMainApp(MainApp mainApp) {
 	        this.mainApp = mainApp;
 	    }
-	    
 	private Stage dialogStage;
     
 	/**
@@ -35,23 +34,32 @@ public class FenMenuPrincipalController {
         this.dialogStage = dialogStage;
     }
 
-
-    public void handleGestionClient() {
+    @FXML
+	public void handleGestionClient() {
     	this.dialogStage.hide();
     	mainApp.showFenTableClient();
     }
     
-    public void handleGestionArticles() {
+    @FXML
+	public void handleGestionArticles() {
     	this.dialogStage.hide();
     	mainApp.showFenArticle();
     }
     
-    public void handleGestionCommandes() {
+    @FXML
+	public void handleGestionCommandes() {
     	this.dialogStage.hide();
     	mainApp.showFenCommandes();
     }
     
-    public void handleclosing() {
+    @FXML
+	public void handleTableauBord() {
+    	this.dialogStage.hide();
+    	mainApp.showFenTableauBord();
+    }
+    
+    @FXML
+	public void handleclosing() {
     	this.dialogStage.hide();
     	mainApp.initPrimaryLayout();
     }

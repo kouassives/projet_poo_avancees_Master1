@@ -1,5 +1,7 @@
 package gest;
-
+/**
+ * KOUASSI YVES ANSELME MAGLOIRE
+ */
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,8 +23,10 @@ import gest.view.FenConnexionController;
 import gest.view.FenExportController;
 import gest.view.FenFicheClientController;
 import gest.view.FenMenuPrincipalController;
+import gest.view.FenStatsController;
 import gest.view.FenTableClientController;
 import gest.view.FenTableCommandesController;
+import gest.view.FenTableauBordController;
 import gest.view.FenUtilisateurDBController;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -490,7 +494,71 @@ public class MainApp extends Application {
             }
 	    }
 	
+	public void showFenTableauBord() {
+		try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/FenTableauBord.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+            
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("INDIGO Tableau de bord");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(getPrimaryStage());
+            Scene sceneFenTableauBord = new Scene(page);
+            dialogStage.setScene(sceneFenTableauBord);
+            dialogStage.getIcons().add(new Image(urlLogo));
+            dialogStage.centerOnScreen();
+            dialogStage.setResizable(false);
+            
+            // Set the person into the controller.
+            FenTableauBordController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setMainApp(this);
+            
+            
+            // Show the dialog
+            dialogStage.showAndWait();
+        	}
+			catch (IOException e) {
+            e.printStackTrace();
+            }
+	    }
+	
 
+	public void showFenStats(String annee) {
+		try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/FenStats.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+            
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("INDIGO statistique");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(getPrimaryStage());
+            Scene sceneFenStats = new Scene(page);
+            dialogStage.setScene(sceneFenStats);
+            dialogStage.getIcons().add(new Image(urlLogo));
+            dialogStage.centerOnScreen();
+            dialogStage.setResizable(false);
+            
+            // Set the person into the controller.
+            FenStatsController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setMainApp(this);
+            controller.setAnnee(annee);
+
+            // Show the dialog
+            dialogStage.showAndWait();
+        	}
+			catch (IOException e) {
+            e.printStackTrace();
+            }
+	    }
+	
 	public Stage getPrimaryStage() {
 		return primaryStage;
 	}

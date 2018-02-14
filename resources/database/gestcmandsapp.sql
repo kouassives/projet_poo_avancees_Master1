@@ -19,6 +19,9 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- Base de données: `gestcmandsapp`
 --
 
+CREATE DATABASE gestcmandsapp;
+use gestcmandsapp;
+
 -- --------------------------------------------------------
 
 --
@@ -174,6 +177,17 @@ INSERT INTO `mode_reglements` (`code`, `type`) VALUES
 (1, 'espèce'),
 (2, 'chèque'),
 (3, 'carte');
+
+
+create table utilisateurDB(
+nomutilisateurdb VARCHAR(30),
+mdp VARCHAR(30),
+adresse VARCHAR(30),
+PRIMARY KEY(nomutilisateurdb,mdp)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `utilisateurDB` (`nomutilisateurdb`, `mdp`, `adresse`) VALUES
+('root','toor','localhost');
 
 --
 -- Contraintes pour les tables exportées
