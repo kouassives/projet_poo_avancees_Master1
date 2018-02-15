@@ -81,7 +81,7 @@ public void setDialogStage(Stage dialogStage) {
  */
 public void ecriture(Parametres param) {
 	try {
-		File fichier = new File("dbsetting.db");
+		File fichier = new File("dbsetting.dat");
 		ObjectOutputStream flux = new ObjectOutputStream(
 		new FileOutputStream(fichier));
 		flux.writeObject(param);

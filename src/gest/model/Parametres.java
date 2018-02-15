@@ -67,16 +67,16 @@ public Parametres () {
 	}
 public Parametres lecture() {
 	try {
-			File fichier = new File("dbsetting.db");
+			File fichier = new File("dbsetting.dat");
 			ObjectInputStream flux = new ObjectInputStream(
 			new FileInputStream(fichier));
 			Parametres parametres = (Parametres) flux.readObject();
 			flux.close();
 			return parametres;
 		} catch (IOException ioe) {
-			System.err.println(ioe);
+			//System.err.println(ioe);
 		} catch (ClassNotFoundException cnfe) {
-			System.err.println(cnfe);
+			//System.err.println(cnfe);
 		}
 	return null;
 }
@@ -86,7 +86,5 @@ public Parametres (String nom, String mdp, String adresse,String serveurBD) {
 	this.adresse = adresse;
 	this.serveurBD=serveurBD;
 	}
-
-
 
 }
