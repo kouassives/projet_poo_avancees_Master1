@@ -6,7 +6,7 @@ N'GUESSAN KOFFI INNOCENT
 @version 01/01/2018
 L'application est une application classique de gestion de commande.
 
-# projet_poo_avancees_Master1
+# Projet POO AVANCEES Master1 BDGL
 
 **Requière une version jkd au moins superieur à 8.
 - Les fichiers resources
