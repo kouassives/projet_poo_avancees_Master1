@@ -23,10 +23,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
+import java.rmi.RemoteException;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Random;
+
+import com.web.service.TaxeProxy;
 
 
 public class FenCommandesController {
@@ -75,12 +78,17 @@ private Button nomCLientButton;
 @FXML
 private Label totalLabel;
 @FXML
+private Label tvaValueLabel;
+@FXML
+private Label totalLabelTTC;
+@FXML
 private Label dateDuJour;
 	
 
 private static String codeArticle="";
 private static String codeClient="";
 private double totalTtc;
+private double totalHt;
 private static String codeCommande=randomCommandeNumber();
 private ModeReglements mode = new ModeReglements();
 	/**
@@ -144,6 +152,12 @@ private ModeReglements mode = new ModeReglements();
     	});
 
     	totalLabel.setText("0");
+    	totalLabelTTC.setText("0");
+    	if(getTva()>=0)
+    		tvaValueLabel.setText((new DecimalFormat("#,##0")).format(getTva()*100)+"%");
+    	else
+    		tvaValueLabel.setText("Indisponible");
+    		
 
     	/*
 		 * On cree une liste de String quon va ajouer dans le ComboBox modeReglementComboBox
@@ -273,6 +287,7 @@ private ModeReglements mode = new ModeReglements();
 		    				 * faudrait que le calcul se fasse après l'ajout d'une nouvelle commadne
 		    				 */
 		    				totalLabel.setText(calculTotal());
+		    				totalLabelTTC.setText(calculTTC());
 		    				
 		    				//pour la gestion de showLignesCommandesDetails()
 		    				selectedCodeCategorieList.add(codeCategorieTextField.getText());
@@ -308,6 +323,8 @@ private ModeReglements mode = new ModeReglements();
 	            lignesCommandesTable.getSelectionModel().getSelectedItem().setTotal(quantiteComboBox.getValue()*(int)article.getPrix_unitaire());
 	            
 	            totalLabel.setText(calculTotal());
+	            totalLabelTTC.setText(calculTTC());
+	            
             }else {
             	Alert alert = new Alert(AlertType.WARNING);
                 alert.initOwner(mainApp.getPrimaryStage());
@@ -366,6 +383,7 @@ private ModeReglements mode = new ModeReglements();
 	    			codeClient="";
 	    			codeCommande = randomCommandeNumber();
 	    			totalLabel.setText("0");
+	    			totalLabelTTC.setText("0");
 	    			Alert alert = new Alert(AlertType.INFORMATION);
 	    	        alert.setTitle("INFORMATION");
 	    	        alert.setHeaderText("Commande ajoutée !");
@@ -409,6 +427,7 @@ private ModeReglements mode = new ModeReglements();
 				 */
 				
             	totalLabel.setText(calculTotal());
+            	totalLabelTTC.setText(calculTTC());
             	
             	//pour la gestion de showLignesCommandesDetails()
 				selectedCodeCategorieList.remove(selectedIndex);
@@ -442,6 +461,7 @@ private ModeReglements mode = new ModeReglements();
 			 */
 			
         	totalLabel.setText(calculTotal());
+        	totalLabelTTC.setText(calculTTC());
         	
         	//pour la gestion de showLignesCommandesDetails()
 			selectedCodeCategorieList.clear();;
@@ -455,10 +475,30 @@ private ModeReglements mode = new ModeReglements();
     	String total="";
     	try {
     		DecimalFormat format = new DecimalFormat("#,##0");
-    		totalTtc=0.0;
+    		totalHt=0.0;
     		for(int i =0;i<lignesCommandesTable.getItems().size();i++) {
-    			totalTtc += Double.valueOf(lignesCommandesTable.getItems().get(i).gettotal());
+    			totalHt += Double.valueOf(lignesCommandesTable.getItems().get(i).gettotal());
     		}
+    		total= format.format(totalHt)+ "€";
+    		
+    	}catch(Exception e) {
+    		Alert alert = new Alert(AlertType.ERROR);
+	        alert.setTitle("ERREUR");
+	        alert.setHeaderText("Mauvais format de nombre");
+	        alert.setContentText("");
+	    	alert.showAndWait();
+    	}
+    	return total;
+    }
+    
+    private String calculTTC() {
+    	String total="";
+    	try {
+    		DecimalFormat format = new DecimalFormat("#,##0");
+    		totalTtc=totalHt;
+    		double tva=getTva();
+    		if(tva>=0)
+    			totalTtc+=totalHt*tva; 
     		total= format.format(totalTtc)+ "€";
     		
     	}catch(Exception e) {
@@ -489,6 +529,18 @@ private ModeReglements mode = new ModeReglements();
 	    	
     	}
     	
+    }
+    
+    public double getTva() {
+    	TaxeProxy tvaWeb = new TaxeProxy();
+		try {
+			Double tva = tvaWeb.getTVA();
+			return tva;
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return -1;
     }
     
 private Stage dialogStage;

@@ -15,5 +15,12 @@
 	<classpathentry kind="lib" path="lib/itext-2.1.7.js2.jar"/>
 	<classpathentry kind="lib" path="lib/jasperreports-6.5.0.jar"/>
 	<classpathentry kind="lib" path="lib/jdt-compiler.jar"/>
+	<classpathentry kind="lib" path="lib/webSOAP/axis.jar"/>
+	<classpathentry kind="lib" path="lib/webSOAP/commons-discovery-0.2.jar"/>
+	<classpathentry kind="lib" path="lib/webSOAP/commons-logging.jar"/>
+	<classpathentry kind="lib" path="lib/webSOAP/jaxrpc.jar"/>
+	<classpathentry kind="lib" path="lib/webSOAP/saaj.jar"/>
+	<classpathentry kind="lib" path="lib/webSOAP/webserviceutils.jar"/>
+	<classpathentry kind="lib" path="lib/webSOAP/wsdl4j.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

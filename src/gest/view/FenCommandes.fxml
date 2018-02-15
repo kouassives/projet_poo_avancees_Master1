@@ -136,10 +136,18 @@
                </image>
             </ImageView>
             <Button layoutX="375.0" layoutY="458.0" mnemonicParsing="false" onAction="#handleValiderCommande" text="Valider la commande" />
-            <Pane layoutX="375.0" layoutY="427.0" prefHeight="30.0" prefWidth="183.0">
+            <Pane layoutX="141.0" layoutY="426.0" prefHeight="30.0" prefWidth="183.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="6.0" text="Total HT :" />
+                  <Label fx:id="totalLabel" layoutX="106.0" layoutY="6.0" />
+               </children>
+            </Pane>
+            <Label layoutX="14.0" layoutY="430.0" text="TVA : " />
+            <Label fx:id="tvaValueLabel" layoutX="53.0" layoutY="430.0" text="Label" />
+            <Pane layoutX="376.0" layoutY="426.0" prefHeight="30.0" prefWidth="183.0">
                <children>
                   <Label layoutX="14.0" layoutY="6.0" text="Total TTC :" />
-                  <Label fx:id="totalLabel" layoutX="106.0" layoutY="6.0" />
+                  <Label fx:id="totalLabelTTC" layoutX="106.0" layoutY="6.0" />
                </children>
             </Pane>
          </children></AnchorPane>
