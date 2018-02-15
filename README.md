@@ -11,7 +11,7 @@ L'application est une application classique de gestion de commande.
 **Requière une version jkd au moins superieur à 8.
 - Les fichiers resources
     La base de données : resources/database/gestcmandsapp.sql
-                         resources/database/DBAutorite.sql
+                         resources/database/DBAutorite.sql ( pour le service web )
     La classe principale : src/gest/MainApp.java
 - La librairie des bibliothèque : lib
 
