@@ -1,12 +1,15 @@
 package gest.model;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 
-import java.util.ArrayList;
-
-import gest.view.FenUtilisateurDBController;
-
-public class Parametres {
+public class Parametres  implements java.io.Serializable, Cloneable {
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 private String nomUtilisateur;
 private String motDePasse;
 private String serveurBD;
@@ -47,33 +50,36 @@ public void setAdresse(String adresse) {
 }
 //constructeur
 public Parametres () {
-	boolean verif = false;
-	try{
-		File file = FenUtilisateurDBController.getPersonFilePath();
-		if (file!=null)
-			{
-			FenUtilisateurDBController.loadPersonDataFromFile(file);
-			ArrayList<Parametres> param = FenUtilisateurDBController.getUserData();
-			nomUtilisateur = param.get(0).getNomUtilisateur();
-			motDePasse = param.get(0).getMotDePasse();
-			adresse=param.get(0).getAdresse();
-			verif=true;
-			}
-		}catch(Exception e)
-	{
-			e.printStackTrace();
-	}
-	if (!verif){
+	Parametres param = lecture();
+	if (param == null){
 		nomUtilisateur = "root";
 		motDePasse = "toor";
 		adresse="localhost";
+	}else {
+		nomUtilisateur = param.getNomUtilisateur();
+		motDePasse = param.getMotDePasse();
+		adresse=param.getAdresse();
 	}
 	
 	// Ces identifiants sont ceux entrés dans la configuration du SGBDR
 	// On l'initialise dans ce etat au debut du programme;
 	serveurBD = "jdbc:mysql://"+adresse+"/gestcmandsapp"; 
 	}
-
+public Parametres lecture() {
+	try {
+			File fichier = new File("dbsetting.db");
+			ObjectInputStream flux = new ObjectInputStream(
+			new FileInputStream(fichier));
+			Parametres parametres = (Parametres) flux.readObject();
+			flux.close();
+			return parametres;
+		} catch (IOException ioe) {
+			System.err.println(ioe);
+		} catch (ClassNotFoundException cnfe) {
+			System.err.println(cnfe);
+		}
+	return null;
+}
 public Parametres (String nom, String mdp, String adresse,String serveurBD) { 
 	this.nomUtilisateur = nom;
 	this.motDePasse = mdp;

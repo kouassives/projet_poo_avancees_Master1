@@ -179,11 +179,13 @@ INSERT INTO `mode_reglements` (`code`, `type`) VALUES
 (3, 'carte');
 
 
-create table utilisateurDB(
+create table utilisateur(
 nomutilisateurdb VARCHAR(30),
-mdp VARCHAR(30),
-adresse VARCHAR(30),
-PRIMARY KEY(nomutilisateurdb,mdp)
+mdp VARCHAR(30),
+numcni VARCHAR(30),
+nom VARCHAR(30),
+prenom VARCHAR(30),
+PRIMARY KEY(nomutilisateurdb)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `utilisateurDB` (`nomutilisateurdb`, `mdp`, `adresse`) VALUES
