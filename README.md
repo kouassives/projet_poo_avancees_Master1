@@ -9,6 +9,11 @@ L'application est une application classique de gestion de commande.
 # Projet POO AVANCEES Master1 BDGL
 
 **Requière une version jkd au moins superieur à 8.
+** Une autre machine ou la meme machine pour le service Web.
+      
+      Le programme recupère la TVA sur un serveur lors des achats d'articles
+      Clonez le service web avec ce lien: https://github.com/kouassives/WebServiceSOAP_ProjetBDGL.git et deployé le. 
+      
 - Les fichiers resources
     La base de données : resources/database/gestcmandsapp.sql
                          resources/database/DBAutorite.sql ( pour le service web )
