@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="gest.view.FenStatsController">
-	<!-- TODO Add Nodes -->
+<AnchorPane prefHeight="500.0" prefWidth="600.0" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gest.view.FenStatsController">
+   <children>
+      <PieChart fx:id="pieChart" layoutX="50.0" layoutY="50.0" prefHeight="500.0" prefWidth="600.0" title="Statistique de l'année" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Label fx:id="anneeTextfield" layoutX="282.0" layoutY="31.0" />
+      <Label fx:id="notification" alignment="CENTER" layoutX="147.0" layoutY="236.0" prefHeight="500.0" prefWidth="600.0" style="-fx-text-fill: red;" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Label fx:id="caption" layoutX="14.0" layoutY="14.0" />
+      <Button layoutX="466.0" layoutY="15.0" mnemonicParsing="false" onAction="#handlePrintStats" text="Imprimer" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+   </children>
 </AnchorPane>

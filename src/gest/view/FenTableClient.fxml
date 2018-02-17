@@ -5,7 +5,6 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -231,12 +230,6 @@
                   <TableColumn fx:id="date_Creation" prefWidth="169.0" text="Date Création" />
               </columns>
             </TableView>
-            <ImageView fitHeight="25.0" fitWidth="29.0" layoutX="202.0" layoutY="466.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../resources/images/icone_trier.png" />
-               </image></ImageView>
-            <Label layoutX="235.0" layoutY="468.0" styleClass="label-bright" text="Trier la liste par" />
-            <ComboBox layoutX="340.0" layoutY="468.0" minHeight="-Infinity" prefHeight="21.0" prefWidth="103.0" />
          </children></AnchorPane>
    </children>
 </AnchorPane>

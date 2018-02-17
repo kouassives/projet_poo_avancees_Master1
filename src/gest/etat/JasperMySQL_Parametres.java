@@ -134,6 +134,25 @@ public class JasperMySQL_Parametres {
 		    	alert.showAndWait();
 			}
 		}
+		
+		if (rapport.equals("stats.jrxml")){
+			try{
+				model="stats";
+				design = JRXmlLoader.load(Systeme.getRepertoireCourant()+Systeme.getSeparateur()+"jasper"+Systeme.getSeparateur()+rapport);
+				report = JasperCompileManager.compileReport(design);
+				HashMap<String, Object> mesParametres = new HashMap<String, Object>();
+				mesParametres.put("imageLogo",new String(Systeme.getRepertoireCourant()+Systeme.getSeparateur()+"jasper"+Systeme.getSeparateur()+"images"+Systeme.getSeparateur()+"icone_eclipse.png"));
+				//mesParametres.put("imageArticle",new String(Systeme.getRepertoireCourant()+Systeme.getSeparateur()+"jasper"+Systeme.getSeparateur()+"images"+Systeme.getSeparateur()+"Shopping-Bag-128.png"));
+				print = JasperFillManager.fillReport(report,mesParametres,laConnexion);
+				
+			}catch(Exception e) {
+				Alert alert = new Alert(AlertType.ERROR);
+		        alert.setTitle("Erreur");
+		        alert.setHeaderText("");
+		        alert.setContentText( e.getMessage()+ "\n Veuillez contacter votre administrateur" );
+		    	alert.showAndWait();
+			}
+		}
 			
 	}
 

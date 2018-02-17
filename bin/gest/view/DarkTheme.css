@@ -265,3 +265,21 @@
 	-fx-background-position: top center;
 	-fx-background-image: url('../../../resources/images/icone_croix_rouge.png');
 }
+
+#buttonStatsCS{
+		-fx-background-size: 60;
+		-fx-background-position: 0%;	
+		-fx-background-image: url('../../../resources/images/Bar-Chart-128.png');
+}
+
+#buttonStatsImpaye{
+		-fx-background-size: 60;
+		-fx-background-position: 0%;	
+		-fx-background-image: url('../../../resources/images/Pending-Payment-128.png');
+}
+
+#buttonStatsNombre{
+		-fx-background-size: 70;
+		-fx-background-position: 0%;	
+		-fx-background-image: url('../../../resources/images/icone_classeur.png');
+}

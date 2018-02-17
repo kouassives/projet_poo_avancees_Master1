@@ -2,19 +2,14 @@ package gest;
 /**
  * KOUASSI YVES ANSELME MAGLOIRE
  */
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.prefs.Preferences;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Unmarshaller;
 
 import gest.model.Article;
 import gest.model.Client;
 import gest.model.Commande;
 import gest.model.LignesCommandes;
-import gest.model.UtilisateurDB;
 import gest.view.FenArticlesController;
 import gest.view.FenChoixArticleController;
 import gest.view.FenChoixClientController;
@@ -543,13 +538,14 @@ public class MainApp extends Application {
             dialogStage.setScene(sceneFenStats);
             dialogStage.getIcons().add(new Image(urlLogo));
             dialogStage.centerOnScreen();
-            dialogStage.setResizable(false);
+            dialogStage.setResizable(true);
             
             // Set the person into the controller.
             FenStatsController controller = loader.getController();
             controller.setDialogStage(dialogStage);
             controller.setMainApp(this);
             controller.setAnnee(annee);
+            controller.recupData();
 
             // Show the dialog
             dialogStage.showAndWait();

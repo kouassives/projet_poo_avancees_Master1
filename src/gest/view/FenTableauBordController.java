@@ -1,7 +1,13 @@
 package gest.view;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.Optional;
+
 import gest.MainApp;
+import gest.util.DateUtil;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextInputDialog;
 import javafx.stage.Stage;
 
 public class FenTableauBordController {
@@ -33,9 +39,14 @@ private void handleNombre() {
 
 @FXML
 private void handleCA() {
-	this.dialogStage.hide();
-	String annee="";
-	mainApp.showFenStats(annee);
+	//this.dialogStage.hide();
+	TextInputDialog dialog = new TextInputDialog(Integer.toString(LocalDate.now().getYear()));
+	dialog.setTitle("Statistique annuelle");
+	dialog.setHeaderText("l'année de des statisque à produire");
+	dialog.setContentText("Veuillez entrer l'année");
+	Optional<String> result = dialog.showAndWait();
+	result.ifPresent(annee-> mainApp.showFenStats(annee));
+		
 }
 
 @FXML
