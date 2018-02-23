@@ -85,10 +85,10 @@ public class FenConnexionController {
 		        alert.setTitle("Error");
 		        alert.setHeaderText("Le mot de passe est vide");
 		    	alert.showAndWait();
-    		}else
+    		}else if(ControleConnexion .getControleConnexion())
     		{
     			Statement state = ControleConnexion.getConnexion().createStatement();
-    			ResultSet rs = state.executeQuery("SELECT mdp,count(*) AS nombre "+"FROM utilisateurdb WHERE nomutilisateurdb = '"+ nom+"'");
+    			ResultSet rs = state.executeQuery("SELECT mdp,count(*) AS nombre "+"FROM utilisateur WHERE pseudo = '"+ nom+"'");
     			rs.next();
     			int nombre = rs.getInt("nombre");
     			if( nombre == 1 )
@@ -96,8 +96,7 @@ public class FenConnexionController {
 	    			String mdp = rs.getString("mdp");
 	    			if (mdp.equals(userMDP.getText())) {
 	    				//controle de la saisie
-	    		    	if(ControleConnexion .getControleConnexion()){
-	    		    			mainApp.getPrimaryStage().close();
+	    		    	mainApp.getPrimaryStage().close();
 	    		    			/*
 	    		    			 * l'instruction suivante est primordiale pour que
 	    		    			 * les donnees (les listes)des clients, commandes et produits soient chargé dans l'application
@@ -106,15 +105,7 @@ public class FenConnexionController {
 	    		    			mainApp.chargerLesDonnees();
 	    		    			
 	    		    	    	mainApp.showFenMenuPrincipal();
-	    		    		}
-	    		    	else
-	    			    {
-	    			    	Alert alert = new Alert(AlertType.ERROR);
-	    			        alert.setTitle("Error");
-	    			        alert.setHeaderText("Connexion Base de Données");
-	    			        alert.setContentText("Impossible de se connecter" + " à la base de données"+ "\n"+ "Vos nom et mot de passe sont corrects"+"\n"+"Mais les paramètres"+"\n"+"Pour le pilote"+"\n"+"Et la base de données"+"\n"+"doivent être vérifié"+"\n \n"+"Contactez le responsable informatique");
-	    			    	alert.showAndWait();
-	    			    }
+	    		    	
 	    			}
 	    			else {
 	    				Alert alert = new Alert(AlertType.ERROR);
@@ -130,6 +121,14 @@ public class FenConnexionController {
     				
     			}
     		}
+	    	else
+		    {
+		    	Alert alert = new Alert(AlertType.ERROR);
+		        alert.setTitle("Error");
+		        alert.setHeaderText("Connexion Base de Données");
+		        alert.setContentText("Impossible de se connecter" + " à la base de données"+ "\n"+"les paramètres"+"\n"+"Pour le pilote"+"\n"+"Et la base de données"+"\n"+"doivent être vérifié"+"\n \n"+"Contactez le responsable informatique");
+		    	alert.showAndWait();
+		    }
     		
 		}
 		catch (SQLException e) {

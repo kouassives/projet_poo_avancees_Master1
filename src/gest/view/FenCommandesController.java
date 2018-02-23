@@ -22,6 +22,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+import messervices.MonService;
+import messervices.MonServiceService;
 
 import java.rmi.RemoteException;
 import java.text.DecimalFormat;
@@ -38,6 +40,7 @@ private Client client;
 private Article article;
 private MainApp mainApp;
 
+private Double tva=0.0;
 
 ArrayList<String> selectedCodeCategorieList = new ArrayList<String>();
 ArrayList<Integer> selectedQuantie= new ArrayList<Integer>();
@@ -98,6 +101,7 @@ private ModeReglements mode = new ModeReglements();
     @FXML
     private void initialize() {
     	dateDuJour.setText(DateUtil.format(LocalDate.now()));
+    	getTva();
     	
     	code.setCellValueFactory(cellData -> cellData.getValue().codeCommandeProperty());
     	codeCategorie.setCellValueFactory(cellData -> cellData.getValue().codeArticleProperty());
@@ -153,10 +157,7 @@ private ModeReglements mode = new ModeReglements();
 
     	totalLabel.setText("0");
     	totalLabelTTC.setText("0");
-    	if(getTva()>=0)
-    		tvaValueLabel.setText((new DecimalFormat("#,##0")).format(getTva()*100)+"%");
-    	else
-    		tvaValueLabel.setText("Indisponible");
+    	
     		
 
     	/*
@@ -496,7 +497,6 @@ private ModeReglements mode = new ModeReglements();
     	try {
     		DecimalFormat format = new DecimalFormat("#,##0");
     		totalTtc=totalHt;
-    		double tva=getTva();
     		if(tva>=0)
     			totalTtc+=totalHt*tva; 
     		total= format.format(totalTtc)+ "€";
@@ -531,6 +531,10 @@ private ModeReglements mode = new ModeReglements();
     	
     }
     
+    
+    /*
+     *AVEC LE SERVEUR TOMCAT 
+     * 
     public double getTva() {
     	TaxeProxy tvaWeb = new TaxeProxy();
 		try {
@@ -538,10 +542,26 @@ private ModeReglements mode = new ModeReglements();
 			return tva;
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		return -1;
     }
+     */
+    
+    public void getTva() {
+    	try {
+	    	MonService port = new MonServiceService().getMonServicePort();
+			this.tva = port.getTva();
+	    	tvaValueLabel.setText((new DecimalFormat("#,##0")).format(tva*100)+"%");
+	    	
+    	}catch(Exception e) {
+    		System.out.println("rien");
+    		this.tva = 0.0;
+    		tvaValueLabel.setText("Indisponible");
+    	}
+    	
+    }
+    
     
 private Stage dialogStage;
 

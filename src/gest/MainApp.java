@@ -32,9 +32,12 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import messervices.MonService;
+import messervices.MonServiceService;
 
 public class MainApp extends Application {
 
+	private final String nomEntrepriste= "OXYGEN";
 	private ArrayList<Client> clientData = new ArrayList<Client>();
 	private ArrayList<Article> articleData = new ArrayList<Article>();
 	private ArrayList<Commande> commandeData = new ArrayList<Commande>();
@@ -88,6 +91,7 @@ public class MainApp extends Application {
          * FenControleConnexion après que la vérification du nom et
          * du mot de passe se soit passé avec succès
          */
+		
 	}
 	
 	public void chargerLesDonnees() {
@@ -186,7 +190,7 @@ public class MainApp extends Application {
             
             // Create the dialog Stage.
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("INDIGO Clients");
+            dialogStage.setTitle(nomEntrepriste+" Clients");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(getPrimaryStage());
             Scene sceneTableClient = new Scene(page);
@@ -261,7 +265,7 @@ public class MainApp extends Application {
             
             // Create the dialog Stage.
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("INDIGO Articles");
+            dialogStage.setTitle(nomEntrepriste+" Articles");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(getPrimaryStage());
             Scene sceneArticle = new Scene(page);
@@ -294,7 +298,7 @@ public class MainApp extends Application {
             
             // Create the dialog Stage.
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("INDIGO Commandes");
+            dialogStage.setTitle(nomEntrepriste+" Commandes");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(getPrimaryStage());
             Scene sceneCommandes = new Scene(page);
@@ -327,7 +331,7 @@ public class MainApp extends Application {
             
             // Create the dialog Stage.
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("INDIGO Commandes");
+            dialogStage.setTitle(nomEntrepriste+" Commandes");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(getPrimaryStage());
             Scene sceneTableCommandes = new Scene(page);
@@ -359,7 +363,7 @@ public class MainApp extends Application {
             
             // Create the dialog Stage.
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("INDIGO Choix Client");
+            dialogStage.setTitle(nomEntrepriste+" Choix Client");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(getPrimaryStage());
             Scene sceneChoixClient = new Scene(page);
@@ -395,7 +399,7 @@ public class MainApp extends Application {
             
             // Create the dialog Stage.
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("INDIGO Choix Article");
+            dialogStage.setTitle(nomEntrepriste+" Choix Article");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(getPrimaryStage());
             Scene sceneChoixArticle = new Scene(page);
@@ -466,7 +470,7 @@ public class MainApp extends Application {
             
             // Create the dialog Stage.
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("INDIGO Commandes");
+            dialogStage.setTitle(nomEntrepriste+" Commandes");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(getPrimaryStage());
             Scene sceneUtilisateurDB = new Scene(page);
@@ -498,7 +502,7 @@ public class MainApp extends Application {
             
             // Create the dialog Stage.
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("INDIGO Tableau de bord");
+            dialogStage.setTitle(nomEntrepriste+" Tableau de bord");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(getPrimaryStage());
             Scene sceneFenTableauBord = new Scene(page);
@@ -531,7 +535,7 @@ public class MainApp extends Application {
             
             // Create the dialog Stage.
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("INDIGO statistique");
+            dialogStage.setTitle(nomEntrepriste+" statistique");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(getPrimaryStage());
             Scene sceneFenStats = new Scene(page);

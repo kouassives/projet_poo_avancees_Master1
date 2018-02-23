@@ -72,6 +72,7 @@ public void setAnnee(String annee) {
 			   Statement state = laConnexion.createStatement();
 			   ResultSet rs = state.executeQuery(requete);
 			   while(rs.next()) {
+				   System.out.println(rs.getString("m.nom"));
 				   pieChartData.add(new PieChart.Data(rs.getString("m.nom"),rs.getInt("COUNT(c.date)")));
 			   }
 			} catch (SQLException e) {

@@ -83,13 +83,13 @@ CREATE TABLE IF NOT EXISTS `clients` (
   `prenom` varchar(15) NOT NULL,
   `carte_fidele` tinyint(1) NOT NULL,
   `date` date NOT NULL,
-  `adresse` varchar(15) NOT NULL,
-  `code_postal` varchar(8) NOT NULL,
-  `ville` varchar(15) NOT NULL,
-  `tel_fixe` varchar(13) NOT NULL,
-  `mobilis` varchar(13) NOT NULL,
-  `email` varchar(30) NOT NULL,
-  `remarques` text NOT NULL,
+  `adresse` varchar(15) DEFAULT NULL,
+  `code_postal` varchar(8) DEFAULT NULL,
+  `ville` varchar(15) DEFAULT NULL,
+  `tel_fixe` varchar(13) DEFAULT NULL,
+  `mobilis` varchar(13) DEFAULT NULL,
+  `email` varchar(30) DEFAULT NULL,
+  `remarques` text DEFAULT NULL,
   PRIMARY KEY (`code`),
   KEY `nom` (`nom`,`prenom`,`carte_fidele`,`date`),
   KEY `prenom` (`prenom`),
@@ -179,17 +179,37 @@ INSERT INTO `mode_reglements` (`code`, `type`) VALUES
 (3, 'carte');
 
 
-create table utilisateur(
-nomutilisateurdb VARCHAR(30),
-mdp VARCHAR(30),
-numcni VARCHAR(30),
-nom VARCHAR(30),
-prenom VARCHAR(30),
-PRIMARY KEY(nomutilisateurdb)
+CREATE TABLE IF NOT EXISTS utilisateur(
+pseudo VARCHAR(30) NOT NULL,
+mdp VARCHAR(30) NOT NULL,
+nom VARCHAR(20) DEFAULT NULL,
+prenom VARCHAR(40) DEFAULT NULL,
+numcni VARCHAR(30) DEFAULT NULL,
+PRIMARY KEY(pseudo)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `utilisateurDB` (`nomutilisateurdb`, `mdp`, `adresse`) VALUES
-('root','toor','localhost');
+INSERT INTO `utilisateur` (`pseudo`, `mdp`, `nom`, `prenom`,`numcni`) VALUES
+('admin','admin','KOUASSI','Yves Anselme Magloire','C0114785212');
+
+CREATE TABLE IF NOT EXISTS mois(
+id int(3) NOT NULL,
+nom VARCHAR(20) NOT NULL,
+PRIMARY KEY(id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `mois` (`id`, `nom`) VALUES
+('1','Janvier'),
+('2','Fevrier'),
+('3','Mars'),
+('4','Avril'),
+('5','Mai'),
+('6','Juin'),
+('7','Juillet'),
+('8','Aout'),
+('9','Septembre'),
+('10','Octobre'),
+('11','Novembre'),
+('12','Decembre');
 
 --
 -- Contraintes pour les tables exportées
