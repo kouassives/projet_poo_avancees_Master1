@@ -12,7 +12,7 @@ L'application est une application classique de gestion de commande.
 ** Une autre machine ou la meme machine pour le service Web.
       
       Le programme recupère la TVA sur un serveur lors des achats d'articles
-      Clonez le service web avec ce lien: https://github.com/kouassives/WebServiceSOAP_ProjetBDGL.git et deployé le. 
+      Clonez le service web avec ce lien: https://github.com/kouassives/ServiceWeb_Projet_MASTER1.git et deployé le Serveur en vous aidant du _lisezMoi.txt 
       
 - Les fichiers resources
     La base de données : resources/database/gestcmandsapp.sql
