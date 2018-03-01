@@ -7,7 +7,7 @@ NB: Juste vous rappelez que vous avez attribué une note de 15 en Systèmes Repa
 		Conception d'un projet BDtes pour les test de Base de données,
 		Conception du projet UML ,
 		Collaboration avec les autres membres,
-		Implementation de toutes l'application.
+		Implementation de toute l'application.
 
 	}
 
