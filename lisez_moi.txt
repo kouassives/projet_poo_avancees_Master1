@@ -1,0 +1,68 @@
+NB: Juste vous rappelez que vous avez attribué une note de 15 à KOUASSI YVES ANSELME MAGLOIRE ET KIMOU N'TAMON PHILIPPE
+** LES PARTICIPATIONS DES MEMBRES: **
+- Pour le projet JAVA FX:
+	KOUASSI YVES ANSELME MAGLOIRE ->
+	{
+		Création de la Base de données,
+		Conception d'un projet BDtes pour les test de Base de données,
+		Conception du projet UML ,
+		Collaboration avec les autres membres,
+		Implementation de toutes l'application.
+
+	}
+
+	KIMOU N'TAMON JEAN PHILIPPE ->
+	{
+		Apport d'aide lors de la création de la base de données,
+		Collaboration avec les autres membres.
+	}
+
+	YAO YVES CHRISTIAN ->
+	{
+		Apport d'aide lors de la création du projet UML,
+		Collaboration avec les autres membres.
+	}
+	
+	N'GUESSAN KOFFI INNOCENT ->
+	{
+		Apport d'idée lors de la création des fenêtres,
+		Collaboration avec les autres membres.
+	}
+
+- Pour le projet JAVA JSF:
+	KOUASSI YVES ANSELME MAGLOIRE ->
+	{
+		Apport d'aide lors de la création de la base de données Derby,
+		Collaboration avec les autres membres.
+	}
+
+	KIMOU N'TAMON JEAN PHILIPPE ->
+	{
+		Apport d'aide lors de la création de les interfaces,
+		Collaboration avec les autres membres.
+	}
+
+	YAO YVES CHRISTIAN ->
+	{
+		Collaboration lors création des interfaces,
+		Collaboration pour l'Implementation des traitements de l'application.
+		Collaboration avec les autres membres.
+	}
+	N'GUESSAN KOFFI INNOCENT ->
+	{
+		Collaboration lors création des interfaces,
+		Collaboration pour l'Implementation des traitements de l'application.
+		Collaboration avec les autres membres.
+	}
+
+** LIENS DES PROJETS IMPLEMENTES **
+
+(Java FX) projet_poo_avancees_Master1: https://github.com/kouassives/projet_poo_avancees_Master1.git
+
+(Java JSF) Projet_WEB_MASTER1_BDGL: https://github.com/boher01/Projet_WEB_MASTER1_BDGL.git
+
+UML_Indigo: https://github.com/kouassives/UML_Indigo.git
+
+BDtest: https://github.com/kouassives/BDtest.git
+
+AdressApp: https://github.com/kouassives/AddressApp.git
