@@ -1,7 +1,4 @@
 ### KOUASSI YVES ANSELME MAGLOIRE
-### KIMOU N'TAMON JEAN PHILIPPE
-### YAO YVES CHRISTIAN
-### N'GUESSAN KOFFI INNOCENT
 
 @version 01/01/2018
 L'application est une application classique de gestion de commande.
