@@ -502,7 +502,7 @@ public void setDialogStage(Stage dialogStage) {
 }
 
 public void handleMenuPrincipal() {
-	this.dialogStage.hide();
+	this.dialogStage.close();
 	mainApp.showFenMenuPrincipal();
 }
 

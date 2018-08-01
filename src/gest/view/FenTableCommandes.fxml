@@ -42,7 +42,7 @@
                   <String fx:value="buttonPanneau" />
                </styleClass>
             </Button>
-            <Button id="buttonHome" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="451.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="173.0" text="Retour au menu">
+            <Button id="buttonHome" alignment="CENTER" layoutX="26.0" layoutY="451.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="42.0" prefWidth="173.0" text="Retour">
                <styleClass>
                   <String fx:value="buttonWithImage" />
                   <String fx:value="buttonPanneau" />
@@ -70,7 +70,7 @@
                </image>
             </ImageView>
             <Label layoutX="294.0" layoutY="466.0" styleClass="label-bright" text="Rechercher une commande" />
-            <TextField layoutX="439.0" layoutY="461.0" minHeight="-Infinity" prefHeight="26.0" prefWidth="126.0" style="-fx-font-size: 12;" />
+            <TextField fx:id="rechercherTextField" layoutX="439.0" layoutY="461.0" minHeight="-Infinity" onKeyReleased="#handleRechercherCommandes" prefHeight="26.0" prefWidth="126.0" style="-fx-font-size: 12;" />
             <TableView fx:id="commandeTable" layoutX="9.0" layoutY="74.0" prefHeight="369.0" prefWidth="556.0">
               <columns>
                 <TableColumn fx:id="code" prefWidth="75.0" text="Code" />

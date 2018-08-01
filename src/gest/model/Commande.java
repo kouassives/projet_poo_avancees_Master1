@@ -230,7 +230,7 @@ public class Commande {
 		String requete = ""; 
 		requete += "SELECT com.code, com.total_ttc," + " com.date, cli.code,cli.nom, cli.prenom, mode.type ";
 		requete += "FROM commandes AS com, clients AS cli," + 
-		" mode reglements AS mode ";
+		" mode_reglements AS mode ";
 		requete += "WHERE com.code_mode_reglement = mode.code ";
 		requete += "AND com.code_client = cli.code AND (";
 		requete += "com.code LIKE '%" + recherche + "%' ";
@@ -248,7 +248,7 @@ public class Commande {
 				LocalDate date = rs.getDate("date").toLocalDate(); 
 				// Informations client
 				String codeClient = rs.getString("cli.code");
-				String nomPrenom_client = rs.getString("cli.nom")+ rs.getString("cli.prenom");
+				String nomPrenom_client = rs.getString("cli.nom")+ " "+ rs.getString("cli.prenom");
 				// Informations mode reglement
 				String mode_reglement = rs.getString("mode.type"); 
 				lesEnreg.add(new Commande(code,
@@ -263,7 +263,7 @@ public class Commande {
 			Alert alert = new Alert(AlertType.ERROR);
 	        alert.setTitle("Resultat");
 	        alert.setHeaderText("Probleme rencontre");
-	        alert.setContentText("");
+	        alert.setContentText(e.getMessage());
 	    	alert.showAndWait();
 		} 
 			return lesEnreg; 

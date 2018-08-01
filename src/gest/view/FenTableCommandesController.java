@@ -1,15 +1,20 @@
 package gest.view;
 
+import java.util.ArrayList;
+
 import gest.MainApp;
 import gest.model.Article;
 import gest.model.Commande;
 import gest.util.DateUtil;
 import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
@@ -31,7 +36,9 @@ public class FenTableCommandesController {
 	@FXML
 	private TableColumn<Commande, String> date;
 
-
+	
+	@FXML
+	private TextField rechercherTextField;
 	
 	  /**
 	     * Initializes the controller class. This method is automatically called
@@ -94,6 +101,18 @@ public class FenTableCommandesController {
 	    }
 	    
 	    
+	    @FXML
+	    private void handleRechercherCommandes() {
+	    	Commande uneCommande = new Commande();
+	    	uneCommande.getLesEnreg().clear();
+	        
+	        ArrayList<Commande> nouvelleListe = uneCommande.chercherCRUD(rechercherTextField.getText());
+	        ObservableList<Commande> nouvelleListeObservale = FXCollections.observableArrayList(nouvelleListe);
+	        
+	        commandeTable.setItems(nouvelleListeObservale);
+	    }
+	    
+	    
 	    
 	private Stage dialogStage;
 
@@ -104,6 +123,12 @@ public class FenTableCommandesController {
  */
 public void setDialogStage(Stage dialogStage) {
     this.dialogStage = dialogStage;
+}
+
+
+@FXML
+private void handleBack() {
+	this.dialogStage.close();
 }
 
 }

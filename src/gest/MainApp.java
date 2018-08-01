@@ -376,7 +376,7 @@ public class MainApp extends Application {
             
             // Create the dialog Stage.
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("INDIGO Choix Client");
+            dialogStage.setTitle("INDIGO Choix Article");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(getPrimaryStage());
             Scene sceneChoixArticle = new Scene(page);
