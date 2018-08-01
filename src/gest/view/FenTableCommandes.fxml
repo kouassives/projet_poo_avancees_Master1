@@ -51,7 +51,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button id="buttonSupprimer" alignment="CENTER_RIGHT" layoutX="14.0" layoutY="306.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="211.0" style="-fx-background-size: 15%; -fx-font-size: 14;" text="Supprimer la commande">
+            <Button id="buttonSupprimer" alignment="CENTER_RIGHT" layoutX="14.0" layoutY="306.0" mnemonicParsing="false" onAction="#handleDeleteCommande" prefHeight="42.0" prefWidth="211.0" style="-fx-background-size: 15%; -fx-font-size: 14;" text="Supprimer la commande">
                <styleClass>
                   <String fx:value="buttonWithImage" />
                   <String fx:value="buttonPanneau" />

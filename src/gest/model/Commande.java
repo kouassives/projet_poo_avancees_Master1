@@ -203,7 +203,7 @@ public class Commande {
 		boolean bSuppression = true;
 		String requete = null;
 		try {
-			requete = "DELETE commandes, lignescommandes" + " FROM commandes, lignescommandes " + "WHERE code commande = code AND code = ?";
+			requete = "DELETE commandes , lignes_commandes FROM commandes, lignes_commandes " + "WHERE commandes.code = lignes_commandes.code_commande AND code = ?";
 			PreparedStatement prepare = laConnexion.prepareStatement(requete);
 			prepare.setString(1, vCode);	
 			int nbEnregSup = prepare.executeUpdate();
@@ -220,7 +220,7 @@ public class Commande {
 			Alert alert = new Alert(AlertType.ERROR);
 	        alert.setTitle("Probleme rencontre");
 	        alert.setHeaderText("Aucune suppression effectuee dans la BD");
-	        alert.setContentText("");
+	        alert.setContentText(e.getMessage());
 	    	alert.showAndWait();
 		}
 		return bSuppression;
