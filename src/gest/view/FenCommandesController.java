@@ -109,14 +109,13 @@ private ModeReglements mode = new ModeReglements();
 		            	article.setDesignation(selectedLignesCommandes.getdesignation());
 		            	article.setPrix_unitaire(selectedLignesCommandes.getprixUnitaire());
 	            	}
-	            	if(!selectedCodeCategorieList.isEmpty() && index>0)
+	            	if(!selectedCodeCategorieList.isEmpty() && index>=0)
 	            	codeCategorieTextField.setText(selectedCodeCategorieList.get(index));
 	            	
 	            	ArrayList<Integer> array = new ArrayList<Integer>();
 	        		ObservableList<Integer> quantiteList = FXCollections.observableArrayList(array);
 	        		
-	        		if (!selectedQuantie.isEmpty() && index>0
-	        				)
+	        		if (!selectedQuantie.isEmpty() && index>=0)
 	        		{
 	        			for (int i=0;i<selectedQuantie.get(index);i++)
 			        		{
